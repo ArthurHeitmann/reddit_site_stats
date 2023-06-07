@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "esModuleInterop": true,
+    "target": "esnext",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "noImplicitThis": true,
+    "lib": [
+      "ESNext"
+    ],
+    "types": [
+    ]
+  },
+  "include": ["./src", "./cypress"],
+}

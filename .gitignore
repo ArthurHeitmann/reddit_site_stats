@@ -1,0 +1,10 @@
+node_modules
+.idea
+.vscode
+
+*.js
+*.js.map
+
+commentsPerMinute.json
+postsPerMinute.json
+redditAuth.json
