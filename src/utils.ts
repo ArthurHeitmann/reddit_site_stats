@@ -22,3 +22,7 @@ export function base36Decode(str: string): number {
 	}
 	return num;
 }
+
+export function sleep(ms: number): Promise<void> {
+	return new Promise(resolve => setTimeout(resolve, ms));
+}

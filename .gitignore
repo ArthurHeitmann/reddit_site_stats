@@ -7,4 +7,5 @@ node_modules
 
 commentsPerMinute.json
 postsPerMinute.json
+subredditTypes.json
 redditAuth.json

@@ -1,5 +1,5 @@
 import fetch, {Headers, RequestInit} from "node-fetch";
-import {RedditListingObj, RedditPostData, RedditPostObj} from "./redditTypes";
+import {RedditListingObj, RedditPostData, RedditPostObj, RedditSubredditObj, SubredditDetails} from "./redditTypes";
 import fs, {promises as fsp} from "fs";
 
 const clientId = "Rkr7RNeoRi7nBaZ2GbUmyw";
@@ -105,4 +105,16 @@ export async function getRecentSubredditPosts(auth: RedditAuth, subreddit: strin
 	limit = Math.min(limit, 100);
 	const response = await auth.oauthRequest<RedditListingObj<RedditPostObj>>(`/r/${subreddit}`, { limit: limit.toString() });
 	return response.data.children.map(c => c.data);
+}
+
+export async function getSubredditsAbout(auth: RedditAuth, subreddits: string[]): Promise<SubredditDetails[]> {
+	let remainingSubreddits = subreddits;
+	const subredditsAbout: SubredditDetails[] = [];
+	while (remainingSubreddits.length > 0) {
+		const subredditsToQuery = remainingSubreddits.splice(0, 100);
+		let subredditsList = subredditsToQuery.join(",");
+		const response = await auth.oauthRequest<RedditListingObj<RedditSubredditObj>>("/api/info", { sr_name: subredditsList });
+		subredditsAbout.push(...response.data.children.map(c => c.data as SubredditDetails));
+	}
+	return subredditsAbout;
 }
