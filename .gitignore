@@ -8,4 +8,7 @@ node_modules
 commentsPerMinute.json
 postsPerMinute.json
 subredditTypes.json
+topSubreddits.json
 redditAuth.json
+
+.env

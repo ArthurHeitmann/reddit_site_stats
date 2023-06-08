@@ -2,15 +2,20 @@ import fetch, {Headers, RequestInit} from "node-fetch";
 import {RedditListingObj, RedditPostData, RedditPostObj, RedditSubredditObj, SubredditDetails} from "./redditTypes";
 import fs, {promises as fsp} from "fs";
 
-const clientId = "Rkr7RNeoRi7nBaZ2GbUmyw";
-const secret = "***REMOVED***";
 const userAgent = "script:redditStats:v0.0.1 (by /u/RaiderBDev)";
 const saveFilePath = "redditAuth.json";
 const endpointAccessToken = "https://www.reddit.com/api/v1/access_token";
 
 export class RedditAuth {
+	private readonly clientId: string;
+	private readonly secret: string;
 	private accessToken: string = "";
 	private accessTokenExpires: number = 0;
+
+	constructor(clientId: string, secret: string) {
+		this.clientId = clientId;
+		this.secret = secret;
+	}
 
 	async getAccessTokenWithRefresh(): Promise<string> {
 		const now = Date.now();
@@ -47,7 +52,7 @@ export class RedditAuth {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/x-www-form-urlencoded",
-				"Authorization": "Basic " + btoa(clientId + ":" + secret),
+				"Authorization": "Basic " + btoa(this.clientId + ":" + this.secret),
 				"User-Agent": userAgent
 			},
 			body: "grant_type=client_credentials"
