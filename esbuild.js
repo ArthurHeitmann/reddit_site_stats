@@ -56,6 +56,7 @@ function makeGeneralConfig(label, shouldBundle, platform = null) {
 esbuild.build({
 	entryPoints: [
 		"src/app.ts",
+		"src/topSubredditsLoader.ts"
 	],
 	plugins: [
 		nodeExternalsPlugin()

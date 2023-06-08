@@ -1,3503 +1,9010 @@
 
-export const topSubreddits = [
+export interface SubredditEntry {
+	name: string;
+	subscriberCount: number;
+	over18: boolean;
+	isDefaultSubreddit: boolean;
+}
+
+export const topSubreddits: SubredditEntry[] = [
 	{
-		name: "funny",
-		isNsfw: false,
-		subs: 49852009
+		"name": "funny",
+		"subscriberCount": 49860446,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "AskReddit",
-		isNsfw: false,
-		subs: 41229138
+		"name": "AskReddit",
+		"subscriberCount": 41234923,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "gaming",
-		isNsfw: false,
-		subs: 37086668
+		"name": "gaming",
+		"subscriberCount": 37088909,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "aww",
-		isNsfw: false,
-		subs: 34080740
+		"name": "aww",
+		"subscriberCount": 34082485,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "Music",
-		isNsfw: false,
-		subs: 32299930
+		"name": "Music",
+		"subscriberCount": 32300842,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "worldnews",
-		isNsfw: false,
-		subs: 31899033
+		"name": "worldnews",
+		"subscriberCount": 31902316,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "todayilearned",
-		isNsfw: false,
-		subs: 31740273
+		"name": "todayilearned",
+		"subscriberCount": 31743768,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "movies",
-		isNsfw: false,
-		subs: 31012785
+		"name": "movies",
+		"subscriberCount": 31014288,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "science",
-		isNsfw: false,
-		subs: 30161449
+		"name": "science",
+		"subscriberCount": 30162777,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "pics",
-		isNsfw: false,
-		subs: 30036013
+		"name": "pics",
+		"subscriberCount": 30037278,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "Showerthoughts",
-		isNsfw: false,
-		subs: 27461582
+		"name": "Showerthoughts",
+		"subscriberCount": 27464078,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "videos",
-		isNsfw: false,
-		subs: 26691770
+		"name": "videos",
+		"subscriberCount": 26691851,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "news",
-		isNsfw: false,
-		subs: 26225456
+		"name": "news",
+		"subscriberCount": 26226930,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "Jokes",
-		isNsfw: false,
-		subs: 26038191
+		"name": "Jokes",
+		"subscriberCount": 26040020,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "memes",
-		isNsfw: false,
-		subs: 25984470
+		"name": "memes",
+		"subscriberCount": 25989418,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "askscience",
-		isNsfw: false,
-		subs: 23985734
+		"name": "askscience",
+		"subscriberCount": 23987369,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "space",
-		isNsfw: false,
-		subs: 23368150
+		"name": "space",
+		"subscriberCount": 23369623,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "food",
-		isNsfw: false,
-		subs: 23317798
+		"name": "food",
+		"subscriberCount": 23318103,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "EarthPorn",
-		isNsfw: false,
-		subs: 23276303
+		"name": "EarthPorn",
+		"subscriberCount": 23277156,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "Art",
-		isNsfw: false,
-		subs: 22565690
+		"name": "Art",
+		"subscriberCount": 22566855,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "books",
-		isNsfw: false,
-		subs: 22558075
+		"name": "books",
+		"subscriberCount": 22559237,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "IAmA",
-		isNsfw: false,
-		subs: 22459722
+		"name": "IAmA",
+		"subscriberCount": 22459720,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "DIY",
-		isNsfw: false,
-		subs: 22436446
+		"name": "DIY",
+		"subscriberCount": 22437607,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "nottheonion",
-		isNsfw: false,
-		subs: 22309553
+		"name": "nottheonion",
+		"subscriberCount": 22310810,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "explainlikeimfive",
-		isNsfw: false,
-		subs: 22280448
+		"name": "explainlikeimfive",
+		"subscriberCount": 22281468,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "mildlyinteresting",
-		isNsfw: false,
-		subs: 22222049
+		"name": "mildlyinteresting",
+		"subscriberCount": 22224074,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "LifeProTips",
-		isNsfw: false,
-		subs: 22070379
+		"name": "LifeProTips",
+		"subscriberCount": 22071329,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "gifs",
-		isNsfw: false,
-		subs: 21612426
+		"name": "gifs",
+		"subscriberCount": 21612433,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "gadgets",
-		isNsfw: false,
-		subs: 21310889
+		"name": "gadgets",
+		"subscriberCount": 21311433,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "sports",
-		isNsfw: false,
-		subs: 20642706
+		"name": "sports",
+		"subscriberCount": 20642843,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "Documentaries",
-		isNsfw: false,
-		subs: 20333259
+		"name": "Documentaries",
+		"subscriberCount": 20333286,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "GetMotivated",
-		isNsfw: false,
-		subs: 19930848
+		"name": "GetMotivated",
+		"subscriberCount": 19932112,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "dataisbeautiful",
-		isNsfw: false,
-		subs: 19637134
+		"name": "dataisbeautiful",
+		"subscriberCount": 19638148,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "UpliftingNews",
-		isNsfw: false,
-		subs: 19057997
+		"name": "UpliftingNews",
+		"subscriberCount": 19058600,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "Futurology",
-		isNsfw: false,
-		subs: 18717118
+		"name": "Futurology",
+		"subscriberCount": 18718393,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "photoshopbattles",
-		isNsfw: false,
-		subs: 18378269
+		"name": "photoshopbattles",
+		"subscriberCount": 18378518,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "tifu",
-		isNsfw: false,
-		subs: 18338968
+		"name": "tifu",
+		"subscriberCount": 18339498,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "listentothis",
-		isNsfw: false,
-		subs: 17890309
+		"name": "listentothis",
+		"subscriberCount": 17890545,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "OldSchoolCool",
-		isNsfw: false,
-		subs: 17816213
+		"name": "OldSchoolCool",
+		"subscriberCount": 17817296,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "personalfinance",
-		isNsfw: false,
-		subs: 17812387
+		"name": "personalfinance",
+		"subscriberCount": 17813608,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "history",
-		isNsfw: false,
-		subs: 17598122
+		"name": "history",
+		"subscriberCount": 17598869,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "nosleep",
-		isNsfw: false,
-		subs: 17510351
+		"name": "nosleep",
+		"subscriberCount": 17511307,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "philosophy",
-		isNsfw: false,
-		subs: 17316605
+		"name": "philosophy",
+		"subscriberCount": 17317344,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "WritingPrompts",
-		isNsfw: false,
-		subs: 16917253
+		"name": "WritingPrompts",
+		"subscriberCount": 16917868,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "television",
-		isNsfw: false,
-		subs: 16897393
+		"name": "television",
+		"subscriberCount": 16897929,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "InternetIsBeautiful",
-		isNsfw: false,
-		subs: 16466394
+		"name": "InternetIsBeautiful",
+		"subscriberCount": 16466713,
+		"isDefaultSubreddit": true,
+		"over18": false
 	},
 	{
-		name: "creepy",
-		isNsfw: false,
-		subs: 14743693
+		"name": "creepy",
+		"subscriberCount": 14743813,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "technology",
-		isNsfw: false,
-		subs: 14313658
+		"name": "technology",
+		"subscriberCount": 14315236,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "wallstreetbets",
-		isNsfw: false,
-		subs: 13979407
+		"name": "wallstreetbets",
+		"subscriberCount": 13980575,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "wholesomememes",
-		isNsfw: false,
-		subs: 13875456
+		"name": "wholesomememes",
+		"subscriberCount": 13876640,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "TwoXChromosomes",
-		isNsfw: false,
-		subs: 13538039
+		"name": "TwoXChromosomes",
+		"subscriberCount": 13538105,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "interestingasfuck",
-		isNsfw: false,
-		subs: 11630509
+		"name": "interestingasfuck",
+		"subscriberCount": 11632239,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Fitness",
-		isNsfw: false,
-		subs: 11364811
+		"name": "Fitness",
+		"subscriberCount": 11366304,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "lifehacks",
-		isNsfw: false,
-		subs: 10747798
+		"name": "lifehacks",
+		"subscriberCount": 10749333,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Unexpected",
-		isNsfw: false,
-		subs: 10520545
+		"name": "Unexpected",
+		"subscriberCount": 10522625,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "NatureIsFuckingLit",
-		isNsfw: false,
-		subs: 10384143
+		"name": "NatureIsFuckingLit",
+		"subscriberCount": 10385991,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Damnthatsinteresting",
-		isNsfw: false,
-		subs: 10225752
+		"name": "Damnthatsinteresting",
+		"subscriberCount": 10230347,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "dadjokes",
-		isNsfw: false,
-		subs: 9934568
+		"name": "dadjokes",
+		"subscriberCount": 9936480,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "AdviceAnimals",
-		isNsfw: false,
-		subs: 9809526
+		"name": "AdviceAnimals",
+		"subscriberCount": 9809732,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "oddlysatisfying",
-		isNsfw: false,
-		subs: 9550105
+		"name": "oddlysatisfying",
+		"subscriberCount": 9551151,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "relationship_advice",
-		isNsfw: false,
-		subs: 9155298
+		"name": "relationship_advice",
+		"subscriberCount": 9157767,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "politics",
-		isNsfw: false,
-		subs: 8332555
+		"name": "politics",
+		"subscriberCount": 8332859,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "AmItheAsshole",
-		isNsfw: false,
-		subs: 8167413
+		"name": "AmItheAsshole",
+		"subscriberCount": 8178106,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "nextfuckinglevel",
-		isNsfw: false,
-		subs: 8053571
+		"name": "nextfuckinglevel",
+		"subscriberCount": 8055015,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "pcmasterrace",
-		isNsfw: false,
-		subs: 7832168
+		"name": "pcmasterrace",
+		"subscriberCount": 7834908,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "MadeMeSmile",
-		isNsfw: false,
-		subs: 7825231
+		"name": "MadeMeSmile",
+		"subscriberCount": 7827171,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "travel",
-		isNsfw: false,
-		subs: 7753802
+		"name": "travel",
+		"subscriberCount": 7755547,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "AnimalsBeingDerps",
-		isNsfw: false,
-		subs: 7748988
+		"name": "AnimalsBeingDerps",
+		"subscriberCount": 7751403,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "nba",
-		isNsfw: false,
-		subs: 7683617
+		"name": "nba",
+		"subscriberCount": 7687828,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "me_irl",
-		isNsfw: false,
-		subs: 7434972
+		"name": "me_irl",
+		"subscriberCount": 7435521,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "HistoryMemes",
-		isNsfw: false,
-		subs: 7420836
+		"name": "HistoryMemes",
+		"subscriberCount": 7423735,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "Whatcouldgowrong",
-		isNsfw: false,
-		subs: 7405562
+		"name": "Whatcouldgowrong",
+		"subscriberCount": 7405634,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Minecraft",
-		isNsfw: false,
-		subs: 7375977
+		"name": "Minecraft",
+		"subscriberCount": 7376049,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "facepalm",
-		isNsfw: false,
-		subs: 7325835
+		"name": "facepalm",
+		"subscriberCount": 7328314,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "anime",
-		isNsfw: false,
-		subs: 7312635
+		"name": "anime",
+		"subscriberCount": 7315041,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "WTF",
-		isNsfw: false,
-		subs: 6994773
+		"name": "WTF",
+		"subscriberCount": 6994869,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "ContagiousLaughter",
-		isNsfw: false,
-		subs: 6879143
+		"name": "ContagiousLaughter",
+		"subscriberCount": 6882176,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "AnimalsBeingBros",
-		isNsfw: false,
-		subs: 6638270
+		"name": "AnimalsBeingBros",
+		"subscriberCount": 6638817,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "BeAmazed",
-		isNsfw: false,
-		subs: 6616572
+		"name": "BeAmazed",
+		"subscriberCount": 6617995,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "CryptoCurrency",
-		isNsfw: false,
-		subs: 6453649
+		"name": "CryptoCurrency",
+		"subscriberCount": 6454508,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "tattoos",
-		isNsfw: false,
-		subs: 6439280
+		"name": "tattoos",
+		"subscriberCount": 6440732,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "leagueoflegends",
-		isNsfw: false,
-		subs: 6405019
+		"name": "leagueoflegends",
+		"subscriberCount": 6405329,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "therewasanattempt",
-		isNsfw: false,
-		subs: 6338640
+		"name": "therewasanattempt",
+		"subscriberCount": 6342070,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "buildapc",
-		isNsfw: false,
-		subs: 6335730
+		"name": "buildapc",
+		"subscriberCount": 6335999,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "AnimalsBeingJerks",
-		isNsfw: false,
-		subs: 6141824
+		"name": "AnimalsBeingJerks",
+		"subscriberCount": 6142534,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "EatCheapAndHealthy",
-		isNsfw: false,
-		subs: 5946360
+		"name": "EatCheapAndHealthy",
+		"subscriberCount": 5948361,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "confession",
-		isNsfw: false,
-		subs: 5928153
+		"name": "confession",
+		"subscriberCount": 5930147,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "dankmemes",
-		isNsfw: false,
-		subs: 5907293
+		"name": "dankmemes",
+		"subscriberCount": 5907517,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "FoodPorn",
-		isNsfw: false,
-		subs: 5820854
+		"name": "FoodPorn",
+		"subscriberCount": 5821852,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Tinder",
-		isNsfw: false,
-		subs: 5807449
+		"name": "Tinder",
+		"subscriberCount": 5807633,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "mildlyinfuriating",
-		isNsfw: false,
-		subs: 5795436
+		"name": "mildlyinfuriating",
+		"subscriberCount": 5798172,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "BlackPeopleTwitter",
-		isNsfw: false,
-		subs: 5644034
+		"name": "BlackPeopleTwitter",
+		"subscriberCount": 5644160,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "WatchPeopleDieInside",
-		isNsfw: false,
-		subs: 5618290
+		"name": "WatchPeopleDieInside",
+		"subscriberCount": 5618536,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "PS4",
-		isNsfw: false,
-		subs: 5593868
+		"name": "PS4",
+		"subscriberCount": 5593850,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "stocks",
-		isNsfw: false,
-		subs: 5488496
+		"name": "stocks",
+		"subscriberCount": 5489527,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "gardening",
-		isNsfw: false,
-		subs: 5488482
+		"name": "gardening",
+		"subscriberCount": 5489335,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "AskWomen",
-		isNsfw: false,
-		subs: 5477803
+		"name": "AskWomen",
+		"subscriberCount": 5479739,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Parenting",
-		isNsfw: false,
-		subs: 5453934
+		"name": "Parenting",
+		"subscriberCount": 5454879,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "programming",
-		isNsfw: false,
-		subs: 5451293
+		"name": "programming",
+		"subscriberCount": 5451797,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "AskMen",
-		isNsfw: false,
-		subs: 5438058
+		"name": "AskMen",
+		"subscriberCount": 5440212,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "malefashionadvice",
-		isNsfw: false,
-		subs: 5425721
+		"name": "malefashionadvice",
+		"subscriberCount": 5426239,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "bestof",
-		isNsfw: false,
-		subs: 5360724
+		"name": "bestof",
+		"subscriberCount": 5360749,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Awwducational",
-		isNsfw: false,
-		subs: 5258834
+		"name": "Awwducational",
+		"subscriberCount": 5259611,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "photography",
-		isNsfw: false,
-		subs: 5215463
+		"name": "photography",
+		"subscriberCount": 5215810,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Bitcoin",
-		isNsfw: false,
-		subs: 5070577
+		"name": "Bitcoin",
+		"subscriberCount": 5118443,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "HumansBeingBros",
-		isNsfw: false,
-		subs: 5020606
+		"name": "HumansBeingBros",
+		"subscriberCount": 5021200,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "itookapicture",
-		isNsfw: false,
-		subs: 4931607
+		"name": "itookapicture",
+		"subscriberCount": 4932379,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "cars",
-		isNsfw: false,
-		subs: 4926322
+		"name": "cars",
+		"subscriberCount": 4927703,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "YouShouldKnow",
-		isNsfw: false,
-		subs: 4892074
+		"name": "YouShouldKnow",
+		"subscriberCount": 4893165,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "NetflixBestOf",
-		isNsfw: false,
-		subs: 4887264
+		"name": "NetflixBestOf",
+		"subscriberCount": 4889447,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "rarepuppers",
-		isNsfw: false,
-		subs: 4864904
+		"name": "rarepuppers",
+		"subscriberCount": 4865790,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "woodworking",
-		isNsfw: false,
-		subs: 4818168
+		"name": "woodworking",
+		"subscriberCount": 4818412,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "trippinthroughtime",
-		isNsfw: false,
-		subs: 4806103
+		"name": "trippinthroughtime",
+		"subscriberCount": 4806417,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "starterpacks",
-		isNsfw: false,
-		subs: 4771741
+		"name": "starterpacks",
+		"subscriberCount": 4773027,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "NintendoSwitch",
-		isNsfw: false,
-		subs: 4723395
+		"name": "NintendoSwitch",
+		"subscriberCount": 4724263,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Outdoors",
-		isNsfw: false,
-		subs: 4705953
+		"name": "Outdoors",
+		"subscriberCount": 4706274,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "BikiniBottomTwitter",
-		isNsfw: false,
-		subs: 4585285
+		"name": "BikiniBottomTwitter",
+		"subscriberCount": 4585471,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "europe",
-		isNsfw: false,
-		subs: 4566164
+		"name": "europe",
+		"subscriberCount": 4566886,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "PublicFreakout",
-		isNsfw: false,
-		subs: 4540006
+		"name": "PublicFreakout",
+		"subscriberCount": 4540276,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "drawing",
-		isNsfw: false,
-		subs: 4524710
+		"name": "drawing",
+		"subscriberCount": 4525572,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "soccer",
-		isNsfw: false,
-		subs: 4520243
+		"name": "soccer",
+		"subscriberCount": 4522277,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Overwatch",
-		isNsfw: false,
-		subs: 4495985
+		"name": "Overwatch",
+		"subscriberCount": 4496868,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "instant_regret",
-		isNsfw: false,
-		subs: 4464476
+		"name": "instant_regret",
+		"subscriberCount": 4464522,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "pokemongo",
-		isNsfw: false,
-		subs: 4380327
+		"name": "gonewild",
+		"subscriberCount": 4437974,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "pokemon",
-		isNsfw: false,
-		subs: 4368031
+		"name": "pokemongo",
+		"subscriberCount": 4380677,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "HomeImprovement",
-		isNsfw: false,
-		subs: 4367816
+		"name": "HomeImprovement",
+		"subscriberCount": 4368670,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "dating_advice",
-		isNsfw: false,
-		subs: 4352334
+		"name": "pokemon",
+		"subscriberCount": 4368105,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "cats",
-		isNsfw: false,
-		subs: 4336643
+		"name": "dating_advice",
+		"subscriberCount": 4352640,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "streetwear",
-		isNsfw: false,
-		subs: 4311961
+		"name": "cats",
+		"subscriberCount": 4337803,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "KidsAreFuckingStupid",
-		isNsfw: false,
-		subs: 4204780
+		"name": "streetwear",
+		"subscriberCount": 4312438,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "nfl",
-		isNsfw: false,
-		subs: 4189031
+		"name": "KidsAreFuckingStupid",
+		"subscriberCount": 4205226,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "apple",
-		isNsfw: false,
-		subs: 4138074
+		"name": "nfl",
+		"subscriberCount": 4190501,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "IdiotsInCars",
-		isNsfw: false,
-		subs: 4131663
+		"name": "apple",
+		"subscriberCount": 4139136,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "woahdude",
-		isNsfw: false,
-		subs: 4102139
+		"name": "IdiotsInCars",
+		"subscriberCount": 4131744,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "MakeupAddiction",
-		isNsfw: false,
-		subs: 4075712
+		"name": "woahdude",
+		"subscriberCount": 4102165,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "scifi",
-		isNsfw: false,
-		subs: 4058338
+		"name": "MakeupAddiction",
+		"subscriberCount": 4076561,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Eyebleach",
-		isNsfw: false,
-		subs: 4047147
+		"name": "scifi",
+		"subscriberCount": 4058516,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "MovieDetails",
-		isNsfw: false,
-		subs: 4036988
+		"name": "Eyebleach",
+		"subscriberCount": 4047338,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "HighQualityGifs",
-		isNsfw: false,
-		subs: 4011594
+		"name": "nsfw",
+		"subscriberCount": 4044848,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "xboxone",
-		isNsfw: false,
-		subs: 4004792
+		"name": "MovieDetails",
+		"subscriberCount": 4037210,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "boardgames",
-		isNsfw: false,
-		subs: 3976373
+		"name": "HighQualityGifs",
+		"subscriberCount": 4011578,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "nonononoyes",
-		isNsfw: false,
-		subs: 3969557
+		"name": "xboxone",
+		"subscriberCount": 4004780,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "foodhacks",
-		isNsfw: false,
-		subs: 3956124
+		"name": "boardgames",
+		"subscriberCount": 3976695,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "entertainment",
-		isNsfw: false,
-		subs: 3920559
+		"name": "nonononoyes",
+		"subscriberCount": 3969892,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "reactiongifs",
-		isNsfw: false,
-		subs: 3916972
+		"name": "foodhacks",
+		"subscriberCount": 3956894,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "battlestations",
-		isNsfw: false,
-		subs: 3905403
+		"name": "entertainment",
+		"subscriberCount": 3921265,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "blackmagicfuckery",
-		isNsfw: false,
-		subs: 3897631
+		"name": "reactiongifs",
+		"subscriberCount": 3916953,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "loseit",
-		isNsfw: false,
-		subs: 3892019
+		"name": "battlestations",
+		"subscriberCount": 3905663,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Animemes",
-		isNsfw: false,
-		subs: 3874267
+		"name": "blackmagicfuckery",
+		"subscriberCount": 3898476,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "learnprogramming",
-		isNsfw: false,
-		subs: 3839580
+		"name": "loseit",
+		"subscriberCount": 3892091,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "iphone",
-		isNsfw: false,
-		subs: 3827199
+		"name": "Animemes",
+		"subscriberCount": 3875148,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "pettyrevenge",
-		isNsfw: false,
-		subs: 3796660
+		"name": "learnprogramming",
+		"subscriberCount": 3839998,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "blursedimages",
-		isNsfw: false,
-		subs: 3709614
+		"name": "iphone",
+		"subscriberCount": 3827356,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "nasa",
-		isNsfw: false,
-		subs: 3693701
+		"name": "pettyrevenge",
+		"subscriberCount": 3797195,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "backpacking",
-		isNsfw: false,
-		subs: 3665455
+		"name": "blursedimages",
+		"subscriberCount": 3710561,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "MaliciousCompliance",
-		isNsfw: false,
-		subs: 3660199
+		"name": "nasa",
+		"subscriberCount": 3694231,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "slowcooking",
-		isNsfw: false,
-		subs: 3645014
+		"name": "backpacking",
+		"subscriberCount": 3665983,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "Cooking",
-		isNsfw: false,
-		subs: 3638374
+		"name": "MaliciousCompliance",
+		"subscriberCount": 3660886,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "unpopularopinion",
-		isNsfw: false,
-		subs: 3627804
+		"name": "slowcooking",
+		"subscriberCount": 3645202,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "PewdiepieSubmissions",
-		isNsfw: false,
-		subs: 3565106
+		"name": "Cooking",
+		"subscriberCount": 3638553,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "bodyweightfitness",
-		isNsfw: false,
-		subs: 3544099
+		"name": "unpopularopinion",
+		"subscriberCount": 3628698,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "CrappyDesign",
-		isNsfw: false,
-		subs: 3518243
+		"name": "RealGirls",
+		"subscriberCount": 3626075,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "femalefashionadvice",
-		isNsfw: false,
-		subs: 3496949
+		"name": "PewdiepieSubmissions",
+		"subscriberCount": 3565064,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "NoStupidQuestions",
-		isNsfw: false,
-		subs: 3496342
+		"name": "bodyweightfitness",
+		"subscriberCount": 3544329,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "spaceporn",
-		isNsfw: false,
-		subs: 3476055
+		"name": "CrappyDesign",
+		"subscriberCount": 3518737,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "socialskills",
-		isNsfw: false,
-		subs: 3466424
+		"name": "NoStupidQuestions",
+		"subscriberCount": 3497622,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "CozyPlaces",
-		isNsfw: false,
-		subs: 3463128
+		"name": "femalefashionadvice",
+		"subscriberCount": 3497578,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "HolUp",
-		isNsfw: false,
-		subs: 3446182
+		"name": "spaceporn",
+		"subscriberCount": 3476535,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "Sneakers",
-		isNsfw: false,
-		subs: 3411140
+		"name": "socialskills",
+		"subscriberCount": 3467023,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "coolguides",
-		isNsfw: false,
-		subs: 3395701
+		"name": "CozyPlaces",
+		"subscriberCount": 3463717,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "recipes",
-		isNsfw: false,
-		subs: 3377290
+		"name": "HolUp",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 3446309
 	},
 	{
-		name: "relationships",
-		isNsfw: false,
-		subs: 3376960
+		"name": "Sneakers",
+		"subscriberCount": 3411543,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "cursedcomments",
-		isNsfw: false,
-		subs: 3323523
+		"name": "coolguides",
+		"subscriberCount": 3396491,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "camping",
-		isNsfw: false,
-		subs: 3314924
+		"name": "recipes",
+		"subscriberCount": 3377346,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "GifRecipes",
-		isNsfw: false,
-		subs: 3311731
+		"name": "relationships",
+		"subscriberCount": 3377052,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "DiWHY",
-		isNsfw: false,
-		subs: 3311094
+		"name": "cursedcomments",
+		"subscriberCount": 3323508,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "HistoryPorn",
-		isNsfw: false,
-		subs: 3309719
+		"name": "camping",
+		"subscriberCount": 3315603,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Fantasy",
-		isNsfw: false,
-		subs: 3305769
+		"name": "GifRecipes",
+		"subscriberCount": 3311706,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Economics",
-		isNsfw: false,
-		subs: 3287138
+		"name": "DiWHY",
+		"subscriberCount": 3311319,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "nutrition",
-		isNsfw: false,
-		subs: 3286144
+		"name": "HistoryPorn",
+		"subscriberCount": 3309737,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "PS5",
-		isNsfw: false,
-		subs: 3277431
+		"name": "Fantasy",
+		"subscriberCount": 3306206,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "hardware",
-		isNsfw: false,
-		subs: 3269367
+		"name": "Economics",
+		"subscriberCount": 3287619,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "keto",
-		isNsfw: false,
-		subs: 3258810
+		"name": "nutrition",
+		"subscriberCount": 3286619,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "MyPeopleNeedMe",
-		isNsfw: false,
-		subs: 3251573
+		"name": "PS5",
+		"subscriberCount": 3278645,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "Wellthatsucks",
-		isNsfw: false,
-		subs: 3245825
+		"name": "hardware",
+		"subscriberCount": 3269615,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "changemyview",
-		isNsfw: false,
-		subs: 3234264
+		"name": "keto",
+		"subscriberCount": 3258902,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "RoastMe",
-		isNsfw: false,
-		subs: 3227623
+		"name": "MyPeopleNeedMe",
+		"subscriberCount": 3253462,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "gameofthrones",
-		isNsfw: false,
-		subs: 3215213
+		"name": "Wellthatsucks",
+		"subscriberCount": 3246358,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "howto",
-		isNsfw: false,
-		subs: 3210272
+		"name": "changemyview",
+		"subscriberCount": 3235002,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Games",
-		isNsfw: false,
-		subs: 3199274
+		"name": "RoastMe",
+		"subscriberCount": 3229011,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "pcgaming",
-		isNsfw: false,
-		subs: 3189254
+		"name": "gameofthrones",
+		"subscriberCount": 3215248,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "formula1",
-		isNsfw: false,
-		subs: 3176521
+		"name": "howto",
+		"subscriberCount": 3210504,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "OutOfTheLoop",
-		isNsfw: false,
-		subs: 3175996
+		"name": "Games",
+		"subscriberCount": 3199429,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "raspberry_pi",
-		isNsfw: false,
-		subs: 3160969
+		"name": "pcgaming",
+		"subscriberCount": 3189633,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "marvelstudios",
-		isNsfw: false,
-		subs: 3155013
+		"name": "hentai",
+		"subscriberCount": 3179774,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "DnD",
-		isNsfw: false,
-		subs: 3132264
+		"name": "formula1",
+		"subscriberCount": 3177485,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "MealPrepSunday",
-		isNsfw: false,
-		subs: 3120475
+		"name": "OutOfTheLoop",
+		"subscriberCount": 3176107,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "biology",
-		isNsfw: false,
-		subs: 3080904
+		"name": "raspberry_pi",
+		"subscriberCount": 3161074,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Frugal",
-		isNsfw: false,
-		subs: 3080580
+		"name": "porn",
+		"subscriberCount": 3156723,
+		"isDefaultSubreddit": false,
+		"over18": true
 	},
 	{
-		name: "offmychest",
-		isNsfw: false,
-		subs: 3053800
+		"name": "marvelstudios",
+		"subscriberCount": 3155430,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "frugalmalefashion",
-		isNsfw: false,
-		subs: 3050081
+		"name": "DnD",
+		"subscriberCount": 3132584,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "ArtefactPorn",
-		isNsfw: false,
-		subs: 3037313
+		"name": "MealPrepSunday",
+		"subscriberCount": 3120782,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "DeepIntoYouTube",
-		isNsfw: false,
-		subs: 3035244
+		"name": "Frugal",
+		"subscriberCount": 3081693,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "BetterEveryLoop",
-		isNsfw: false,
-		subs: 3031061
+		"name": "biology",
+		"subscriberCount": 3081240,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "HealthyFood",
-		isNsfw: false,
-		subs: 3004078
+		"name": "offmychest",
+		"subscriberCount": 3054092,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "ProgrammerHumor",
-		isNsfw: false,
-		subs: 2981118
+		"name": "frugalmalefashion",
+		"subscriberCount": 3050222,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "assholedesign",
-		isNsfw: false,
-		subs: 2978187
+		"name": "ArtefactPorn",
+		"subscriberCount": 3037450,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "yesyesyesyesno",
-		isNsfw: false,
-		subs: 2966666
+		"name": "DeepIntoYouTube",
+		"subscriberCount": 3035212,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "comicbooks",
-		isNsfw: false,
-		subs: 2951981
+		"name": "BetterEveryLoop",
+		"subscriberCount": 3031070,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "teenagers",
-		isNsfw: false,
-		subs: 2942165
+		"name": "HealthyFood",
+		"subscriberCount": 3004213,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "WhitePeopleTwitter",
-		isNsfw: false,
-		subs: 2941166
+		"name": "ProgrammerHumor",
+		"subscriberCount": 2981610,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "trashy",
-		isNsfw: false,
-		subs: 2935508
+		"name": "assholedesign",
+		"subscriberCount": 2978271,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Survival",
-		isNsfw: false,
-		subs: 2914545
+		"name": "yesyesyesyesno",
+		"subscriberCount": 2966663,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "humor",
-		isNsfw: false,
-		subs: 2885897
+		"name": "comicbooks",
+		"subscriberCount": 2952517,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "somethingimade",
-		isNsfw: false,
-		subs: 2873380
+		"name": "teenagers",
+		"subscriberCount": 2942279,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "youtubehaiku",
-		isNsfw: false,
-		subs: 2866862
+		"name": "WhitePeopleTwitter",
+		"subscriberCount": 2941619,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "bodybuilding",
-		isNsfw: false,
-		subs: 2861624
+		"name": "cumsluts",
+		"subscriberCount": 2940758,
+		"isDefaultSubreddit": false,
+		"over18": true
 	},
 	{
-		name: "ChildrenFallingOver",
-		isNsfw: false,
-		subs: 2860822
+		"name": "trashy",
+		"subscriberCount": 2935538,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "StarWars",
-		isNsfw: false,
-		subs: 2860547
+		"name": "Survival",
+		"subscriberCount": 2915345,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "educationalgifs",
-		isNsfw: false,
-		subs: 2859455
+		"name": "humor",
+		"subscriberCount": 2885866,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "ksi",
-		isNsfw: false,
-		subs: 2825346
+		"name": "somethingimade",
+		"subscriberCount": 2874238,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "PeopleFuckingDying",
-		isNsfw: false,
-		subs: 2817546
+		"name": "youtubehaiku",
+		"subscriberCount": 2866834,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "MurderedByWords",
-		isNsfw: false,
-		subs: 2815428
+		"name": "bodybuilding",
+		"subscriberCount": 2861948,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "nevertellmetheodds",
-		isNsfw: false,
-		subs: 2807853
+		"name": "ChildrenFallingOver",
+		"subscriberCount": 2860922,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "DestinyTheGame",
-		isNsfw: false,
-		subs: 2795904
+		"name": "StarWars",
+		"subscriberCount": 2860818,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "mac",
-		isNsfw: false,
-		subs: 2793854
+		"name": "educationalgifs",
+		"subscriberCount": 2859670,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "atheism",
-		isNsfw: false,
-		subs: 2789487
+		"name": "rule34",
+		"subscriberCount": 2852127,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Astronomy",
-		isNsfw: false,
-		subs: 2781422
+		"name": "ksi",
+		"subscriberCount": 2825460,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "Filmmakers",
-		isNsfw: false,
-		subs: 2772397
+		"name": "LegalTeens",
+		"subscriberCount": 2821832,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "anime_irl",
-		isNsfw: false,
-		subs: 2746874
+		"name": "PeopleFuckingDying",
+		"subscriberCount": 2818429,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "StockMarket",
-		isNsfw: false,
-		subs: 2738225
+		"name": "MurderedByWords",
+		"subscriberCount": 2815449,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "horror",
-		isNsfw: false,
-		subs: 2731594
+		"name": "NSFW_GIF",
+		"subscriberCount": 2811553,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "writing",
-		isNsfw: false,
-		subs: 2714187
+		"name": "nevertellmetheodds",
+		"subscriberCount": 2807983,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "rickandmorty",
-		isNsfw: false,
-		subs: 2704138
+		"name": "DestinyTheGame",
+		"subscriberCount": 2796192,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Perfectfit",
-		isNsfw: false,
-		subs: 2697278
+		"name": "mac",
+		"subscriberCount": 2793958,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "marvelmemes",
-		isNsfw: false,
-		subs: 2694973
+		"name": "atheism",
+		"subscriberCount": 2789597,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "suggestmeabook",
-		isNsfw: false,
-		subs: 2688638
+		"name": "Astronomy",
+		"subscriberCount": 2781634,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "likeus",
-		isNsfw: false,
-		subs: 2685657
+		"name": "Filmmakers",
+		"subscriberCount": 2772421,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "MachineLearning",
-		isNsfw: false,
-		subs: 2680599
+		"name": "anime_irl",
+		"subscriberCount": 2747096,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "solotravel",
-		isNsfw: false,
-		subs: 2673746
+		"name": "StockMarket",
+		"subscriberCount": 2738493,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "DoesAnybodyElse",
-		isNsfw: false,
-		subs: 2671293
+		"name": "horror",
+		"subscriberCount": 2731729,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "maybemaybemaybe",
-		isNsfw: false,
-		subs: 2650151
+		"name": "writing",
+		"subscriberCount": 2714471,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "astrophotography",
-		isNsfw: false,
-		subs: 2647984
+		"name": "rickandmorty",
+		"subscriberCount": 2704141,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "antiwork",
-		isNsfw: false,
-		subs: 2641884
+		"name": "Perfectfit",
+		"subscriberCount": 2697879,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "hacking",
-		isNsfw: false,
-		subs: 2622978
+		"name": "marvelmemes",
+		"subscriberCount": 2695272,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "oddlyterrifying",
-		isNsfw: false,
-		subs: 2612586
+		"name": "suggestmeabook",
+		"subscriberCount": 2688941,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "CampingandHiking",
-		isNsfw: false,
-		subs: 2605003
+		"name": "likeus",
+		"subscriberCount": 2685769,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "ThriftStoreHauls",
-		isNsfw: false,
-		subs: 2595900
+		"name": "MachineLearning",
+		"subscriberCount": 2681304,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "toptalent",
-		isNsfw: false,
-		subs: 2579833
+		"name": "solotravel",
+		"subscriberCount": 2674229,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "technicallythetruth",
-		isNsfw: false,
-		subs: 2574854
+		"name": "GirlsFinishingTheJob",
+		"subscriberCount": 2673553,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "indieheads",
-		isNsfw: false,
-		subs: 2557028
+		"name": "DoesAnybodyElse",
+		"subscriberCount": 2671463,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "homestead",
-		isNsfw: false,
-		subs: 2548175
+		"name": "maybemaybemaybe",
+		"subscriberCount": 2651374,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "electronicmusic",
-		isNsfw: false,
-		subs: 2545909
+		"name": "astrophotography",
+		"subscriberCount": 2648119,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "TrueCrime",
-		isNsfw: false,
-		subs: 2539140
+		"name": "antiwork",
+		"subscriberCount": 2642772,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "hiphopheads",
-		isNsfw: false,
-		subs: 2533787
+		"name": "hacking",
+		"subscriberCount": 2623022,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "dogs",
-		isNsfw: false,
-		subs: 2522948
+		"name": "oddlyterrifying",
+		"subscriberCount": 2612823,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "crafts",
-		isNsfw: false,
-		subs: 2520705
+		"name": "CampingandHiking",
+		"subscriberCount": 2605003,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Android",
-		isNsfw: false,
-		subs: 2507241
+		"name": "ThriftStoreHauls",
+		"subscriberCount": 2596199,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "podcasts",
-		isNsfw: false,
-		subs: 2490680
+		"name": "collegesluts",
+		"subscriberCount": 2591519,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Marvel",
-		isNsfw: false,
-		subs: 2483113
+		"name": "toptalent",
+		"subscriberCount": 2580351,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "FortNiteBR",
-		isNsfw: false,
-		subs: 2479121
+		"name": "technicallythetruth",
+		"subscriberCount": 2575589,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "WeAreTheMusicMakers",
-		isNsfw: false,
-		subs: 2473723
+		"name": "indieheads",
+		"subscriberCount": 2557200,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "running",
-		isNsfw: false,
-		subs: 2473105
+		"name": "homestead",
+		"subscriberCount": 2548392,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "WinStupidPrizes",
-		isNsfw: false,
-		subs: 2469062
+		"name": "electronicmusic",
+		"subscriberCount": 2546009,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "PrequelMemes",
-		isNsfw: false,
-		subs: 2468736
+		"name": "TrueCrime",
+		"subscriberCount": 2540304,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "youseeingthisshit",
-		isNsfw: false,
-		subs: 2462321
+		"name": "hiphopheads",
+		"subscriberCount": 2534505,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Design",
-		isNsfw: false,
-		subs: 2461903
+		"name": "dogs",
+		"subscriberCount": 2523110,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "meirl",
-		isNsfw: false,
-		subs: 2441859
+		"name": "crafts",
+		"subscriberCount": 2520705,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "ChoosingBeggars",
-		isNsfw: false,
-		subs: 2439669
+		"name": "Android",
+		"subscriberCount": 2507361,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "natureismetal",
-		isNsfw: false,
-		subs: 2420456
+		"name": "podcasts",
+		"subscriberCount": 2490917,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "dogecoin",
-		isNsfw: false,
-		subs: 2404110
+		"name": "Marvel",
+		"subscriberCount": 2483340,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "sex",
-		isNsfw: false,
-		subs: 2397088
+		"name": "FortNiteBR",
+		"subscriberCount": 2480243,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "MapPorn",
-		isNsfw: false,
-		subs: 2387476
+		"name": "WeAreTheMusicMakers",
+		"subscriberCount": 2474070,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "TrollYChromosome",
-		isNsfw: false,
-		subs: 2379712
+		"name": "running",
+		"subscriberCount": 2473455,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "AbruptChaos",
-		isNsfw: false,
-		subs: 2369389
+		"name": "PrequelMemes",
+		"subscriberCount": 2469165,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "shitposting",
-		isNsfw: false,
-		subs: 2367968
+		"name": "WinStupidPrizes",
+		"subscriberCount": 2469120,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "rareinsults",
-		isNsfw: false,
-		subs: 2367317
+		"name": "youseeingthisshit",
+		"subscriberCount": 2462427,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "legaladvice",
-		isNsfw: false,
-		subs: 2360673
+		"name": "Design",
+		"subscriberCount": 2462258,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "javascript",
-		isNsfw: false,
-		subs: 2349991
+		"name": "BreedingMaterial",
+		"subscriberCount": 2447262,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "baseball",
-		isNsfw: false,
-		subs: 2343914
+		"name": "meirl",
+		"subscriberCount": 2442105,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "wow",
-		isNsfw: false,
-		subs: 2342258
+		"name": "ChoosingBeggars",
+		"subscriberCount": 2439963,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "instantkarma",
-		isNsfw: false,
-		subs: 2331393
+		"name": "natureismetal",
+		"subscriberCount": 2420449,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "whatisthisthing",
-		isNsfw: false,
-		subs: 2320711
+		"name": "dogecoin",
+		"subscriberCount": 2404123,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "progresspics",
-		isNsfw: false,
-		subs: 2317166
+		"name": "sex",
+		"subscriberCount": 2397278,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "MMA",
-		isNsfw: false,
-		subs: 2301201
+		"name": "BustyPetite",
+		"subscriberCount": 2395040,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "GamePhysics",
-		isNsfw: false,
-		subs: 2296885
+		"name": "MapPorn",
+		"subscriberCount": 2388445,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "PremierLeague",
-		isNsfw: false,
-		subs: 2293985
+		"name": "TrollYChromosome",
+		"subscriberCount": 2379696,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "investing",
-		isNsfw: false,
-		subs: 2289153
+		"name": "AbruptChaos",
+		"subscriberCount": 2369439,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "apexlegends",
-		isNsfw: false,
-		subs: 2287751
+		"name": "shitposting",
+		"subscriberCount": 2369149,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "FreeEBOOKS",
-		isNsfw: false,
-		subs: 2285256
+		"name": "rareinsults",
+		"subscriberCount": 2367407,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "Coronavirus",
-		isNsfw: false,
-		subs: 2283837
+		"name": "legaladvice",
+		"subscriberCount": 2361036,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Physics",
-		isNsfw: false,
-		subs: 2282407
+		"name": "javascript",
+		"subscriberCount": 2350137,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Entrepreneur",
-		isNsfw: false,
-		subs: 2262894
+		"name": "baseball",
+		"subscriberCount": 2344881,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "meme",
-		isNsfw: false,
-		subs: 2259746
+		"name": "wow",
+		"subscriberCount": 2342379,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "ethtrader",
-		isNsfw: false,
-		subs: 2258381
+		"name": "instantkarma",
+		"subscriberCount": 2331399,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Graffiti",
-		isNsfw: false,
-		subs: 2256526
+		"name": "whatisthisthing",
+		"subscriberCount": 2320952,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "dating",
-		isNsfw: false,
-		subs: 2253971
+		"name": "progresspics",
+		"subscriberCount": 2317360,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "terriblefacebookmemes",
-		isNsfw: false,
-		subs: 2251552
+		"name": "MMA",
+		"subscriberCount": 2301537,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "funnysigns",
-		isNsfw: false,
-		subs: 2248797
+		"name": "nsfwhardcore",
+		"subscriberCount": 2300164,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "tipofmytongue",
-		isNsfw: false,
-		subs: 2242718
+		"name": "GamePhysics",
+		"subscriberCount": 2297100,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "teslamotors",
-		isNsfw: false,
-		subs: 2234657
+		"name": "PremierLeague",
+		"subscriberCount": 2294778,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "zelda",
-		isNsfw: false,
-		subs: 2234567
+		"name": "investing",
+		"subscriberCount": 2289548,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "nintendo",
-		isNsfw: false,
-		subs: 2221551
+		"name": "apexlegends",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 2287926
 	},
 	{
-		name: "compsci",
-		isNsfw: false,
-		subs: 2220399
+		"name": "FreeEBOOKS",
+		"subscriberCount": 2285360,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "kpop",
-		isNsfw: false,
-		subs: 2212847
+		"name": "Coronavirus",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 2283794
 	},
 	{
-		name: "WhatsWrongWithYourDog",
-		isNsfw: false,
-		subs: 2212257
+		"name": "Physics",
+		"subscriberCount": 2282795,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "shittyfoodporn",
-		isNsfw: false,
-		subs: 2209595
+		"name": "Entrepreneur",
+		"subscriberCount": 2263910,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "DunderMifflin",
-		isNsfw: false,
-		subs: 2208630
+		"name": "meme",
+		"subscriberCount": 2259955,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "SweatyPalms",
-		isNsfw: false,
-		subs: 2205352
+		"name": "milf",
+		"subscriberCount": 2258674,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "CollegeBasketball",
-		isNsfw: false,
-		subs: 2201338
+		"name": "ethtrader",
+		"subscriberCount": 2258374,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "comics",
-		isNsfw: false,
-		subs: 2181989
+		"name": "Graffiti",
+		"subscriberCount": 2256544,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "google",
-		isNsfw: false,
-		subs: 2181814
+		"name": "dating",
+		"subscriberCount": 2255031,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "reallifedoodles",
-		isNsfw: false,
-		subs: 2179670
+		"name": "PetiteGoneWild",
+		"subscriberCount": 2252271,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "PoliticalDiscussion",
-		isNsfw: false,
-		subs: 2179457
+		"name": "terriblefacebookmemes",
+		"subscriberCount": 2251592,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "homeautomation",
-		isNsfw: false,
-		subs: 2178965
+		"name": "funnysigns",
+		"subscriberCount": 2249955,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "FunnyAnimals",
-		isNsfw: false,
-		subs: 2178002
+		"name": "tipofmytongue",
+		"subscriberCount": 2243005,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "FiftyFifty",
-		isNsfw: false,
-		subs: 2175851
+		"name": "zelda",
+		"subscriberCount": 2235304,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "ArtisanVideos",
-		isNsfw: false,
-		subs: 2171401
+		"name": "teslamotors",
+		"subscriberCount": 2234784,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Roadcam",
-		isNsfw: false,
-		subs: 2152680
+		"name": "nintendo",
+		"subscriberCount": 2221732,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "CasualConversation",
-		isNsfw: false,
-		subs: 2142794
+		"name": "compsci",
+		"subscriberCount": 2220690,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "UnresolvedMysteries",
-		isNsfw: false,
-		subs: 2127905
+		"name": "onlyfansgirls101",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 2218424
 	},
 	{
-		name: "LivestreamFail",
-		isNsfw: false,
-		subs: 2123431
+		"name": "kpop",
+		"subscriberCount": 2213222,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Shoestring",
-		isNsfw: false,
-		subs: 2122980
+		"name": "WhatsWrongWithYourDog",
+		"subscriberCount": 2212239,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "JapanTravel",
-		isNsfw: false,
-		subs: 2115680
+		"name": "shittyfoodporn",
+		"subscriberCount": 2209688,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "insanepeoplefacebook",
-		isNsfw: false,
-		subs: 2111709
+		"name": "DunderMifflin",
+		"subscriberCount": 2209117,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "math",
-		isNsfw: false,
-		subs: 2110670
+		"name": "SweatyPalms",
+		"subscriberCount": 2205621,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "roadtrip",
-		isNsfw: false,
-		subs: 2100020
+		"name": "CollegeBasketball",
+		"subscriberCount": 2201468,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "manga",
-		isNsfw: false,
-		subs: 2083385
+		"name": "ass",
+		"subscriberCount": 2200228,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "EDM",
-		isNsfw: false,
-		subs: 2075288
+		"name": "TittyDrop",
+		"subscriberCount": 2198797,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "digitalnomad",
-		isNsfw: false,
-		subs: 2062837
+		"name": "comics",
+		"subscriberCount": 2182155,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "iamatotalpieceofshit",
-		isNsfw: false,
-		subs: 2056149
+		"name": "google",
+		"subscriberCount": 2182026,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "strength_training",
-		isNsfw: false,
-		subs: 2051939
+		"name": "FunnyAnimals",
+		"subscriberCount": 2179503,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "TrueOffMyChest",
-		isNsfw: false,
-		subs: 2049745
+		"name": "PoliticalDiscussion",
+		"subscriberCount": 2179429,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "vandwellers",
-		isNsfw: false,
-		subs: 2046968
+		"name": "homeautomation",
+		"subscriberCount": 2179128,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "PUBATTLEGROUNDS",
-		isNsfw: false,
-		subs: 2042567
+		"name": "adorableporn",
+		"subscriberCount": 2175959,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Metal",
-		isNsfw: false,
-		subs: 2039264
+		"name": "FiftyFifty",
+		"subscriberCount": 2175911,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "entitledparents",
-		isNsfw: false,
-		subs: 2025360
+		"name": "ArtisanVideos",
+		"subscriberCount": 2171566,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "literature",
-		isNsfw: false,
-		subs: 2012645
+		"name": "Roadcam",
+		"subscriberCount": 2152674,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Justrolledintotheshop",
-		isNsfw: false,
-		subs: 2011409
+		"name": "CasualConversation",
+		"subscriberCount": 2142987,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "audiophile",
-		isNsfw: false,
-		subs: 2008482
+		"name": "UnresolvedMysteries",
+		"subscriberCount": 2128489,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "ATBGE",
-		isNsfw: false,
-		subs: 2004500
+		"name": "LivestreamFail",
+		"subscriberCount": 2124145,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "JusticeServed",
-		isNsfw: false,
-		subs: 1999590
+		"name": "Shoestring",
+		"subscriberCount": 2123299,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "AbandonedPorn",
-		isNsfw: false,
-		subs: 1993752
+		"name": "JapanTravel",
+		"subscriberCount": 2115968,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "holdmybeer",
-		isNsfw: false,
-		subs: 1990007
+		"name": "insanepeoplefacebook",
+		"subscriberCount": 2111710,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "FanTheories",
-		isNsfw: false,
-		subs: 1989547
+		"name": "math",
+		"subscriberCount": 2110848,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "3amjokes",
-		isNsfw: false,
-		subs: 1988969
+		"name": "roadtrip",
+		"subscriberCount": 2100315,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "ofcoursethatsathing",
-		isNsfw: false,
-		subs: 1988683
+		"name": "manga",
+		"subscriberCount": 2083868,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "mealtimevideos",
-		isNsfw: false,
-		subs: 1987763
+		"name": "EDM",
+		"subscriberCount": 2075447,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "forbiddensnacks",
-		isNsfw: false,
-		subs: 1983687
+		"name": "digitalnomad",
+		"subscriberCount": 2063073,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "analog",
-		isNsfw: false,
-		subs: 1977671
+		"name": "iamatotalpieceofshit",
+		"subscriberCount": 2056147,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "IWantOut",
-		isNsfw: false,
-		subs: 1976933
+		"name": "strength_training",
+		"subscriberCount": 2053134,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "OnePiece",
-		isNsfw: false,
-		subs: 1975590
+		"name": "TrueOffMyChest",
+		"subscriberCount": 2050447,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "urbanexploration",
-		isNsfw: false,
-		subs: 1974788
+		"name": "vandwellers",
+		"subscriberCount": 2047220,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "ChatGPT",
-		isNsfw: false,
-		subs: 1974286
+		"name": "PUBATTLEGROUNDS",
+		"subscriberCount": 2042597,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "trees",
-		isNsfw: false,
-		subs: 1969421
+		"name": "Metal",
+		"subscriberCount": 2039542,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "financialindependence",
-		isNsfw: false,
-		subs: 1962475
+		"name": "entitledparents",
+		"subscriberCount": 2025389,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "conspiracy",
-		isNsfw: false,
-		subs: 1959809
+		"name": "Nudes",
+		"subscriberCount": 2017419,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "hmmm",
-		isNsfw: false,
-		subs: 1951391
+		"name": "literature",
+		"subscriberCount": 2012649,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "hiking",
-		isNsfw: false,
-		subs: 1951096
+		"name": "Justrolledintotheshop",
+		"subscriberCount": 2011605,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Genshin_Impact",
-		isNsfw: false,
-		subs: 1948433
+		"name": "audiophile",
+		"subscriberCount": 2008731,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Eldenring",
-		isNsfw: false,
-		subs: 1948037
+		"name": "ATBGE",
+		"subscriberCount": 2004810,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "spacex",
-		isNsfw: false,
-		subs: 1942592
+		"name": "JusticeServed",
+		"subscriberCount": 1999591,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "CFB",
-		isNsfw: false,
-		subs: 1939605
+		"name": "AbandonedPorn",
+		"subscriberCount": 1993914,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "motorcycles",
-		isNsfw: false,
-		subs: 1938292
+		"name": "holdmybeer",
+		"subscriberCount": 1991248,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "animememes",
-		isNsfw: false,
-		subs: 1931244
+		"name": "FanTheories",
+		"subscriberCount": 1989803,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "AnimeART",
-		isNsfw: false,
-		subs: 1929231
+		"name": "3amjokes",
+		"subscriberCount": 1989584,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Poetry",
-		isNsfw: false,
-		subs: 1924416
+		"name": "ofcoursethatsathing",
+		"subscriberCount": 1988755,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "chemistry",
-		isNsfw: false,
-		subs: 1919600
+		"name": "mealtimevideos",
+		"subscriberCount": 1987756,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "hearthstone",
-		isNsfw: false,
-		subs: 1905305
+		"name": "forbiddensnacks",
+		"subscriberCount": 1984038,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "ethereum",
-		isNsfw: false,
-		subs: 1903925
+		"isDefaultSubreddit": false,
+		"name": "ChatGPT",
+		"over18": false,
+		"subscriberCount": 1978974
 	},
 	{
-		name: "SkincareAddiction",
-		isNsfw: false,
-		subs: 1902785
+		"name": "analog",
+		"subscriberCount": 1977825,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "savedyouaclick",
-		isNsfw: false,
-		subs: 1902176
+		"name": "IWantOut",
+		"subscriberCount": 1977096,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "careerguidance",
-		isNsfw: false,
-		subs: 1896967
+		"name": "OnePiece",
+		"subscriberCount": 1976645,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "perfectlycutscreams",
-		isNsfw: false,
-		subs: 1894789
+		"name": "urbanexploration",
+		"subscriberCount": 1974807,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "techsupport",
-		isNsfw: false,
-		subs: 1892006
+		"name": "trees",
+		"subscriberCount": 1969513,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "pennystocks",
-		isNsfw: false,
-		subs: 1890522
+		"name": "financialindependence",
+		"subscriberCount": 1962772,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "AnimalCrossing",
-		isNsfw: false,
-		subs: 1889249
+		"name": "conspiracy",
+		"subscriberCount": 1960012,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "CryptoMoonShots",
-		isNsfw: false,
-		subs: 1886820
+		"name": "hmmm",
+		"subscriberCount": 1951429,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Steam",
-		isNsfw: false,
-		subs: 1885785
+		"name": "hiking",
+		"subscriberCount": 1951192,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "JUSTNOMIL",
-		isNsfw: false,
-		subs: 1871996
+		"name": "Nude_Selfie",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 1949181
 	},
 	{
-		name: "softwaregore",
-		isNsfw: false,
-		subs: 1871220
+		"name": "Genshin_Impact",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 1948820
 	},
 	{
-		name: "wallpaper",
-		isNsfw: false,
-		subs: 1853217
+		"name": "Eldenring",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 1948417
 	},
 	{
-		name: "TikTokCringe",
-		isNsfw: false,
-		subs: 1851194
+		"name": "holdthemoan",
+		"subscriberCount": 1947218,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "AskHistorians",
-		isNsfw: false,
-		subs: 1844743
+		"name": "spacex",
+		"subscriberCount": 1943007,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "fightporn",
-		isNsfw: false,
-		subs: 1843593
+		"name": "CFB",
+		"subscriberCount": 1939831,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "GlobalOffensive",
-		isNsfw: false,
-		subs: 1836389
+		"name": "motorcycles",
+		"subscriberCount": 1938961,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Watches",
-		isNsfw: false,
-		subs: 1836140
+		"name": "animememes",
+		"subscriberCount": 1931487,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "finance",
-		isNsfw: false,
-		subs: 1835279
+		"name": "AnimeART",
+		"subscriberCount": 1929267,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "MangaCollectors",
-		isNsfw: false,
-		subs: 1820396
+		"name": "Poetry",
+		"subscriberCount": 1924601,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "AsianBeauty",
-		isNsfw: false,
-		subs: 1816198
+		"name": "chemistry",
+		"subscriberCount": 1919939,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "powerwashingporn",
-		isNsfw: false,
-		subs: 1813807
+		"name": "nsfw_gifs",
+		"subscriberCount": 1906587,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "CrazyFuckingVideos",
-		isNsfw: false,
-		subs: 1812318
+		"name": "hearthstone",
+		"subscriberCount": 1905292,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "MemeEconomy",
-		isNsfw: false,
-		subs: 1810639
+		"name": "ethereum",
+		"subscriberCount": 1904246,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "ThatsInsane",
-		isNsfw: false,
-		subs: 1805265
+		"name": "SkincareAddiction",
+		"subscriberCount": 1903843,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "holdmycosmo",
-		isNsfw: false,
-		subs: 1798294
+		"name": "savedyouaclick",
+		"subscriberCount": 1902184,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "ExposurePorn",
-		isNsfw: false,
-		subs: 1796435
+		"name": "BiggerThanYouThought",
+		"subscriberCount": 1897977,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Cinemagraphs",
-		isNsfw: false,
-		subs: 1783463
+		"name": "careerguidance",
+		"subscriberCount": 1897753,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "india",
-		isNsfw: false,
-		subs: 1781500
+		"name": "perfectlycutscreams",
+		"subscriberCount": 1894859,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "harrypotter",
-		isNsfw: false,
-		subs: 1780250
+		"name": "techsupport",
+		"subscriberCount": 1892079,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "CatastrophicFailure",
-		isNsfw: false,
-		subs: 1780156
+		"name": "pennystocks",
+		"subscriberCount": 1890531,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "3Dprinting",
-		isNsfw: false,
-		subs: 1776455
+		"name": "AnimalCrossing",
+		"subscriberCount": 1889466,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "TooAfraidToAsk",
-		isNsfw: false,
-		subs: 1775496
+		"name": "tiktokporn",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 1888319
 	},
 	{
-		name: "canada",
-		isNsfw: false,
-		subs: 1770549
+		"name": "CryptoMoonShots",
+		"subscriberCount": 1886822,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "DesignPorn",
-		isNsfw: false,
-		subs: 1769722
+		"name": "Steam",
+		"subscriberCount": 1886095,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "breakingbad",
-		isNsfw: false,
-		subs: 1767477
+		"name": "boobs",
+		"subscriberCount": 1885733,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "povertyfinance",
-		isNsfw: false,
-		subs: 1765036
+		"name": "JUSTNOMIL",
+		"subscriberCount": 1872013,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "productivity",
-		isNsfw: false,
-		subs: 1760164
+		"name": "softwaregore",
+		"subscriberCount": 1871316,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "confusing_perspective",
-		isNsfw: false,
-		subs: 1758354
+		"name": "wallpaper",
+		"subscriberCount": 1853260,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "houseplants",
-		isNsfw: false,
-		subs: 1753074
+		"name": "TikTokCringe",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 1853031
 	},
 	{
-		name: "CasualUK",
-		isNsfw: false,
-		subs: 1752120
+		"name": "AskHistorians",
+		"subscriberCount": 1845140,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "madlads",
-		isNsfw: false,
-		subs: 1747835
+		"name": "fightporn",
+		"subscriberCount": 1843864,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "XboxSeriesX",
-		isNsfw: false,
-		subs: 1733635
+		"name": "GlobalOffensive",
+		"subscriberCount": 1836568,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "quityourbullshit",
-		isNsfw: false,
-		subs: 1731124
+		"name": "Watches",
+		"subscriberCount": 1836431,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "BokuNoHeroAcademia",
-		isNsfw: false,
-		subs: 1723154
+		"name": "finance",
+		"subscriberCount": 1835490,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "TravelHacks",
-		isNsfw: false,
-		subs: 1721528
+		"name": "LipsThatGrip",
+		"subscriberCount": 1833590,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "TIHI",
-		isNsfw: false,
-		subs: 1717587
+		"name": "pawg",
+		"subscriberCount": 1821554,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Boxing",
-		isNsfw: false,
-		subs: 1700440
+		"name": "MangaCollectors",
+		"subscriberCount": 1820594,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "comedyheaven",
-		isNsfw: false,
-		subs: 1700051
+		"name": "AsianBeauty",
+		"subscriberCount": 1816495,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "realestateinvesting",
-		isNsfw: false,
-		subs: 1698900
+		"name": "Blowjobs",
+		"subscriberCount": 1815632,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "RoomPorn",
-		isNsfw: false,
-		subs: 1698197
+		"name": "powerwashingporn",
+		"subscriberCount": 1814001,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "ProRevenge",
-		isNsfw: false,
-		subs: 1694117
+		"name": "CrazyFuckingVideos",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 1812771
 	},
 	{
-		name: "carporn",
-		isNsfw: false,
-		subs: 1693894
+		"name": "MemeEconomy",
+		"subscriberCount": 1810975,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "ShittyLifeProTips",
-		isNsfw: false,
-		subs: 1680990
+		"name": "ThatsInsane",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 1805349
 	},
 	{
-		name: "AnimalsBeingGeniuses",
-		isNsfw: false,
-		subs: 1677346
+		"name": "celebnsfw",
+		"subscriberCount": 1803339,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "algotrading",
-		isNsfw: false,
-		subs: 1669161
+		"name": "holdmycosmo",
+		"subscriberCount": 1798416,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "VALORANT",
-		isNsfw: false,
-		subs: 1664860
+		"name": "ExposurePorn",
+		"subscriberCount": 1796448,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "ADHD",
-		isNsfw: false,
-		subs: 1657614
+		"name": "latinas",
+		"subscriberCount": 1784486,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Guitar",
-		isNsfw: false,
-		subs: 1654287
+		"name": "Cinemagraphs",
+		"subscriberCount": 1783442,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "unitedkingdom",
-		isNsfw: false,
-		subs: 1648052
+		"name": "india",
+		"subscriberCount": 1781924,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "photocritique",
-		isNsfw: false,
-		subs: 1646013
+		"name": "harrypotter",
+		"subscriberCount": 1780691,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "malelivingspace",
-		isNsfw: false,
-		subs: 1645693
+		"name": "CatastrophicFailure",
+		"subscriberCount": 1780161,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "lotrmemes",
-		isNsfw: false,
-		subs: 1643525
+		"name": "3Dprinting",
+		"subscriberCount": 1776708,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Fishing",
-		isNsfw: false,
-		subs: 1641128
+		"name": "TooAfraidToAsk",
+		"subscriberCount": 1775525,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "webdev",
-		isNsfw: false,
-		subs: 1629908
+		"name": "canada",
+		"subscriberCount": 1771699,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Makeup",
-		isNsfw: false,
-		subs: 1628667
+		"name": "DesignPorn",
+		"subscriberCount": 1770064,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Screenwriting",
-		isNsfw: false,
-		subs: 1628543
+		"name": "breakingbad",
+		"subscriberCount": 1767794,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "thewalkingdead",
-		isNsfw: false,
-		subs: 1627977
+		"name": "Slut",
+		"subscriberCount": 1766830,
+		"isDefaultSubreddit": false,
+		"over18": true
 	},
 	{
-		name: "Baking",
-		isNsfw: false,
-		subs: 1627119
+		"name": "povertyfinance",
+		"subscriberCount": 1765395,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "hockey",
-		isNsfw: false,
-		subs: 1625367
+		"name": "productivity",
+		"subscriberCount": 1760704,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "selfimprovement",
-		isNsfw: false,
-		subs: 1619526
+		"name": "confusing_perspective",
+		"subscriberCount": 1758598,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "iamverysmart",
-		isNsfw: false,
-		subs: 1610933
+		"name": "houseplants",
+		"subscriberCount": 1753519,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "specializedtools",
-		isNsfw: false,
-		subs: 1601040
+		"name": "CasualUK",
+		"subscriberCount": 1752479,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "psychology",
-		isNsfw: false,
-		subs: 1598856
+		"name": "madlads",
+		"subscriberCount": 1747880,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Rainbow6",
-		isNsfw: false,
-		subs: 1595961
+		"name": "XboxSeriesX",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 1734601
 	},
 	{
-		name: "netflix",
-		isNsfw: false,
-		subs: 1589662
+		"name": "quityourbullshit",
+		"subscriberCount": 1731097,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "PoliticalHumor",
-		isNsfw: false,
-		subs: 1583174
+		"name": "BokuNoHeroAcademia",
+		"subscriberCount": 1723447,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "PerfectTiming",
-		isNsfw: false,
-		subs: 1579034
+		"name": "TravelHacks",
+		"subscriberCount": 1722541,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "Daytrading",
-		isNsfw: false,
-		subs: 1576226
+		"name": "TIHI",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 1717631
 	},
 	{
-		name: "Meditation",
-		isNsfw: false,
-		subs: 1567569
+		"name": "Boxing",
+		"subscriberCount": 1700745,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Amd",
-		isNsfw: false,
-		subs: 1561062
+		"name": "comedyheaven",
+		"subscriberCount": 1700037,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "MachinePorn",
-		isNsfw: false,
-		subs: 1558751
+		"name": "realestateinvesting",
+		"subscriberCount": 1699055,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "clevercomebacks",
-		isNsfw: false,
-		subs: 1558607
+		"name": "RoomPorn",
+		"subscriberCount": 1698270,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "cookingforbeginners",
-		isNsfw: false,
-		subs: 1558006
+		"name": "ProRevenge",
+		"subscriberCount": 1694652,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "niceguys",
-		isNsfw: false,
-		subs: 1541339
+		"name": "carporn",
+		"subscriberCount": 1693926,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Health",
-		isNsfw: false,
-		subs: 1526881
+		"name": "ShittyLifeProTips",
+		"subscriberCount": 1681016,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "cringepics",
-		isNsfw: false,
-		subs: 1519218
+		"name": "AnimalsBeingGeniuses",
+		"subscriberCount": 1677729,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "thatHappened",
-		isNsfw: false,
-		subs: 1518850
+		"name": "anal",
+		"subscriberCount": 1676692,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "snowboarding",
-		isNsfw: false,
-		subs: 1518758
+		"name": "algotrading",
+		"subscriberCount": 1669271,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "yoga",
-		isNsfw: false,
-		subs: 1518669
+		"name": "GodPussy",
+		"subscriberCount": 1668024,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "business",
-		isNsfw: false,
-		subs: 1515049
+		"name": "VALORANT",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 1665124
 	},
 	{
-		name: "StartledCats",
-		isNsfw: false,
-		subs: 1513699
+		"name": "OnlyFans101",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 1664378
 	},
 	{
-		name: "rpg",
-		isNsfw: false,
-		subs: 1512557
+		"name": "ADHD",
+		"subscriberCount": 1657906,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "cursedimages",
-		isNsfw: false,
-		subs: 1511394
+		"name": "Guitar",
+		"subscriberCount": 1654458,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "BuyItForLife",
-		isNsfw: false,
-		subs: 1504995
+		"name": "OnOff",
+		"subscriberCount": 1650637,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "childfree",
-		isNsfw: false,
-		subs: 1500321
+		"name": "unitedkingdom",
+		"subscriberCount": 1648775,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "KerbalSpaceProgram",
-		isNsfw: false,
-		subs: 1492506
+		"name": "photocritique",
+		"subscriberCount": 1646167,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "skyrim",
-		isNsfw: false,
-		subs: 1487667
+		"name": "malelivingspace",
+		"subscriberCount": 1646049,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "TattooDesigns",
-		isNsfw: false,
-		subs: 1485361
+		"name": "lotrmemes",
+		"subscriberCount": 1643913,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "FuckYouKaren",
-		isNsfw: false,
-		subs: 1484155
+		"name": "Fishing",
+		"subscriberCount": 1641559,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "SpecArt",
-		isNsfw: false,
-		subs: 1478933
+		"name": "webdev",
+		"subscriberCount": 1630194,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "AnimeSketch",
-		isNsfw: false,
-		subs: 1476421
+		"name": "Makeup",
+		"subscriberCount": 1628825,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "AbsoluteUnits",
-		isNsfw: false,
-		subs: 1475730
+		"name": "Screenwriting",
+		"subscriberCount": 1628593,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "oddlyspecific",
-		isNsfw: false,
-		subs: 1475297
+		"name": "thewalkingdead",
+		"subscriberCount": 1628134,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "brasil",
-		isNsfw: false,
-		subs: 1474468
+		"name": "Baking",
+		"subscriberCount": 1627608,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "womensstreetwear",
-		isNsfw: false,
-		subs: 1471279
+		"name": "hockey",
+		"subscriberCount": 1625611,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "southpark",
-		isNsfw: false,
-		subs: 1465854
+		"name": "selfimprovement",
+		"subscriberCount": 1619933,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "UnethicalLifeProTips",
-		isNsfw: false,
-		subs: 1461459
+		"name": "iamverysmart",
+		"subscriberCount": 1610944,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "CryptoMarkets",
-		isNsfw: false,
-		subs: 1457420
+		"name": "specializedtools",
+		"subscriberCount": 1601044,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "StardewValley",
-		isNsfw: false,
-		subs: 1450728
+		"name": "psychology",
+		"subscriberCount": 1599248,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "2meirl4meirl",
-		isNsfw: false,
-		subs: 1447884
+		"name": "Rainbow6",
+		"subscriberCount": 1596088,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "environment",
-		isNsfw: false,
-		subs: 1445160
+		"name": "lesbians",
+		"subscriberCount": 1591167,
+		"isDefaultSubreddit": false,
+		"over18": true
 	},
 	{
-		name: "awfuleverything",
-		isNsfw: false,
-		subs: 1442733
+		"name": "netflix",
+		"subscriberCount": 1589738,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "elonmusk",
-		isNsfw: false,
-		subs: 1438676
+		"name": "PoliticalHumor",
+		"subscriberCount": 1583205,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "skiing",
-		isNsfw: false,
-		subs: 1434962
+		"name": "PerfectTiming",
+		"subscriberCount": 1579032,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "insaneparents",
-		isNsfw: false,
-		subs: 1433307
+		"name": "Daytrading",
+		"subscriberCount": 1576944,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Hair",
-		isNsfw: false,
-		subs: 1432126
+		"name": "Meditation",
+		"subscriberCount": 1568131,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "truegaming",
-		isNsfw: false,
-		subs: 1431978
+		"name": "Amd",
+		"subscriberCount": 1561131,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "popheads",
-		isNsfw: false,
-		subs: 1423282
+		"name": "clevercomebacks",
+		"subscriberCount": 1558952,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Bossfight",
-		isNsfw: false,
-		subs: 1422770
+		"name": "MachinePorn",
+		"subscriberCount": 1558733,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "getdisciplined",
-		isNsfw: false,
-		subs: 1421736
+		"name": "cookingforbeginners",
+		"subscriberCount": 1558248,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "classicalmusic",
-		isNsfw: false,
-		subs: 1421617
+		"name": "AsianHotties",
+		"subscriberCount": 1542370,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "CombatFootage",
-		isNsfw: false,
-		subs: 1420016
+		"name": "niceguys",
+		"subscriberCount": 1541329,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "15minutefood",
-		isNsfw: false,
-		subs: 1413900
+		"name": "xsmallgirls",
+		"subscriberCount": 1537127,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "GetStudying",
-		isNsfw: false,
-		subs: 1413057
+		"name": "Health",
+		"subscriberCount": 1527179,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "vinyl",
-		isNsfw: false,
-		subs: 1410482
+		"name": "cringepics",
+		"subscriberCount": 1519244,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "painting",
-		isNsfw: false,
-		subs: 1408008
+		"name": "yoga",
+		"subscriberCount": 1519099,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Twitch",
-		isNsfw: false,
-		subs: 1403078
+		"name": "thatHappened",
+		"subscriberCount": 1518970,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "ArchitecturePorn",
-		isNsfw: false,
-		subs: 1400433
+		"name": "snowboarding",
+		"subscriberCount": 1518753,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "gtaonline",
-		isNsfw: false,
-		subs: 1399453
+		"name": "business",
+		"subscriberCount": 1515674,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "greentext",
-		isNsfw: false,
-		subs: 1397794
+		"name": "StartledCats",
+		"subscriberCount": 1513741,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "gonewild",
-		isNsfw: true,
-		subs: 4437427
+		"name": "rpg",
+		"subscriberCount": 1512567,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "nsfw",
-		isNsfw: true,
-		subs: 4044304
+		"name": "cursedimages",
+		"subscriberCount": 1511386,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "RealGirls",
-		isNsfw: true,
-		subs: 3625723
+		"name": "BuyItForLife",
+		"subscriberCount": 1505208,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "hentai",
-		isNsfw: true,
-		subs: 3179102
+		"name": "squirting",
+		"subscriberCount": 1502247,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "porn",
-		isNsfw: true,
-		subs: 3155844
+		"name": "gothsluts",
+		"subscriberCount": 1500906,
+		"isDefaultSubreddit": false,
+		"over18": true
 	},
 	{
-		name: "cumsluts",
-		isNsfw: true,
-		subs: 2940027
+		"name": "childfree",
+		"subscriberCount": 1500389,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "rule34",
-		isNsfw: true,
-		subs: 2851225
+		"name": "DadWouldBeProud",
+		"subscriberCount": 1496222,
+		"isDefaultSubreddit": false,
+		"over18": true
 	},
 	{
-		name: "LegalTeens",
-		isNsfw: true,
-		subs: 2821396
+		"name": "KerbalSpaceProgram",
+		"subscriberCount": 1492500,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "NSFW_GIF",
-		isNsfw: true,
-		subs: 2811328
+		"name": "skyrim",
+		"subscriberCount": 1487852,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "GirlsFinishingTheJob",
-		isNsfw: true,
-		subs: 2672900
+		"name": "TattooDesigns",
+		"subscriberCount": 1485783,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "collegesluts",
-		isNsfw: true,
-		subs: 2591309
+		"name": "FuckYouKaren",
+		"subscriberCount": 1484288,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "BreedingMaterial",
-		isNsfw: true,
-		subs: 2446947
+		"name": "SheLikesItRough",
+		"subscriberCount": 1482435,
+		"isDefaultSubreddit": false,
+		"over18": true
 	},
 	{
-		name: "BustyPetite",
-		isNsfw: true,
-		subs: 2394580
+		"name": "HENTAI_GIF",
+		"subscriberCount": 1480315,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "nsfwhardcore",
-		isNsfw: true,
-		subs: 2299754
+		"name": "SpecArt",
+		"subscriberCount": 1478922,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "milf",
-		isNsfw: true,
-		subs: 2258221
+		"name": "AnimeSketch",
+		"subscriberCount": 1476408,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "PetiteGoneWild",
-		isNsfw: true,
-		subs: 2251909
+		"name": "AbsoluteUnits",
+		"subscriberCount": 1475842,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "onlyfansgirls101",
-		isNsfw: true,
-		subs: 2217500
+		"name": "oddlyspecific",
+		"subscriberCount": 1475726,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "ass",
-		isNsfw: true,
-		subs: 2199792
+		"name": "brasil",
+		"subscriberCount": 1474703,
+		"over18": false,
+		"isDefaultSubreddit": true
 	},
 	{
-		name: "TittyDrop",
-		isNsfw: true,
-		subs: 2198175
+		"name": "womensstreetwear",
+		"subscriberCount": 1471566,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "adorableporn",
-		isNsfw: true,
-		subs: 2175579
+		"name": "Amateur",
+		"subscriberCount": 1470916,
+		"isDefaultSubreddit": false,
+		"over18": true
 	},
 	{
-		name: "Nudes",
-		isNsfw: true,
-		subs: 2016918
+		"name": "southpark",
+		"subscriberCount": 1465951,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Nude_Selfie",
-		isNsfw: true,
-		subs: 1949181
+		"name": "UnethicalLifeProTips",
+		"subscriberCount": 1461694,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "holdthemoan",
-		isNsfw: true,
-		subs: 1947103
+		"name": "CryptoMarkets",
+		"subscriberCount": 1457718,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "nsfw_gifs",
-		isNsfw: true,
-		subs: 1906303
+		"name": "JizzedToThis",
+		"subscriberCount": 1453099,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "BiggerThanYouThought",
-		isNsfw: true,
-		subs: 1897715
+		"name": "18_19",
+		"subscriberCount": 1452325,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "tiktokporn",
-		isNsfw: true,
-		subs: 1888057
+		"name": "StardewValley",
+		"subscriberCount": 1451128,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "boobs",
-		isNsfw: true,
-		subs: 1885425
+		"name": "2meirl4meirl",
+		"subscriberCount": 1448009,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "LipsThatGrip",
-		isNsfw: true,
-		subs: 1833272
+		"name": "environment",
+		"subscriberCount": 1445377,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "pawg",
-		isNsfw: true,
-		subs: 1821276
+		"name": "awfuleverything",
+		"subscriberCount": 1442673,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Blowjobs",
-		isNsfw: true,
-		subs: 1815257
+		"name": "barelylegalteens",
+		"subscriberCount": 1440267,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "celebnsfw",
-		isNsfw: true,
-		subs: 1803034
+		"name": "elonmusk",
+		"subscriberCount": 1439000,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "latinas",
-		isNsfw: true,
-		subs: 1783864
+		"name": "skiing",
+		"subscriberCount": 1434972,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Slut",
-		isNsfw: true,
-		subs: 1766084
+		"name": "insaneparents",
+		"subscriberCount": 1433320,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "anal",
-		isNsfw: true,
-		subs: 1676231
+		"name": "Hair",
+		"subscriberCount": 1432960,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "GodPussy",
-		isNsfw: true,
-		subs: 1668024
+		"name": "truegaming",
+		"subscriberCount": 1432135,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "OnlyFans101",
-		isNsfw: true,
-		subs: 1663801
+		"name": "popheads",
+		"subscriberCount": 1423569,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "OnOff",
-		isNsfw: true,
-		subs: 1650531
+		"name": "Bossfight",
+		"subscriberCount": 1422798,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "lesbians",
-		isNsfw: true,
-		subs: 1591167
+		"name": "getdisciplined",
+		"subscriberCount": 1422048,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "AsianHotties",
-		isNsfw: true,
-		subs: 1541785
+		"name": "classicalmusic",
+		"subscriberCount": 1421707,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "xsmallgirls",
-		isNsfw: true,
-		subs: 1536757
+		"name": "CombatFootage",
+		"subscriberCount": 1420255,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "squirting",
-		isNsfw: true,
-		subs: 1501925
+		"name": "15minutefood",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 1414089
 	},
 	{
-		name: "gothsluts",
-		isNsfw: true,
-		subs: 1500428
+		"name": "GetStudying",
+		"subscriberCount": 1413446,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "DadWouldBeProud",
-		isNsfw: true,
-		subs: 1495449
+		"name": "BigBoobsGW",
+		"subscriberCount": 1411998,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "SheLikesItRough",
-		isNsfw: true,
-		subs: 1481999
+		"name": "vinyl",
+		"subscriberCount": 1410772,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "HENTAI_GIF",
-		isNsfw: true,
-		subs: 1480094
+		"name": "painting",
+		"subscriberCount": 1408684,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Amateur",
-		isNsfw: true,
-		subs: 1470689
+		"name": "Gonewild18",
+		"subscriberCount": 1404231,
+		"isDefaultSubreddit": false,
+		"over18": true
 	},
 	{
-		name: "JizzedToThis",
-		isNsfw: true,
-		subs: 1452842
+		"name": "Twitch",
+		"subscriberCount": 1403424,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "18_19",
-		isNsfw: true,
-		subs: 1452126
+		"name": "ArchitecturePorn",
+		"subscriberCount": 1400531,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "barelylegalteens",
-		isNsfw: true,
-		subs: 1440030
+		"name": "gtaonline",
+		"subscriberCount": 1399544,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "BigBoobsGW",
-		isNsfw: true,
-		subs: 1411617
+		"name": "greentext",
+		"subscriberCount": 1397951,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Gonewild18",
-		isNsfw: true,
-		subs: 1403957
+		"name": "Skincare_Addiction",
+		"subscriberCount": 1397009,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "freeuse",
-		isNsfw: true,
-		subs: 1367183
+		"name": "Zoomies",
+		"subscriberCount": 1393900,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "chubby",
-		isNsfw: true,
-		subs: 1358569
+		"name": "ShouldIbuythisgame",
+		"subscriberCount": 1383844,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "trashyboners",
-		isNsfw: true,
-		subs: 1356528
+		"name": "ShingekiNoKyojin",
+		"subscriberCount": 1380621,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "grool",
-		isNsfw: true,
-		subs: 1339137
+		"name": "PixelArt",
+		"subscriberCount": 1379736,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "deepthroat",
-		isNsfw: true,
-		subs: 1335314
+		"name": "college",
+		"subscriberCount": 1379387,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "pornID",
-		isNsfw: true,
-		subs: 1326145
+		"name": "CODWarzone",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 1370695
 	},
 	{
-		name: "Cuckold",
-		isNsfw: true,
-		subs: 1324680
+		"name": "freeuse",
+		"subscriberCount": 1367522,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "cumfetish",
-		isNsfw: true,
-		subs: 1316909
+		"name": "modernwarfare",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 1364594
 	},
 	{
-		name: "SluttyConfessions",
-		isNsfw: true,
-		subs: 1303825
+		"name": "DigitalPainting",
+		"subscriberCount": 1364210,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "PublicFlashing",
-		isNsfw: true,
-		subs: 1298266
+		"name": "Colorization",
+		"subscriberCount": 1361528,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "NSFWFunny",
-		isNsfw: true,
-		subs: 1296209
+		"name": "thalassophobia",
+		"subscriberCount": 1361304,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "dirtyr4r",
-		isNsfw: true,
-		subs: 1283460
+		"name": "chubby",
+		"subscriberCount": 1358825,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "nsfwcosplay",
-		isNsfw: true,
-		subs: 1279889
+		"name": "trashyboners",
+		"subscriberCount": 1356753,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Stacked",
-		isNsfw: true,
-		subs: 1273021
+		"name": "halo",
+		"subscriberCount": 1354098,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "thick",
-		isNsfw: true,
-		subs: 1264492
+		"name": "tiktokthots",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 1353075
 	},
 	{
-		name: "paag",
-		isNsfw: true,
-		subs: 1250662
+		"name": "HobbyDrama",
+		"subscriberCount": 1351695,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "creampies",
-		isNsfw: true,
-		subs: 1239228
+		"name": "LofiHipHop",
+		"subscriberCount": 1349240,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "palegirls",
-		isNsfw: true,
-		subs: 1230734
+		"name": "cringe",
+		"subscriberCount": 1344845,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Upskirt",
-		isNsfw: true,
-		subs: 1228314
+		"name": "grool",
+		"subscriberCount": 1339376,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "SexInFrontOfOthers",
-		isNsfw: true,
-		subs: 1227726
+		"name": "deepthroat",
+		"subscriberCount": 1335793,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "worldpolitics",
-		isNsfw: true,
-		subs: 1224192
+		"name": "HumansAreMetal",
+		"subscriberCount": 1327780,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "dirtysmall",
-		isNsfw: true,
-		subs: 1221495
+		"name": "pornID",
+		"subscriberCount": 1326673,
+		"isDefaultSubreddit": false,
+		"over18": true
 	},
 	{
-		name: "gonewildaudio",
-		isNsfw: true,
-		subs: 1219335
+		"name": "Cuckold",
+		"subscriberCount": 1325200,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "gonewild30plus",
-		isNsfw: true,
-		subs: 1219068
+		"name": "tumblr",
+		"subscriberCount": 1321265,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "WatchItForThePlot",
-		isNsfw: true,
-		subs: 1215597
+		"name": "nvidia",
+		"subscriberCount": 1317347,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "amateurcumsluts",
-		isNsfw: true,
-		subs: 1206110
+		"name": "cumfetish",
+		"subscriberCount": 1317307,
+		"isDefaultSubreddit": false,
+		"over18": true
 	},
 	{
-		name: "fuckdoll",
-		isNsfw: true,
-		subs: 1184148
+		"name": "fantasyfootball",
+		"subscriberCount": 1309536,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "bigtiddygothgf",
-		isNsfw: true,
-		subs: 1171294
+		"name": "mashups",
+		"subscriberCount": 1309268,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "SheFucksHim",
-		isNsfw: true,
-		subs: 1149762
+		"name": "Nails",
+		"subscriberCount": 1307010,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "TooCuteForPorn",
-		isNsfw: true,
-		subs: 1146537
+		"name": "privacy",
+		"subscriberCount": 1305767,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "FitNakedGirls",
-		isNsfw: true,
-		subs: 1141296
+		"name": "SluttyConfessions",
+		"subscriberCount": 1304438,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "thickwhitegirls",
-		isNsfw: true,
-		subs: 1136265
+		"name": "IDontWorkHereLady",
+		"subscriberCount": 1304062,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "MakeMeSuffer",
-		isNsfw: true,
-		subs: 1127734
+		"name": "startups",
+		"subscriberCount": 1303727,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "TeenBeauties",
-		isNsfw: true,
-		subs: 1125484
+		"name": "Shitty_Car_Mods",
+		"subscriberCount": 1301730,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "FemBoys",
-		isNsfw: true,
-		subs: 1104391
+		"name": "4chan",
+		"subscriberCount": 1301703,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "traps",
-		isNsfw: true,
-		subs: 1100329
+		"name": "Simulated",
+		"subscriberCount": 1299342,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "TinyTits",
-		isNsfw: true,
-		subs: 1090969
+		"name": "PublicFlashing",
+		"subscriberCount": 1298557,
+		"isDefaultSubreddit": false,
+		"over18": true
 	},
 	{
-		name: "ThickThighs",
-		isNsfw: true,
-		subs: 1081750
+		"name": "NSFWFunny",
+		"subscriberCount": 1296247,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "altgonewild",
-		isNsfw: true,
-		subs: 1076108
+		"name": "sadcringe",
+		"subscriberCount": 1295937,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "NSFW411",
-		isNsfw: true,
-		subs: 1067100
+		"name": "TheLastAirbender",
+		"subscriberCount": 1294310,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "holdmyfeedingtube",
-		isNsfw: true,
-		subs: 1064215
+		"name": "dirtyr4r",
+		"subscriberCount": 1283940,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "girlsinyogapants",
-		isNsfw: true,
-		subs: 1058534
+		"name": "theydidthemath",
+		"subscriberCount": 1282144,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "gettingherselfoff",
-		isNsfw: true,
-		subs: 1050962
+		"name": "FashionReps",
+		"subscriberCount": 1281397,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "CollegeAmateurs",
-		isNsfw: true,
-		subs: 1047008
+		"name": "climbing",
+		"subscriberCount": 1280296,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "gonewildcouples",
-		isNsfw: true,
-		subs: 1042812
+		"name": "nsfwcosplay",
+		"subscriberCount": 1280127,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "AnalGW",
-		isNsfw: true,
-		subs: 1033178
+		"name": "IWantToLearn",
+		"subscriberCount": 1279398,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "GOONED",
-		isNsfw: true,
-		subs: 1025189
+		"name": "ExpectationVsReality",
+		"subscriberCount": 1278914,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "CuteLittleButts",
-		isNsfw: true,
-		subs: 1005121
+		"name": "suspiciouslyspecific",
+		"over18": false,
+		"subscriberCount": 1278276,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "hugeboobs",
-		isNsfw: true,
-		subs: 993238
+		"name": "Stacked",
+		"subscriberCount": 1273245,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "blackchickswhitedicks",
-		isNsfw: true,
-		subs: 991567
+		"name": "simpleliving",
+		"subscriberCount": 1272121,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Drugs",
-		isNsfw: true,
-		subs: 986603
+		"name": "architecture",
+		"subscriberCount": 1271652,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "BlowJob",
-		isNsfw: true,
-		subs: 974817
+		"name": "jobs",
+		"subscriberCount": 1269027,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "YoungGirlsGoneWild",
-		isNsfw: true,
-		subs: 967050
+		"name": "iamverybadass",
+		"subscriberCount": 1267883,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "GirlswithGlasses",
-		isNsfw: true,
-		subs: 959762
+		"name": "thick",
+		"subscriberCount": 1264698,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Miakhalifa",
-		isNsfw: true,
-		subs: 956844
+		"name": "AnimalTextGifs",
+		"subscriberCount": 1263350,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "OnlyFansPromotions",
-		isNsfw: true,
-		subs: 956745
+		"name": "australia",
+		"subscriberCount": 1262806,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "redheads",
-		isNsfw: true,
-		subs: 952842
+		"name": "gifsthatkeepongiving",
+		"subscriberCount": 1260899,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "HugeDickTinyChick",
-		isNsfw: true,
-		subs: 952048
+		"name": "budgetfood",
+		"subscriberCount": 1258872,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "GWCouples",
-		isNsfw: true,
-		subs: 949970
+		"name": "Naruto",
+		"subscriberCount": 1255968,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "bodyperfection",
-		isNsfw: true,
-		subs: 943939
+		"name": "CreditCards",
+		"subscriberCount": 1254107,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "MorbidReality",
-		isNsfw: true,
-		subs: 942349
+		"name": "vegan",
+		"subscriberCount": 1252180,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "bdsm",
-		isNsfw: true,
-		subs: 940870
+		"name": "paag",
+		"subscriberCount": 1250818,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "DegradingHoles",
-		isNsfw: true,
-		subs: 935739
+		"name": "self",
+		"subscriberCount": 1245657,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Boobies",
-		isNsfw: true,
-		subs: 935705
+		"name": "cosplaygirls",
+		"subscriberCount": 1242173,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "wifesharing",
-		isNsfw: true,
-		subs: 928900
+		"name": "PraiseTheCameraMan",
+		"subscriberCount": 1240639,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "rearpussy",
-		isNsfw: true,
-		subs: 912067
+		"name": "AskAcademia",
+		"subscriberCount": 1240035,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Hotchickswithtattoos",
-		isNsfw: true,
-		subs: 904735
+		"name": "creampies",
+		"subscriberCount": 1239368,
+		"isDefaultSubreddit": false,
+		"over18": true
 	},
 	{
-		name: "gwpublic",
-		isNsfw: true,
-		subs: 899794
+		"name": "france",
+		"subscriberCount": 1234121,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "naturaltitties",
-		isNsfw: true,
-		subs: 892667
+		"name": "palegirls",
+		"subscriberCount": 1230956,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "tipofmypenis",
-		isNsfw: true,
-		subs: 890488
+		"name": "Upskirt",
+		"subscriberCount": 1228413,
+		"isDefaultSubreddit": false,
+		"over18": true
 	},
 	{
-		name: "IWantToSuckCock",
-		isNsfw: true,
-		subs: 884338
+		"name": "SexInFrontOfOthers",
+		"subscriberCount": 1227976,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Threesome",
-		isNsfw: true,
-		subs: 882473
+		"name": "worldpolitics",
+		"subscriberCount": 1224213,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "IndiansGoneWild",
-		isNsfw: true,
-		subs: 877351
+		"name": "smallbusiness",
+		"subscriberCount": 1223458,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "WomenBendingOver",
-		isNsfw: true,
-		subs: 867564
+		"name": "minimalism",
+		"subscriberCount": 1221839,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "futanari",
-		isNsfw: true,
-		subs: 866122
+		"name": "dirtysmall",
+		"subscriberCount": 1221781,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "SlimThick",
-		isNsfw: true,
-		subs: 858888
+		"name": "gonewildaudio",
+		"subscriberCount": 1219855,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Orgasms",
-		isNsfw: true,
-		subs: 858658
+		"name": "beta",
+		"subscriberCount": 1219625,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "AskRedditAfterDark",
-		isNsfw: true,
-		subs: 850924
+		"name": "gonewild30plus",
+		"subscriberCount": 1219212,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "public",
-		isNsfw: true,
-		subs: 849860
+		"name": "freefolk",
+		"subscriberCount": 1217467,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "slutsofsnapchat",
-		isNsfw: true,
-		subs: 840613
+		"name": "WhyWereTheyFilming",
+		"subscriberCount": 1217116,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "whenitgoesin",
-		isNsfw: true,
-		subs: 837686
+		"name": "WatchItForThePlot",
+		"subscriberCount": 1215842,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "rapefantasies",
-		isNsfw: true,
-		subs: 827264
+		"name": "UrbanHell",
+		"subscriberCount": 1214168,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "porn_gifs",
-		isNsfw: true,
-		subs: 821874
+		"name": "ANormalDayInRussia",
+		"subscriberCount": 1211585,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "cumshots",
-		isNsfw: true,
-		subs: 819672
+		"name": "BeforeNAfterAdoption",
+		"subscriberCount": 1210055,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "2busty2hide",
-		isNsfw: true,
-		subs: 816380
+		"name": "PornhubComments",
+		"subscriberCount": 1209138,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "18nsfw",
-		isNsfw: true,
-		subs: 812639
+		"name": "TwoSentenceHorror",
+		"subscriberCount": 1208667,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "FacialFun",
-		isNsfw: true,
-		subs: 809037
+		"name": "BoneAppleTea",
+		"subscriberCount": 1208373,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "facedownassup",
-		isNsfw: true,
-		subs: 806110
+		"name": "RocketLeague",
+		"subscriberCount": 1207601,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "FestivalSluts",
-		isNsfw: true,
-		subs: 805544
+		"name": "Mindfulness",
+		"subscriberCount": 1206990,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "tits",
-		isNsfw: true,
-		subs: 804663
+		"name": "amateurcumsluts",
+		"subscriberCount": 1206368,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "FaceFuck",
-		isNsfw: true,
-		subs: 802127
+		"name": "DidntKnowIWantedThat",
+		"subscriberCount": 1201323,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "PLASTT",
-		isNsfw: true,
-		subs: 801994
+		"name": "MechanicalKeyboards",
+		"subscriberCount": 1199747,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "obsf",
-		isNsfw: true,
-		subs: 800836
+		"name": "Terraria",
+		"subscriberCount": 1199282,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "RealHomePorn",
-		isNsfw: true,
-		subs: 797818
+		"name": "DotA2",
+		"subscriberCount": 1196660,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "MassiveTitsnAss",
-		isNsfw: true,
-		subs: 796912
+		"name": "EngineeringPorn",
+		"subscriberCount": 1193969,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "iwanttobeher",
-		isNsfw: true,
-		subs: 795556
+		"name": "AmateurRoomPorn",
+		"subscriberCount": 1193965,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "StraightGirlsPlaying",
-		isNsfw: true,
-		subs: 793867
+		"name": "HydroHomies",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 1185072
 	},
 	{
-		name: "funsized",
-		isNsfw: true,
-		subs: 793249
+		"name": "fuckdoll",
+		"subscriberCount": 1184520,
+		"isDefaultSubreddit": false,
+		"over18": true
 	},
 	{
-		name: "SpreadEm",
-		isNsfw: true,
-		subs: 786967
+		"name": "PersonalFinanceCanada",
+		"subscriberCount": 1183974,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Doggystyle_NSFW",
-		isNsfw: true,
-		subs: 786906
+		"name": "ShitPostCrusaders",
+		"subscriberCount": 1183102,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "IndianBabes",
-		isNsfw: true,
-		subs: 781639
+		"name": "MechanicAdvice",
+		"subscriberCount": 1182202,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "snapleaks",
-		isNsfw: true,
-		subs: 780742
+		"name": "FrugalFemaleFashion",
+		"subscriberCount": 1182006,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "CamSluts",
-		isNsfw: true,
-		subs: 779873
+		"name": "Piracy",
+		"subscriberCount": 1181743,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "JustFriendsHavingFun",
-		isNsfw: true,
-		subs: 773486
+		"name": "curlyhair",
+		"subscriberCount": 1180537,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "JiggleFuck",
-		isNsfw: true,
-		subs: 768178
+		"name": "BeautyGuruChatter",
+		"subscriberCount": 1178307,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "quiver",
-		isNsfw: true,
-		subs: 766678
+		"name": "sciencememes",
+		"subscriberCount": 1175403,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "gonewildstories",
-		isNsfw: true,
-		subs: 765121
+		"name": "de",
+		"subscriberCount": 1175161,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "burstingout",
-		isNsfw: true,
-		subs: 765029
+		"name": "Coffee",
+		"subscriberCount": 1174931,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "DaughterTraining",
-		isNsfw: true,
-		subs: 764704
+		"name": "aviation",
+		"subscriberCount": 1174193,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "MasturbationGoneWild",
-		isNsfw: true,
-		subs: 761624
+		"name": "standupshots",
+		"subscriberCount": 1173710,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "RileyReid",
-		isNsfw: true,
-		subs: 761161
+		"name": "IdiotsFightingThings",
+		"subscriberCount": 1172967,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "Overwatch_Porn",
-		isNsfw: true,
-		subs: 759916
+		"name": "MostBeautiful",
+		"subscriberCount": 1171865,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "LabiaGW",
-		isNsfw: true,
-		subs: 759033
+		"name": "bigtiddygothgf",
+		"subscriberCount": 1171483,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "BBW",
-		isNsfw: true,
-		subs: 755002
+		"name": "thisismylifenow",
+		"subscriberCount": 1170480,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "bustyasians",
-		isNsfw: true,
-		subs: 753481
+		"name": "xxfitness",
+		"subscriberCount": 1169213,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "2000sGirls",
-		isNsfw: true,
-		subs: 749750
+		"name": "LetsNotMeet",
+		"subscriberCount": 1168520,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "seduction",
-		isNsfw: true,
-		subs: 743985
+		"name": "FUCKYOUINPARTICULAR",
+		"subscriberCount": 1166459,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "twerking",
-		isNsfw: true,
-		subs: 743949
+		"name": "CryptoTechnology",
+		"subscriberCount": 1165106,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "MassiveCock",
-		isNsfw: true,
-		subs: 740359
+		"name": "worldbuilding",
+		"subscriberCount": 1160823,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "homegrowntits",
-		isNsfw: true,
-		subs: 739772
+		"name": "Homebrewing",
+		"subscriberCount": 1159922,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "ButtsAndBareFeet",
-		isNsfw: true,
-		subs: 736538
+		"name": "FellowKids",
+		"subscriberCount": 1156903,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "tightdresses",
-		isNsfw: true,
-		subs: 735734
+		"name": "CallOfDuty",
+		"subscriberCount": 1155200,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "BDSMGW",
-		isNsfw: true,
-		subs: 729013
+		"name": "StrangerThings",
+		"subscriberCount": 1154886,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "AssholeBehindThong",
-		isNsfw: true,
-		subs: 726708
+		"name": "beermoney",
+		"subscriberCount": 1154850,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "BubbleButts",
-		isNsfw: true,
-		subs: 723806
+		"name": "OnePunchMan",
+		"subscriberCount": 1154738,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "thighhighs",
-		isNsfw: true,
-		subs: 721268
+		"name": "mildlysatisfying",
+		"subscriberCount": 1151865,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "ginger",
-		isNsfw: true,
-		subs: 711063
+		"name": "SheFucksHim",
+		"subscriberCount": 1150294,
+		"isDefaultSubreddit": false,
+		"over18": true
 	},
 	{
-		name: "BrownHotties",
-		isNsfw: true,
-		subs: 710023
+		"name": "birdswitharms",
+		"subscriberCount": 1148619,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "bigtitsinbikinis",
-		isNsfw: true,
-		subs: 703714
+		"name": "help",
+		"subscriberCount": 1148323,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "eyeblech",
-		isNsfw: true,
-		subs: 702595
+		"name": "TooCuteForPorn",
+		"subscriberCount": 1146787,
+		"isDefaultSubreddit": false,
+		"over18": true
 	},
 	{
-		name: "Nipples",
-		isNsfw: true,
-		subs: 700663
+		"name": "vagabond",
+		"subscriberCount": 1145316,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "girlsmasturbating",
-		isNsfw: true,
-		subs: 700356
+		"name": "BrandNewSentence",
+		"subscriberCount": 1144368,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "BlowjobGirls",
-		isNsfw: true,
-		subs: 700307
+		"name": "FitNakedGirls",
+		"subscriberCount": 1141296,
+		"isDefaultSubreddit": false,
+		"over18": true
 	},
 	{
-		name: "smallboobs",
-		isNsfw: true,
-		subs: 698357
+		"name": "TheWayWeWere",
+		"subscriberCount": 1141196,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "creampie",
-		isNsfw: true,
-		subs: 697507
+		"name": "Instagramreality",
+		"subscriberCount": 1138177,
+		"isDefaultSubreddit": false,
+		"over18": false
 	},
 	{
-		name: "InnocentlyNaughty",
-		isNsfw: true,
-		subs: 694680
+		"name": "nostalgia",
+		"subscriberCount": 1138103,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "ghostnipples",
-		isNsfw: true,
-		subs: 693916
+		"name": "Catswithjobs",
+		"subscriberCount": 1137833,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "booty",
-		isNsfw: true,
-		subs: 693314
+		"name": "Paranormal",
+		"subscriberCount": 1137534,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "DarkAngels",
-		isNsfw: true,
-		subs: 692487
+		"name": "gamedev",
+		"subscriberCount": 1137037,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "girlswhoride",
-		isNsfw: true,
-		subs: 690994
+		"name": "thickwhitegirls",
+		"subscriberCount": 1136692,
+		"isDefaultSubreddit": false,
+		"over18": true
 	},
 	{
-		name: "Sissies",
-		isNsfw: true,
-		subs: 686389
+		"name": "Python",
+		"subscriberCount": 1133285,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "EGirls",
-		isNsfw: true,
-		subs: 686133
+		"name": "graphic_design",
+		"subscriberCount": 1131690,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "AngelaWhite",
-		isNsfw: true,
-		subs: 683378
+		"name": "holdmyredbull",
+		"subscriberCount": 1130873,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "FlashingGirls",
-		isNsfw: true,
-		subs: 682100
+		"name": "fakehistoryporn",
+		"subscriberCount": 1128178,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "shavedpussies",
-		isNsfw: true,
-		subs: 680714
+		"name": "MakeMeSuffer",
+		"subscriberCount": 1127600,
+		"over18": true,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "abelladanger",
-		isNsfw: true,
-		subs: 678592
+		"name": "dndmemes",
+		"subscriberCount": 1127282,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "MiaMalkova",
-		isNsfw: true,
-		subs: 677284
+		"name": "Satisfyingasfuck",
+		"subscriberCount": 1127183,
+		"over18": false,
+		"isDefaultSubreddit": false
 	},
 	{
-		name: "NSFW_Japan",
-		isNsfw: true,
-		subs: 677170
+		"name": "TeenBeauties",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 1125881
 	},
 	{
-		name: "petite",
-		isNsfw: true,
-		subs: 676273
+		"name": "minipainting",
+		"subscriberCount": 1121845,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "awesome",
+		"subscriberCount": 1120563,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "100yearsago",
+		"subscriberCount": 1118281,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "tippytaps",
+		"subscriberCount": 1116861,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "agedlikemilk",
+		"subscriberCount": 1116101,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "shittyaskscience",
+		"subscriberCount": 1114806,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "IllegallySmolCats",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 1114748
+	},
+	{
+		"name": "booksuggestions",
+		"subscriberCount": 1114293,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "mexico",
+		"subscriberCount": 1111719,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "AnimeFunny",
+		"subscriberCount": 1109557,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "FemBoys",
+		"subscriberCount": 1104687,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "TheDepthsBelow",
+		"subscriberCount": 1104636,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "ArtPorn",
+		"subscriberCount": 1101242,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "traps",
+		"subscriberCount": 1100711,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "AskEconomics",
+		"subscriberCount": 1100286,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "whatsthisplant",
+		"subscriberCount": 1098649,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "woooosh",
+		"subscriberCount": 1096837,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "reddeadredemption",
+		"subscriberCount": 1096192,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "cyberpunkgame",
+		"subscriberCount": 1092927,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "evilbuildings",
+		"subscriberCount": 1092111,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "TinyTits",
+		"subscriberCount": 1091080,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "bicycling",
+		"subscriberCount": 1090437,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "MovieSuggestions",
+		"subscriberCount": 1086847,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "MUAontheCheap",
+		"subscriberCount": 1085598,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "ThickThighs",
+		"subscriberCount": 1082148,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "oldpeoplefacebook",
+		"subscriberCount": 1080133,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Philippines",
+		"subscriberCount": 1079881,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "NoFap",
+		"subscriberCount": 1078890,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "wholesomeanimemes",
+		"subscriberCount": 1078291,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "altgonewild",
+		"subscriberCount": 1076403,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "UKPersonalFinance",
+		"subscriberCount": 1075598,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "BitcoinBeginners",
+		"subscriberCount": 1073809,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "datingoverthirty",
+		"subscriberCount": 1070880,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "disney",
+		"subscriberCount": 1068872,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "copypasta",
+		"subscriberCount": 1068308,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "NSFW411",
+		"subscriberCount": 1067208,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "wiiu",
+		"subscriberCount": 1065738,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "ZeroWaste",
+		"subscriberCount": 1065551,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "discordapp",
+		"subscriberCount": 1064375,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "holdmyfeedingtube",
+		"subscriberCount": 1064207,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "StupidFood",
+		"subscriberCount": 1064080,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "DecidingToBeBetter",
+		"subscriberCount": 1062973,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "btc",
+		"subscriberCount": 1062779,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "confessions",
+		"subscriberCount": 1060982,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "girlsinyogapants",
+		"subscriberCount": 1058731,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "boxoffice",
+		"subscriberCount": 1058144,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "lego",
+		"subscriberCount": 1056969,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "IllegalLifeProTips",
+		"subscriberCount": 1055287,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "sewing",
+		"subscriberCount": 1052877,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "tooktoomuch",
+		"subscriberCount": 1051908,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "gettingherselfoff",
+		"subscriberCount": 1051209,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "AskUK",
+		"subscriberCount": 1050641,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "im14andthisisdeep",
+		"subscriberCount": 1048766,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "CollegeAmateurs",
+		"subscriberCount": 1047266,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "okbuddyretard",
+		"subscriberCount": 1044950,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "gonewildcouples",
+		"subscriberCount": 1043124,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "blessedimages",
+		"subscriberCount": 1042045,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Conservative",
+		"subscriberCount": 1039846,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "mangadeals",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 1037169
+	},
+	{
+		"name": "Basketball",
+		"subscriberCount": 1036516,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "wholesomegifs",
+		"subscriberCount": 1035189,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "30PlusSkinCare",
+		"subscriberCount": 1035095,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "blender",
+		"subscriberCount": 1034928,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Moviesinthemaking",
+		"subscriberCount": 1034170,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "AnalGW",
+		"subscriberCount": 1033614,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "TalesFromRetail",
+		"subscriberCount": 1030721,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "3DS",
+		"subscriberCount": 1029472,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "options",
+		"subscriberCount": 1028715,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "lgbt",
+		"subscriberCount": 1026035,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "GOONED",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 1025694
+	},
+	{
+		"name": "ThingsCutInHalfPorn",
+		"subscriberCount": 1023522,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "familyguy",
+		"subscriberCount": 1023167,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "UFOs",
+		"subscriberCount": 1021783,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "cscareerquestions",
+		"subscriberCount": 1020228,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "homegym",
+		"subscriberCount": 1019947,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "DCcomics",
+		"subscriberCount": 1019460,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "ApplyingToCollege",
+		"subscriberCount": 1018419,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "ComedyCemetery",
+		"subscriberCount": 1014314,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Autos",
+		"subscriberCount": 1013809,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "crappyoffbrands",
+		"subscriberCount": 1011710,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "CuteLittleButts",
+		"subscriberCount": 1005664,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "NotMyJob",
+		"subscriberCount": 1004135,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "CatsWithDogs",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 1003001
+	},
+	{
+		"name": "westworld",
+		"subscriberCount": 1001363,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "RobinHood",
+		"subscriberCount": 1001000,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Glitch_in_the_Matrix",
+		"subscriberCount": 998916,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "witcher",
+		"subscriberCount": 998788,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "whatcouldgoright",
+		"subscriberCount": 994993,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "hugeboobs",
+		"subscriberCount": 993405,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "cosplayers",
+		"subscriberCount": 993274,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "economy",
+		"subscriberCount": 992011,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "blackchickswhitedicks",
+		"subscriberCount": 991818,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "Drugs",
+		"subscriberCount": 986726,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "tennis",
+		"subscriberCount": 984028,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "confidentlyincorrect",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 983601
+	},
+	{
+		"name": "ThatLookedExpensive",
+		"subscriberCount": 982591,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "GooglePixel",
+		"subscriberCount": 981452,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "ihadastroke",
+		"subscriberCount": 980573,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "EconomicHistory",
+		"subscriberCount": 977062,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "dankvideos",
+		"subscriberCount": 976495,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "BestofRedditorUpdates",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 975129
+	},
+	{
+		"name": "BlowJob",
+		"subscriberCount": 974949,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "NASCAR",
+		"subscriberCount": 972904,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "UNBGBBIIVCHIDCTIICBG",
+		"subscriberCount": 972253,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "shittymoviedetails",
+		"subscriberCount": 971089,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "AskAnAmerican",
+		"subscriberCount": 969346,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "YoungGirlsGoneWild",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 967545
+	},
+	{
+		"name": "ufc",
+		"subscriberCount": 966217,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "yesyesyesno",
+		"subscriberCount": 965788,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Breath_of_the_Wild",
+		"subscriberCount": 964332,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "SuddenlyGay",
+		"subscriberCount": 964134,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "LeopardsAteMyFace",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 962331
+	},
+	{
+		"name": "depression",
+		"subscriberCount": 960901,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "GirlswithGlasses",
+		"subscriberCount": 959955,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "rap",
+		"subscriberCount": 959347,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "ifyoulikeblank",
+		"subscriberCount": 959277,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "OnlyFansPromotions",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 957294
+	},
+	{
+		"name": "Miakhalifa",
+		"subscriberCount": 957040,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "whatsthisbug",
+		"subscriberCount": 954165,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "mlb",
+		"subscriberCount": 953940,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "redheads",
+		"subscriberCount": 953147,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "HugeDickTinyChick",
+		"subscriberCount": 952668,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "WeWantPlates",
+		"subscriberCount": 951762,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "london",
+		"subscriberCount": 951052,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "antimeme",
+		"subscriberCount": 950470,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "GWCouples",
+		"subscriberCount": 950022,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "headphones",
+		"subscriberCount": 949954,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Animesuggest",
+		"subscriberCount": 949341,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Celebhub",
+		"subscriberCount": 947630,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "dogpictures",
+		"subscriberCount": 944318,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "bodyperfection",
+		"subscriberCount": 944144,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "youngpeopleyoutube",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 943871
+	},
+	{
+		"name": "MorbidReality",
+		"subscriberCount": 942504,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "spotify",
+		"subscriberCount": 942152,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "AskEurope",
+		"subscriberCount": 941330,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "bdsm",
+		"subscriberCount": 941214,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "watchpeoplesurvive",
+		"subscriberCount": 941013,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Fallout",
+		"subscriberCount": 939602,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "resumes",
+		"subscriberCount": 936968,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "DegradingHoles",
+		"subscriberCount": 935915,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "Boobies",
+		"subscriberCount": 935748,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "IndoorGarden",
+		"subscriberCount": 935503,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "LongDistance",
+		"subscriberCount": 934411,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "hometheater",
+		"subscriberCount": 932969,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "wifesharing",
+		"subscriberCount": 929062,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Breadit",
+		"subscriberCount": 928555,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "AccidentalRenaissance",
+		"subscriberCount": 927873,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Handwriting",
+		"subscriberCount": 925966,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "FunnyandSad",
+		"subscriberCount": 924804,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "mechanical_gifs",
+		"subscriberCount": 924595,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "justneckbeardthings",
+		"subscriberCount": 924398,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Minecraftbuilds",
+		"subscriberCount": 922421,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "datascience",
+		"subscriberCount": 920619,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Memes_Of_The_Dank",
+		"subscriberCount": 918312,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "dontputyourdickinthat",
+		"subscriberCount": 915859,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "PanPorn",
+		"subscriberCount": 915853,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "everymanshouldknow",
+		"subscriberCount": 915746,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "gamernews",
+		"subscriberCount": 915035,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "rearpussy",
+		"subscriberCount": 912391,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "grilling",
+		"subscriberCount": 912329,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "Mommit",
+		"subscriberCount": 910993,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "CityPorn",
+		"subscriberCount": 908988,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "surrealmemes",
+		"subscriberCount": 905851,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "smashbros",
+		"subscriberCount": 905709,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "buildapcsales",
+		"subscriberCount": 905184,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Hotchickswithtattoos",
+		"subscriberCount": 904960,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "hiphopvinyl",
+		"subscriberCount": 904913,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "IASIP",
+		"subscriberCount": 904827,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "catpics",
+		"subscriberCount": 904415,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "SubredditDrama",
+		"subscriberCount": 902021,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "NFT",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 901943
+	},
+	{
+		"name": "nhl",
+		"subscriberCount": 900809,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "gwpublic",
+		"subscriberCount": 900090,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Hololive",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 899838
+	},
+	{
+		"name": "GameDeals",
+		"subscriberCount": 899301,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "bonehurtingjuice",
+		"subscriberCount": 898505,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Justfuckmyshitup",
+		"subscriberCount": 893965,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "AskCulinary",
+		"subscriberCount": 893858,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "casualiama",
+		"subscriberCount": 893446,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "naturaltitties",
+		"subscriberCount": 893260,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "nononono",
+		"subscriberCount": 893093,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "AnimeMusicVideos",
+		"subscriberCount": 893089,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "worldcup",
+		"subscriberCount": 892937,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "tipofmypenis",
+		"subscriberCount": 890638,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "britishproblems",
+		"subscriberCount": 889901,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "fffffffuuuuuuuuuuuu",
+		"subscriberCount": 888893,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "Weird",
+		"subscriberCount": 888482,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "hiphop101",
+		"subscriberCount": 887994,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "weed",
+		"subscriberCount": 886891,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "electronics",
+		"subscriberCount": 886541,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "dogswithjobs",
+		"subscriberCount": 885596,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "IWantToSuckCock",
+		"subscriberCount": 884391,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Threesome",
+		"subscriberCount": 882841,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "asoiaf",
+		"subscriberCount": 882315,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Naturewasmetal",
+		"subscriberCount": 881360,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "raisedbynarcissists",
+		"subscriberCount": 877671,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "PourPainting",
+		"subscriberCount": 877594,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "IndiansGoneWild",
+		"subscriberCount": 877578,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "intermittentfasting",
+		"subscriberCount": 877491,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "ukraine",
+		"subscriberCount": 877447,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "Cricket",
+		"subscriberCount": 876707,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Nicegirls",
+		"subscriberCount": 868917,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "WomenBendingOver",
+		"subscriberCount": 867779,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "intel",
+		"subscriberCount": 867293,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "AccidentalComedy",
+		"subscriberCount": 866657,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "RedditLaqueristas",
+		"subscriberCount": 866232,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "futanari",
+		"subscriberCount": 866226,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "DadReflexes",
+		"subscriberCount": 863787,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "ScottishPeopleTwitter",
+		"subscriberCount": 862572,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "oilpainting",
+		"subscriberCount": 862052,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "cosplay",
+		"subscriberCount": 861574,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "SlimThick",
+		"subscriberCount": 859094,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "Orgasms",
+		"subscriberCount": 859032,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "QuotesPorn",
+		"subscriberCount": 858588,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "beards",
+		"subscriberCount": 858102,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"isDefaultSubreddit": false,
+		"name": "Fauxmoi",
+		"over18": false,
+		"subscriberCount": 856584
+	},
+	{
+		"name": "freebies",
+		"subscriberCount": 855627,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "blunderyears",
+		"subscriberCount": 854648,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "hbo",
+		"subscriberCount": 852745,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "notliketheothergirls",
+		"subscriberCount": 852384,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "AskRedditAfterDark",
+		"subscriberCount": 851069,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "LateStageCapitalism",
+		"subscriberCount": 850321,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "public",
+		"subscriberCount": 850293,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "JoeRogan",
+		"subscriberCount": 850070,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "bestoflegaladvice",
+		"subscriberCount": 849996,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "funnyvideos",
+		"subscriberCount": 848468,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "FullmetalAlchemist",
+		"subscriberCount": 848176,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Bundesliga",
+		"subscriberCount": 846020,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "linux",
+		"subscriberCount": 843444,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "slutsofsnapchat",
+		"subscriberCount": 841142,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "tattoo",
+		"subscriberCount": 840978,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "EscapefromTarkov",
+		"subscriberCount": 840533,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "SkincareAddicts",
+		"subscriberCount": 839392,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "gatekeeping",
+		"subscriberCount": 838757,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "whenitgoesin",
+		"subscriberCount": 837811,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "lotr",
+		"subscriberCount": 836583,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "HunterXHunter",
+		"subscriberCount": 833616,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "TrollXChromosomes",
+		"subscriberCount": 831555,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "AskScienceFiction",
+		"subscriberCount": 829891,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "whitepeoplegifs",
+		"subscriberCount": 828140,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "rapefantasies",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 827854
+	},
+	{
+		"name": "puns",
+		"subscriberCount": 825099,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "TheSilphRoad",
+		"subscriberCount": 824336,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "manhwa",
+		"subscriberCount": 824252,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "dankchristianmemes",
+		"subscriberCount": 823549,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "notinteresting",
+		"subscriberCount": 823183,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "cosplayprops",
+		"subscriberCount": 822818,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "Advice",
+		"subscriberCount": 822716,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "NoMansSkyTheGame",
+		"subscriberCount": 822093,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "porn_gifs",
+		"subscriberCount": 821966,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "acne",
+		"subscriberCount": 821631,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "cumshots",
+		"subscriberCount": 820034,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "Wallstreetbetsnew",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 817199
+	},
+	{
+		"name": "AMA",
+		"subscriberCount": 816714,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "2busty2hide",
+		"subscriberCount": 816452,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Pareidolia",
+		"subscriberCount": 815815,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "destiny2",
+		"subscriberCount": 815092,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "BadDesigns",
+		"subscriberCount": 814738,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "landscaping",
+		"subscriberCount": 814621,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "18nsfw",
+		"subscriberCount": 812891,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "thenetherlands",
+		"subscriberCount": 811212,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "NoahGetTheBoat",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 810128
+	},
+	{
+		"name": "LegalAdviceUK",
+		"subscriberCount": 809766,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "FacialFun",
+		"subscriberCount": 809166,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "TrueCrimeDiscussion",
+		"subscriberCount": 808508,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "tf2",
+		"subscriberCount": 808004,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "antiMLM",
+		"subscriberCount": 807050,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "imsorryjon",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 806651
+	},
+	{
+		"name": "facedownassup",
+		"subscriberCount": 806340,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "FestivalSluts",
+		"subscriberCount": 805695,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "PenmanshipPorn",
+		"subscriberCount": 805473,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "tits",
+		"subscriberCount": 804999,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "youtube",
+		"subscriberCount": 803377,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Illustration",
+		"subscriberCount": 803020,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "FaceFuck",
+		"subscriberCount": 802326,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "PLASTT",
+		"subscriberCount": 802004,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "singularity",
+		"subscriberCount": 801432,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "obsf",
+		"subscriberCount": 801165,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "Cyberpunk",
+		"subscriberCount": 801143,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "HouseOfTheDragon",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 799645
+	},
+	{
+		"name": "ffxiv",
+		"subscriberCount": 799638,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "beginnerfitness",
+		"subscriberCount": 798325,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "RealHomePorn",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 798212
+	},
+	{
+		"name": "UnusualVideos",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 798100
+	},
+	{
+		"name": "ich_iel",
+		"subscriberCount": 798050,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "sysadmin",
+		"subscriberCount": 797426,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "fantasywriters",
+		"subscriberCount": 797168,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "MassiveTitsnAss",
+		"subscriberCount": 797132,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "iwanttobeher",
+		"subscriberCount": 795556,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "creepypasta",
+		"subscriberCount": 794101,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "web_design",
+		"subscriberCount": 794025,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "EASportsFC",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 793954
+	},
+	{
+		"name": "StraightGirlsPlaying",
+		"subscriberCount": 793910,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "HaircareScience",
+		"subscriberCount": 793670,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "funsized",
+		"subscriberCount": 793661,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "BadMUAs",
+		"subscriberCount": 792397,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "SquaredCircle",
+		"subscriberCount": 792195,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "HomeDecorating",
+		"subscriberCount": 790300,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "apolloapp",
+		"subscriberCount": 790057,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "guns",
+		"subscriberCount": 789803,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "creepyPMs",
+		"subscriberCount": 787998,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Doggystyle_NSFW",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 787400
+	},
+	{
+		"name": "Repsneakers",
+		"subscriberCount": 787391,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "SpreadEm",
+		"subscriberCount": 787222,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "OSHA",
+		"subscriberCount": 785303,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "TalesFromTheFrontDesk",
+		"subscriberCount": 782613,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Prematurecelebration",
+		"subscriberCount": 782158,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "IndianBabes",
+		"subscriberCount": 781814,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "GameTheorists",
+		"subscriberCount": 781152,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "snapleaks",
+		"subscriberCount": 780792,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "CamSluts",
+		"subscriberCount": 780110,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "Turkey",
+		"subscriberCount": 779811,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "wholesome",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 779776
+	},
+	{
+		"name": "ABoringDystopia",
+		"subscriberCount": 779577,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "crossfit",
+		"subscriberCount": 779007,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "CrazyIdeas",
+		"subscriberCount": 778025,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "donthelpjustfilm",
+		"subscriberCount": 776833,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "rapbattles",
+		"subscriberCount": 776350,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "nyc",
+		"subscriberCount": 776302,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Embroidery",
+		"subscriberCount": 774445,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "JustFriendsHavingFun",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 773740
+	},
+	{
+		"name": "amv",
+		"subscriberCount": 773515,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "FloridaMan",
+		"subscriberCount": 772351,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "engrish",
+		"subscriberCount": 771210,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "badeconomics",
+		"subscriberCount": 770500,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "JiggleFuck",
+		"subscriberCount": 768292,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "shortscarystories",
+		"subscriberCount": 768011,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "talesfromtechsupport",
+		"subscriberCount": 767543,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "MakeNewFriendsHere",
+		"subscriberCount": 767392,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "quiver",
+		"subscriberCount": 766876,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "AutoDetailing",
+		"subscriberCount": 766236,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "futurama",
+		"subscriberCount": 766036,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "gonewildstories",
+		"subscriberCount": 765205,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "burstingout",
+		"subscriberCount": 765106,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "DaughterTraining",
+		"subscriberCount": 765082,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "suicidebywords",
+		"subscriberCount": 764519,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "MasturbationGoneWild",
+		"subscriberCount": 761809,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "RileyReid",
+		"subscriberCount": 761255,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "AwesomeCarMods",
+		"subscriberCount": 760528,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "AskOuija",
+		"subscriberCount": 760502,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Overwatch_Porn",
+		"subscriberCount": 760050,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "vegetarian",
+		"subscriberCount": 759867,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "LabiaGW",
+		"subscriberCount": 759154,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "AppleWatch",
+		"subscriberCount": 757588,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "formuladank",
+		"subscriberCount": 757078,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "dank_meme",
+		"subscriberCount": 756433,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "thelastofus",
+		"subscriberCount": 756352,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "GymMemes",
+		"subscriberCount": 755885,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "BBW",
+		"subscriberCount": 755240,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "bustyasians",
+		"subscriberCount": 753950,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "CatsAreAssholes",
+		"subscriberCount": 752518,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "playstation",
+		"subscriberCount": 752107,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "fantasybball",
+		"subscriberCount": 750122,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "2000sGirls",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 749999
+	},
+	{
+		"name": "EngineeringStudents",
+		"subscriberCount": 749954,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "OneSecondBeforeDisast",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 748471
+	},
+	{
+		"name": "NailArt",
+		"subscriberCount": 748315,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "Spiderman",
+		"subscriberCount": 748032,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "dndnext",
+		"subscriberCount": 746390,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "AnimalsOnReddit",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 745485
+	},
+	{
+		"name": "hmm",
+		"subscriberCount": 744820,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "Celebs",
+		"subscriberCount": 744507,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "twerking",
+		"subscriberCount": 744249,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "seduction",
+		"subscriberCount": 743908,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "easyrecipes",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 742783
+	},
+	{
+		"name": "RetroFuturism",
+		"subscriberCount": 742453,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "ConvenientCop",
+		"subscriberCount": 740848,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "MassiveCock",
+		"subscriberCount": 740550,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "homegrowntits",
+		"subscriberCount": 739900,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Kanye",
+		"subscriberCount": 738229,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "TrueCrimePodcasts",
+		"subscriberCount": 737242,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "ButtsAndBareFeet",
+		"subscriberCount": 736832,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "bjj",
+		"subscriberCount": 736584,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "PuppySmiles",
+		"subscriberCount": 735999,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "tightdresses",
+		"subscriberCount": 735863,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "onejob",
+		"subscriberCount": 735084,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "LSD",
+		"subscriberCount": 733092,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "EatCheapAndVegan",
+		"subscriberCount": 732691,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "2007scape",
+		"subscriberCount": 730722,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "megalophobia",
+		"subscriberCount": 730664,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "brooklynninenine",
+		"subscriberCount": 730590,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Cheap_Meals",
+		"subscriberCount": 730115,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "IdiotsNearlyDying",
+		"subscriberCount": 730011,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "googlehome",
+		"subscriberCount": 729683,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "BDSMGW",
+		"subscriberCount": 729289,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Watercolor",
+		"subscriberCount": 728469,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "flexibility",
+		"subscriberCount": 727223,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "AssholeBehindThong",
+		"subscriberCount": 726767,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "holdmyfries",
+		"subscriberCount": 724179,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "BubbleButts",
+		"subscriberCount": 724118,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "findfashion",
+		"subscriberCount": 722581,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "edmproduction",
+		"subscriberCount": 722204,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "thighhighs",
+		"subscriberCount": 721433,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "football",
+		"subscriberCount": 721234,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "dbz",
+		"subscriberCount": 721054,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "ClashRoyale",
+		"subscriberCount": 720791,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "ActualPublicFreakouts",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 720544
+	},
+	{
+		"name": "pornvids",
+		"subscriberCount": 720219,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "NotHowGirlsWork",
+		"subscriberCount": 718794,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "tea",
+		"subscriberCount": 718752,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Catloaf",
+		"subscriberCount": 718300,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "SatoshiStreetBets",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 714584
+	},
+	{
+		"name": "languagelearning",
+		"subscriberCount": 714077,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "learnpython",
+		"subscriberCount": 713849,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "InteriorDesign",
+		"subscriberCount": 713793,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "streetwearstartup",
+		"subscriberCount": 713673,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "jacksepticeye",
+		"subscriberCount": 713284,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "deadbydaylight",
+		"subscriberCount": 712622,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "InfrastructurePorn",
+		"subscriberCount": 712583,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "WitchesVsPatriarchy",
+		"over18": false,
+		"subscriberCount": 712136,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "OldPhotosInRealLife",
+		"subscriberCount": 711343,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "ginger",
+		"subscriberCount": 711169,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "BrownHotties",
+		"subscriberCount": 710351,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "howtonotgiveafuck",
+		"subscriberCount": 710290,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "ImaginaryLandscapes",
+		"subscriberCount": 709968,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "plotholes",
+		"subscriberCount": 709510,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "chess",
+		"subscriberCount": 707942,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Patriots",
+		"subscriberCount": 707001,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Hulu",
+		"subscriberCount": 706569,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "JusticePorn",
+		"subscriberCount": 704466,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "bigtitsinbikinis",
+		"subscriberCount": 703830,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "eyeblech",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 702595
+	},
+	{
+		"name": "redneckengineering",
+		"subscriberCount": 701956,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "outside",
+		"subscriberCount": 701876,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Nipples",
+		"subscriberCount": 700947,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "girlsmasturbating",
+		"subscriberCount": 700904,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "BlowjobGirls",
+		"subscriberCount": 700664,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "lostredditors",
+		"subscriberCount": 699382,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "LearnUselessTalents",
+		"subscriberCount": 699292,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "germany",
+		"subscriberCount": 698629,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "smallboobs",
+		"subscriberCount": 698627,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "creampie",
+		"subscriberCount": 697672,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "offbeat",
+		"subscriberCount": 696792,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "daddit",
+		"subscriberCount": 696269,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "WorkReform",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 695984
+	},
+	{
+		"name": "subnautica",
+		"subscriberCount": 695160,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "InnocentlyNaughty",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 694809
+	},
+	{
+		"name": "ghostnipples",
+		"subscriberCount": 694086,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "booty",
+		"subscriberCount": 693644,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "DarkAngels",
+		"subscriberCount": 692635,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "xboxinsiders",
+		"subscriberCount": 692467,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "girlswhoride",
+		"subscriberCount": 691326,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "seriouseats",
+		"subscriberCount": 691238,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "combinedgifs",
+		"subscriberCount": 691041,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "gentlemanboners",
+		"subscriberCount": 690196,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "CampingGear",
+		"subscriberCount": 690184,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "cardano",
+		"subscriberCount": 689952,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "AccidentalCamouflage",
+		"subscriberCount": 689219,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "MinecraftMemes",
+		"over18": false,
+		"subscriberCount": 688033,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "toolporn",
+		"subscriberCount": 686685,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "EGirls",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 686678
+	},
+	{
+		"name": "Sissies",
+		"subscriberCount": 686675,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "DataHoarder",
+		"subscriberCount": 686522,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "calvinandhobbes",
+		"subscriberCount": 685002,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "medicalschool",
+		"subscriberCount": 684947,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "AngelaWhite",
+		"subscriberCount": 683501,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "HighStrangeness",
+		"subscriberCount": 683237,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "FlashingGirls",
+		"subscriberCount": 682478,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "gravityfalls",
+		"subscriberCount": 682306,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "dontdeadopeninside",
+		"subscriberCount": 682030,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "shavedpussies",
+		"subscriberCount": 681076,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "golf",
+		"subscriberCount": 680893,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "SCP",
+		"subscriberCount": 680635,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "abelladanger",
+		"subscriberCount": 678721,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "roblox",
+		"subscriberCount": 678028,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "MiaMalkova",
+		"subscriberCount": 677455,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "NSFW_Japan",
+		"subscriberCount": 677323,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "petite",
+		"subscriberCount": 676349,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "SexyTummies",
+		"subscriberCount": 676170,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "PandR",
+		"subscriberCount": 675266,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "AskElectronics",
+		"subscriberCount": 674767,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "toronto",
+		"subscriberCount": 674167,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "gonewildcolor",
+		"subscriberCount": 674015,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "jailbreak",
+		"subscriberCount": 673806,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Swingersgw",
+		"subscriberCount": 673576,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Breeding",
+		"subscriberCount": 672081,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "photoshop",
+		"subscriberCount": 671704,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "ireland",
+		"subscriberCount": 670310,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "wallpapers",
+		"subscriberCount": 670196,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "ImTheMainCharacter",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 670168
+	},
+	{
+		"name": "cheatingwives",
+		"subscriberCount": 668412,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "WhatsWrongWithYourCat",
+		"subscriberCount": 668315,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "ontario",
+		"subscriberCount": 668278,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "amateurgirlsbigcocks",
+		"subscriberCount": 668156,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "CatsStandingUp",
+		"subscriberCount": 667880,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "JustGuysBeingDudes",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 667685
+	},
+	{
+		"name": "StardustCrusaders",
+		"subscriberCount": 667434,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "braless",
+		"subscriberCount": 667428,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "Sims4",
+		"subscriberCount": 667277,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "perfectloops",
+		"subscriberCount": 665983,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "CatsOnKeyboards",
+		"subscriberCount": 665307,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "shittyrobots",
+		"subscriberCount": 665152,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "mangacoloring",
+		"subscriberCount": 664441,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "Buddhism",
+		"subscriberCount": 664328,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "PokemonSwordAndShield",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 663348
+	},
+	{
+		"name": "damngoodinterracial",
+		"subscriberCount": 662969,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "FantasyPL",
+		"subscriberCount": 662349,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "IRLgirls",
+		"subscriberCount": 662253,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "technews",
+		"subscriberCount": 660905,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "sbubby",
+		"subscriberCount": 659989,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Tools",
+		"subscriberCount": 659182,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "FinancialCareers",
+		"subscriberCount": 659152,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "HungryButts",
+		"subscriberCount": 658929,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "indie",
+		"subscriberCount": 658403,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "femalelivingspace",
+		"subscriberCount": 658207,
+		"isDefaultSubreddit": false,
+		"over18": false
+	},
+	{
+		"name": "magicTCG",
+		"subscriberCount": 657645,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "byebyejob",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 657013
+	},
+	{
+		"name": "Tgirls",
+		"subscriberCount": 656174,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Marriage",
+		"subscriberCount": 655495,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "PornStarHQ",
+		"subscriberCount": 655439,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "piercing",
+		"subscriberCount": 655386,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "redditgetsdrawn",
+		"subscriberCount": 655195,
+		"over18": false,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "normalnudes",
+		"subscriberCount": 655014,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "UkraineWarVideoReport",
+		"isDefaultSubreddit": false,
+		"over18": false,
+		"subscriberCount": 654801
+	},
+	{
+		"name": "Celebswithbigtits",
+		"subscriberCount": 652433,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "Ratemypussy",
+		"subscriberCount": 650616,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "PantiesToTheSide",
+		"subscriberCount": 646611,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "NudeCelebsOnly",
+		"subscriberCount": 645754,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "transporn",
+		"subscriberCount": 643483,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "DirtySnapchat",
+		"subscriberCount": 641859,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "cumcoveredfucking",
+		"subscriberCount": 639220,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "GoneWildTrans",
+		"subscriberCount": 635239,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "amihot",
+		"subscriberCount": 631539,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "O_Faces",
+		"subscriberCount": 629666,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "ecchi",
+		"subscriberCount": 626440,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "60fpsporn",
+		"subscriberCount": 626317,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "HairyPussy",
+		"subscriberCount": 626053,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "assinthong",
+		"subscriberCount": 625616,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "OutdoorRecreation",
+		"subscriberCount": 623718,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "WetPussys",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 622861
+	},
+	{
+		"name": "Lesbian_gifs",
+		"subscriberCount": 622809,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "YogaPants",
+		"subscriberCount": 621631,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "girlskissing",
+		"subscriberCount": 617727,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "needysluts",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 615931
+	},
+	{
+		"name": "FreeKarma4U",
+		"subscriberCount": 615553,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "pronebone",
+		"subscriberCount": 610635,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "lingerie",
+		"subscriberCount": 609427,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "GirlsShowering",
+		"subscriberCount": 606696,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "CougarsForCubs",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 605813
+	},
+	{
+		"name": "Bondage",
+		"subscriberCount": 605468,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "Milfie",
+		"subscriberCount": 600579,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "darkjokes",
+		"subscriberCount": 597427,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "traphentai",
+		"subscriberCount": 595989,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "monsterdicks",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 593656
+	},
+	{
+		"name": "BustyNaturals",
+		"subscriberCount": 592208,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "AmateurPorn",
+		"subscriberCount": 589640,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "jilling",
+		"subscriberCount": 587089,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "Sexsells",
+		"subscriberCount": 586907,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "downblouse",
+		"subscriberCount": 585500,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "GaybrosGoneWild",
+		"subscriberCount": 585420,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "WomenOfColor",
+		"subscriberCount": 579758,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "thighdeology",
+		"subscriberCount": 578242,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "extramile",
+		"subscriberCount": 578208,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "aa_cups",
+		"subscriberCount": 578001,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "GWNerdy",
+		"subscriberCount": 577152,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "GodAsshole",
+		"subscriberCount": 576762,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "bigareolas",
+		"subscriberCount": 575251,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "PreggoPorn",
+		"subscriberCount": 572071,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Xsome",
+		"subscriberCount": 569915,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "Phatasswhitegirls",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 566771
+	},
+	{
+		"name": "Mexicana",
+		"subscriberCount": 566233,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "SFMCompileClub",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 563881
+	},
+	{
+		"name": "EbonyThroatQueens",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 563330
+	},
+	{
+		"name": "PerfectBody",
+		"subscriberCount": 562770,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "boltedontits",
+		"subscriberCount": 560209,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "bigdickgirl",
+		"subscriberCount": 559854,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "feetpics",
+		"subscriberCount": 558561,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "suicidegirls",
+		"subscriberCount": 556742,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "simps",
+		"subscriberCount": 556536,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "RandomActsOfBlowJob",
+		"subscriberCount": 555950,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Fingering",
+		"subscriberCount": 555212,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "EbonyCuties",
+		"subscriberCount": 552566,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "GroupOfNudeGirls",
+		"subscriberCount": 549624,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "anal_gifs",
+		"subscriberCount": 546460,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "MasterOfAnal",
+		"subscriberCount": 545245,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "MonsterGirl",
+		"subscriberCount": 541938,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "dirtypenpals",
+		"subscriberCount": 541930,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Exxxtras",
+		"subscriberCount": 541394,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "seethru",
+		"subscriberCount": 541244,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "HomemadeNsfw",
+		"subscriberCount": 541142,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "NostalgiaFapping",
+		"subscriberCount": 540510,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "ebonyamateurs",
+		"subscriberCount": 539337,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "BorednIgnored",
+		"subscriberCount": 539061,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "Throatfucking",
+		"subscriberCount": 538543,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "ChangingRooms",
+		"subscriberCount": 536327,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "PornStarletHQ",
+		"subscriberCount": 535835,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "asiangirlswhitecocks",
+		"subscriberCount": 534895,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "PussyFlashing",
+		"subscriberCount": 534456,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "AutumnFalls",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 531774
+	},
+	{
+		"name": "cuckquean",
+		"subscriberCount": 530940,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "amazingtits",
+		"subscriberCount": 529975,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "FrogButt",
+		"subscriberCount": 525831,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "RepressedGoneWild",
+		"subscriberCount": 525373,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "BBCparadise",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 523139
+	},
+	{
+		"name": "forcedorgasms",
+		"subscriberCount": 522483,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "BadDragon",
+		"subscriberCount": 522130,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Femdom",
+		"subscriberCount": 521926,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "hentaibondage",
+		"subscriberCount": 520300,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "Roughanal",
+		"subscriberCount": 519880,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "FuckGaming",
+		"subscriberCount": 518831,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "nsfwoutfits",
+		"subscriberCount": 516769,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "sex_comics",
+		"subscriberCount": 515937,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "homesex",
+		"subscriberCount": 515180,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "skinnytail",
+		"subscriberCount": 512910,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "Pornhub",
+		"subscriberCount": 512346,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Shemales",
+		"subscriberCount": 512042,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "OnlyFansAsstastic",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 511992
+	},
+	{
+		"name": "KoreanNSFW",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 508783
+	},
+	{
+		"name": "HighResNSFW",
+		"subscriberCount": 508638,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "Nsfw_Amateurs",
+		"subscriberCount": 507630,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "GirlsOnTop",
+		"subscriberCount": 506692,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "thickloads",
+		"subscriberCount": 506115,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "WhyEvenWearAnything",
+		"subscriberCount": 502040,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "CumHaters",
+		"subscriberCount": 498879,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "EngorgedVeinyBreasts",
+		"subscriberCount": 498468,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "GoodGirlsSwallow",
+		"subscriberCount": 495442,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "AsianPorn",
+		"subscriberCount": 494606,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "blowjobsandwich",
+		"subscriberCount": 493305,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "gayporn",
+		"subscriberCount": 490236,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "BoobsAndTities",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 490106
+	},
+	{
+		"name": "Botchedsurgeries",
+		"subscriberCount": 488422,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "facesitting",
+		"subscriberCount": 488192,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "SchoolgirlsXXX",
+		"subscriberCount": 487129,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "GoneWildSmiles",
+		"subscriberCount": 486994,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "EmilyWillis",
+		"subscriberCount": 486827,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "Naruto_Hentai",
+		"subscriberCount": 486654,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "doujinshi",
+		"subscriberCount": 482911,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "AdrianaChechik",
+		"subscriberCount": 482768,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "GreatView",
+		"subscriberCount": 482382,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "creampiegifs",
+		"subscriberCount": 475551,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "EvaElfie",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 474393
+	},
+	{
+		"name": "scrubsgonewild",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 474238
+	},
+	{
+		"name": "BestPornInGalaxy",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 472677
+	},
+	{
+		"name": "CartoonPorn",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 472382
+	},
+	{
+		"name": "VoyeurFlash",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 470685
+	},
+	{
+		"name": "Humongousaurustits",
+		"subscriberCount": 467444,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "porninaminute",
+		"subscriberCount": 467274,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "CentaurGirls",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 467086
+	},
+	{
+		"name": "SnowWhites",
+		"subscriberCount": 467041,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "suctiondildos",
+		"subscriberCount": 465075,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "outercourse",
+		"subscriberCount": 463354,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "sexstories",
+		"subscriberCount": 462834,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "PUBLICNUDITY",
+		"subscriberCount": 462244,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "RateMyNudeBody",
+		"subscriberCount": 461925,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "pokies",
+		"subscriberCount": 461616,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "AnimeMILFS",
+		"subscriberCount": 461342,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "vagina",
+		"subscriberCount": 460931,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "SexyFrex",
+		"subscriberCount": 460254,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "asiangirlsforwhitemen",
+		"subscriberCount": 459290,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "CosplayPornVideos",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 459116
+	},
+	{
+		"name": "PremiumCheeks",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 455074
+	},
+	{
+		"name": "HentaiBeast",
+		"subscriberCount": 454608,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "The_Best_NSFW_GIFS",
+		"subscriberCount": 454346,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "cameltoe",
+		"subscriberCount": 453896,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "pussyrating",
+		"subscriberCount": 453864,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "NSFW_Social",
+		"subscriberCount": 453090,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "Rule34LoL",
+		"subscriberCount": 452536,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "EmoGirlsFuck",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 449216
+	},
+	{
+		"name": "gifsgonewild",
+		"subscriberCount": 447103,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "MomSonIncest",
+		"subscriberCount": 446734,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "NSFW_Plowcam",
+		"subscriberCount": 445793,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "BDSMcommunity",
+		"subscriberCount": 444634,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "AmazingCurves",
+		"subscriberCount": 444535,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "Ifyouhadtopickone",
+		"subscriberCount": 444275,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "pelfie",
+		"subscriberCount": 443628,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "shorthairchicks",
+		"subscriberCount": 440883,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "VioletMyers",
+		"subscriberCount": 440557,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "ridingxxx",
+		"subscriberCount": 439733,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "CelebsBR",
+		"subscriberCount": 438382,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "tscum",
+		"subscriberCount": 437099,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "ratemyboobs",
+		"subscriberCount": 432995,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "WhiteCheeks",
+		"subscriberCount": 432403,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "nudesfeed",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 431791
+	},
+	{
+		"name": "yiff",
+		"subscriberCount": 430893,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Feet_NSFW",
+		"subscriberCount": 430423,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "AhegaoGirls",
+		"subscriberCount": 430021,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "PunkGirls",
+		"subscriberCount": 429984,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "Playboy",
+		"subscriberCount": 426147,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "B_Cups",
+		"subscriberCount": 425737,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "SexyButNotPorn",
+		"subscriberCount": 425412,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "torpedotits",
+		"subscriberCount": 425345,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "sexygirls",
+		"subscriberCount": 424859,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "NSFWGirl",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 422271
+	},
+	{
+		"name": "swingersr4r",
+		"subscriberCount": 422176,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "SchoolGirlSkirts",
+		"subscriberCount": 421950,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "ShemalesParadise",
+		"subscriberCount": 418633,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "PiercedNSFW",
+		"subscriberCount": 418162,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "spreading",
+		"subscriberCount": 418123,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "rape_hentai",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 417830
+	},
+	{
+		"name": "PokePorn",
+		"subscriberCount": 417395,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "voluptuous",
+		"subscriberCount": 416959,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "girlsdoingstuffnaked",
+		"subscriberCount": 416461,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "SuctionBlowjobs",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 413951
+	},
+	{
+		"name": "thongs",
+		"subscriberCount": 412809,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "PantyPeel",
+		"subscriberCount": 412519,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "HijabiXXX",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 412371
+	},
+	{
+		"name": "Blacktittyworld",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 412354
+	},
+	{
+		"name": "forcedcreampie",
+		"subscriberCount": 412168,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "dykesgonewild",
+		"subscriberCount": 411258,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "teachersgonewild",
+		"subscriberCount": 410410,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "titfuck",
+		"subscriberCount": 410292,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "realmoms",
+		"subscriberCount": 409123,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Nofans",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 407958
+	},
+	{
+		"name": "lactation",
+		"subscriberCount": 407837,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "SloppyBlowjob",
+		"subscriberCount": 407268,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "CamGirls",
+		"subscriberCount": 406977,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "TotallyStraight",
+		"subscriberCount": 405816,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "GirlsGW",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 404877
+	},
+	{
+		"name": "wetspot",
+		"subscriberCount": 404140,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "ratemycock",
+		"subscriberCount": 404127,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "SpitRoasted",
+		"subscriberCount": 403754,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "Babes",
+		"subscriberCount": 403566,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "Titties",
+		"subscriberCount": 403212,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "Exhibitionistfun",
+		"subscriberCount": 402341,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "GirlswithNeonHair",
+		"subscriberCount": 402287,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "Cowgirl_Riding_Babes",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 402052
+	},
+	{
+		"name": "BillieEilishGW",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 402002
+	},
+	{
+		"name": "Bukkake",
+		"subscriberCount": 401895,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "ButterflyWings",
+		"subscriberCount": 400372,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "legs",
+		"subscriberCount": 400332,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "twinks",
+		"subscriberCount": 397728,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "datgap",
+		"subscriberCount": 396291,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "doublepenetration",
+		"subscriberCount": 395415,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "buttsthatgrip",
+		"subscriberCount": 394457,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "EraserNipples",
+		"subscriberCount": 393555,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "randomsexiness",
+		"subscriberCount": 390232,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "MiaMelano",
+		"subscriberCount": 390228,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "penis",
+		"subscriberCount": 389297,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "CuteModeSlutMode",
+		"subscriberCount": 387494,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "LatinaCuties",
+		"subscriberCount": 387225,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "milfcumsluts",
+		"subscriberCount": 384896,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "NSFW_HTML5",
+		"subscriberCount": 384483,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "gilf",
+		"subscriberCount": 384349,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "groupsex",
+		"subscriberCount": 380899,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "thiccerthanyouthought",
+		"subscriberCount": 380593,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "ahegao",
+		"subscriberCount": 380285,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "passionx",
+		"subscriberCount": 379547,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "ladybonersgw",
+		"subscriberCount": 378590,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "EdibleButtholes",
+		"subscriberCount": 378480,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "momsgonewild",
+		"subscriberCount": 378136,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "FemboyHentai",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 377930
+	},
+	{
+		"name": "TributeMe",
+		"subscriberCount": 375501,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "ShinyPorn",
+		"subscriberCount": 375264,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "indiangirls",
+		"subscriberCount": 375108,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "OnlyFansBusty",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 374003
+	},
+	{
+		"name": "NakedAdventures",
+		"subscriberCount": 373897,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "stupidslutsclub",
+		"subscriberCount": 373763,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "AreolasGW",
+		"subscriberCount": 373285,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "BisexualFantasy",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 373282
+	},
+	{
+		"name": "cosplaybutts",
+		"subscriberCount": 372789,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "AsianCuties",
+		"subscriberCount": 372293,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "cumonclothes",
+		"subscriberCount": 370069,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "straponlesbians",
+		"subscriberCount": 369591,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "Pee",
+		"subscriberCount": 369586,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "AsianCumsluts",
+		"subscriberCount": 369130,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "BreastEnvy",
+		"subscriberCount": 368805,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "blondegirlsfucking",
+		"subscriberCount": 368433,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "Tentai",
+		"subscriberCount": 368052,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "OralCreampie",
+		"subscriberCount": 367987,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "doggy",
+		"subscriberCount": 367056,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "TransGoneWild",
+		"subscriberCount": 366823,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "ThrobbingCIM",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 366285
+	},
+	{
+		"name": "TwinGirls",
+		"subscriberCount": 365869,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "POV",
+		"subscriberCount": 364347,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "sissyhypno",
+		"subscriberCount": 363863,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "WesternHentai",
+		"subscriberCount": 363545,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "GaySnapchat",
+		"subscriberCount": 362876,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "Incestconfessions",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 362226
+	},
+	{
+		"name": "Workoutgonewild",
+		"subscriberCount": 361008,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "pussyjobs",
+		"subscriberCount": 358801,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "BigBoobsGonewild",
+		"subscriberCount": 358340,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "dickgirls",
+		"subscriberCount": 358321,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "SunDressesGoneWild",
+		"subscriberCount": 357562,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "analinsertions",
+		"subscriberCount": 357522,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "BigBootyGoTHICCgf",
+		"subscriberCount": 357393,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "NSFWCostumes",
+		"subscriberCount": 356878,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "boypussy",
+		"subscriberCount": 356659,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "GonewildGBUK",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 356395
+	},
+	{
+		"name": "OnlyFansPetite",
+		"isDefaultSubreddit": false,
+		"over18": true,
+		"subscriberCount": 356251
+	},
+	{
+		"name": "WifeWantstoPlay",
+		"subscriberCount": 355870,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "jav",
+		"subscriberCount": 355454,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "TeenTitansPorn",
+		"subscriberCount": 354593,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "ElsaJean",
+		"subscriberCount": 351467,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "cum",
+		"subscriberCount": 351057,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "joi",
+		"subscriberCount": 350839,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "DaniDaniels",
+		"subscriberCount": 349377,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "youtubetitties",
+		"subscriberCount": 348454,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "ArabPorn",
+		"subscriberCount": 348148,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "hentaifemdom",
+		"subscriberCount": 347420,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "orgasmiccontractions",
+		"subscriberCount": 347218,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "FilthyGirls",
+		"subscriberCount": 345590,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "leggingsgonewild",
+		"subscriberCount": 345256,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "Afrodisiac",
+		"subscriberCount": 344707,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "GoneErotic",
+		"subscriberCount": 344462,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "femdomgonewild",
+		"subscriberCount": 343029,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "gentlefemdom",
+		"subscriberCount": 342479,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "kpopfap",
+		"subscriberCount": 342389,
+		"over18": true,
+		"isDefaultSubreddit": false
+	},
+	{
+		"name": "Anal_witch",
+		"subscriberCount": 342044,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "sissycaptions",
+		"subscriberCount": 341892,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "fishnets",
+		"subscriberCount": 341188,
+		"isDefaultSubreddit": false,
+		"over18": true
+	},
+	{
+		"name": "hotclub",
+		"subscriberCount": 341135,
+		"isDefaultSubreddit": false,
+		"over18": true
 	}
 ];
