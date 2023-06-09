@@ -6,7 +6,10 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "noImplicitThis": true,
+    "skipLibCheck": true,
     "lib": [
+      "DOM",
+      "DOM.Iterable",
       "ESNext"
     ],
     "types": [

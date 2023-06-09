@@ -1,4 +1,5 @@
 import esbuild from "esbuild";
+import { sassPlugin } from "esbuild-sass-plugin";
 import { nodeExternalsPlugin } from "esbuild-node-externals";
 import { spawn } from "child_process";
 
@@ -65,6 +66,29 @@ esbuild.build({
 })
 	.catch(() => process.exit(1))
 	.then(() => console.log("esbuild Node TS transpiled"));
+
+esbuild.build({
+	entryPoints: [
+		"src/static/scripts/main.ts",
+	],
+	...makeGeneralConfig("Browser TS", true, "browser")
+})
+	.catch(() => process.exit(1))
+	.then(() => console.log("esbuild Browser TS transpiled"));
+
+esbuild.build({
+	entryPoints: [
+		"src/static/style/main.scss",
+	],
+	minify: true,
+	plugins: [
+		sassPlugin({
+		})
+	],
+	...makeGeneralConfig("SCSS", false)
+})
+	.catch(() => process.exit(1))
+	.then(() => console.log("esbuild SCSS transpiled"));
 
 if (isWatchMode)
 	console.log("esbuild started watch");
