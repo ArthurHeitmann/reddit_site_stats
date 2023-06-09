@@ -1,5 +1,6 @@
 import {State} from "./state";
 import {SubredditTypeActivityChart} from "./subredditTypesChart";
+import {makeElement} from "./utils";
 
 export class Panel_SubredditStatusTimeline extends HTMLElement {
 	state: State;
@@ -11,6 +12,11 @@ export class Panel_SubredditStatusTimeline extends HTMLElement {
 		this.state.addListener(() => this.chart.updateData(this.state.subredditTypes));
 
 		this.classList.add("panel");
+		this.classList.add("subreddit-status-timeline");
+
+		this.append(makeElement("div", {class: "options"}, [
+
+		]));
 	}
 
 	connectedCallback() {
@@ -19,6 +25,7 @@ export class Panel_SubredditStatusTimeline extends HTMLElement {
 			element: this,
 			title: "Subreddit status",
 			xLabel: "Time",
+			density: this.state.settings.subredditTypeChartDensity.value,
 		});
 		this.chart.createChart();
 	}

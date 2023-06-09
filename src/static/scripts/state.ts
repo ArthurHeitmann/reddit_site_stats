@@ -1,28 +1,92 @@
 import {LineDataset, Point} from "./LineChart";
-import {LoggedSubredditType_sections, LoggedSubredditType_timestamps, TypeSection} from "./subredditTypesChart";
+import {
+	LoggedSubredditType_sections,
+	LoggedSubredditType_timestamps,
+	SubredditTypeChartDensity,
+	TypeSection
+} from "./subredditTypesChart";
+import {ChangeNotifier} from "./ChangeNotifier";
+import {Prop} from "./Prop";
+import {debounce} from "./utils";
 
 interface CombinedResponse {
 	ppm: Point[];
 	cpm: Point[];
 	subs: LoggedSubredditType_timestamps[];
 }
+interface StoredSettings {
+	includeSfw: boolean
+	includeNsfw: boolean
+	subredditsLimit: number
+	subredditTypeChartDensity: SubredditTypeChartDensity
+}
+export class Settings {
+	includeSfw: Prop<boolean>;
+	includeNsfw: Prop<boolean>;
+	subredditsLimit: Prop<number>;
+	subredditTypeChartDensity: Prop<SubredditTypeChartDensity>;
+	onRequiresRefresh: ChangeNotifier;
+	private static LOCAL_STORAGE_KEY = "reddit_stats_settings";
 
-export class State {
-	includeSfw: boolean;
-	includeNsfw: boolean;
-	subredditsLimit: number;
+	constructor() {
+		this.onRequiresRefresh = new ChangeNotifier();
+		this.includeSfw = new Prop(true);
+		this.includeNsfw = new Prop(true);
+		this.subredditsLimit = new Prop(1500);
+		this.subredditTypeChartDensity = new Prop(SubredditTypeChartDensity.tiny);
+		this.loadFromLocalStorage();
 
+		this.includeSfw.addListener(() => this.onPropChange(true));
+		this.includeNsfw.addListener(() => this.onPropChange(true));
+		this.subredditsLimit.addListener(() => this.onPropChange(true));
+		this.subredditTypeChartDensity.addListener(() => this.onPropChange(false));
+	}
+
+	private loadFromLocalStorage() {
+		try {
+			const settings = localStorage.getItem(Settings.LOCAL_STORAGE_KEY);
+			if (settings) {
+				const parsed = JSON.parse(settings);
+				this.includeSfw.value = parsed.includeSfw;
+				this.includeNsfw.value = parsed.includeNsfw;
+				this.subredditsLimit.value = parsed.subredditsLimit;
+				this.subredditTypeChartDensity.value = parsed.subredditTypeChartDensity;
+			}
+		} catch (e) {
+			console.error(e);
+		}
+	}
+
+	private saveToLocalStorage() {
+		const settings: StoredSettings = {
+			includeSfw: this.includeSfw.value,
+			includeNsfw: this.includeNsfw.value,
+			subredditsLimit: this.subredditsLimit.value,
+			subredditTypeChartDensity: this.subredditTypeChartDensity.value,
+		}
+		localStorage.setItem(Settings.LOCAL_STORAGE_KEY, JSON.stringify(settings));
+	}
+
+	private onPropChange(requireRefresh: boolean) {
+		this.saveToLocalStorage();
+		if (requireRefresh)
+			this.onRequiresRefresh.notifyListeners();
+	}
+}
+
+export class State extends ChangeNotifier {
+	settings: Settings;
 	ppm: LineDataset;
 	cpm: LineDataset;
 	subredditTypes: LoggedSubredditType_sections[];
 
-	private listeners: (() => void)[] = [];
 	private refreshInterval: NodeJS.Timeout | null = null;
 
 	constructor() {
-		this.includeSfw = true;
-		this.includeNsfw = true;
-		this.subredditsLimit = 10;
+		super();
+
+		this.settings = new Settings();
+		this.settings.onRequiresRefresh.addListener(debounce(this.load.bind(this), 500));
 
 		this.ppm = {
 			name: "Posts per minute",
@@ -37,9 +101,9 @@ export class State {
 
 	async load(): Promise<void> {
 		const params = new URLSearchParams({
-			nsfw: this.includeNsfw.toString(),
-			sfw: this.includeSfw.toString(),
-			limit: this.subredditsLimit.toString(),
+			nsfw: this.settings.includeNsfw.value.toString(),
+			sfw: this.settings.includeSfw.value.toString(),
+			limit: this.settings.subredditsLimit.value.toString(),
 		})
 		const allRes = await fetch("/api/all?" + params.toString());
 		const all = await allRes.json() as CombinedResponse;
@@ -95,21 +159,7 @@ export class State {
 		this.refreshInterval = null;
 	}
 
-	addListener(listener: () => void): void {
-		this.listeners.push(listener);
-	}
+	private loadFromLocalStorage(): void {
 
-	removeListener(listener: () => void): void {
-		this.listeners = this.listeners.filter(l => l !== listener);
-	}
-
-	private notifyListeners(): void {
-		for (const listener of this.listeners) {
-			try {
-				listener();
-			} catch (e) {
-				console.error(e);
-			}
-		}
 	}
 }

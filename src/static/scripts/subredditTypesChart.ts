@@ -25,46 +25,56 @@ export interface LoggedSubredditType_sections {
 	subscribers: number;
 	typeSections: TypeSection[];
 }
+export enum SubredditTypeChartDensity {
+	tiny = "tiny",
+	small = "small",
+	medium = "medium",
+}
+const barHeightByDensity = {
+	[SubredditTypeChartDensity.tiny]: 5,
+	[SubredditTypeChartDensity.small]: 15,
+	[SubredditTypeChartDensity.medium]: 50,
+}
 export interface SubredditTypeChartOptions {
 	data: LoggedSubredditType_sections[];
 	element: HTMLElement;
 	title?: string;
 	xLabel?: string;
-	barHeight?: number;
+	density?: SubredditTypeChartDensity;
 }
 export class SubredditTypeActivityChart {
 	private element: HTMLElement;
 	private data: LoggedSubredditType_sections[];
 	private title: string|undefined;
 	private xLabel: string|undefined;
-	private barHeight: number;
+	private density: SubredditTypeChartDensity;
 
 	private svg: Selection<SVGSVGElement, unknown, HTMLElement, any>;
 	private chartGroup: Selection<SVGGElement, unknown, HTMLElement, any>;
 	private margin = { top: 50, right: 30, bottom: 40, left: 30 };
 	private fullWidth: number;
-	private height: number;
+	private fullHeight: number;
 
 	constructor(options: SubredditTypeChartOptions) {
 		this.element = options.element;
 		this.data = options.data;
 		this.title = options.title;
 		this.xLabel = options.xLabel;
-		this.barHeight = options.barHeight || 35;
-		if (this.barHeight >= 15) {
+		this.density = options.density || SubredditTypeChartDensity.medium;
+		this.fullWidth = this.element.getBoundingClientRect().width;
+		const barHeight = barHeightByDensity[this.density];
+		this.calculateFullHeight(barHeight);
+		if (barHeight >= 15) {
 			const estimatedAdditionalLeftPadding = Math.max(...this.data.map(d => d.name.length)) * 5;
 			this.margin.left += estimatedAdditionalLeftPadding;
 		}
-		this.fullWidth = this.element.getBoundingClientRect().width;
-		this.height = this.barHeight * this.data.length - this.margin.top - this.margin.bottom;
-		this.height = Math.max(this.height, 100);
 
 		this.svg = d3.select(this.element)
 			.append("svg")
 			.classed("chart", true)
 			.classed("subreddit-type-chart", true)
 			.attr("width", "100%")
-			.attr("height", this.height + this.margin.top + this.margin.bottom);
+			.attr("height", this.fullHeight);
 
 		this.setupChartGroup();
 
@@ -114,16 +124,16 @@ export class SubredditTypeActivityChart {
 		const yAxisScale = d3.scaleBand()
 			.domain(this.data.map(d => d.name))
 			.range([0, this.height])
-			.padding(0.0);
+			.padding(this.density == SubredditTypeChartDensity.medium ? 0.1 : 0);
 		const yAxis = d3.axisLeft(yAxisScale)
 			.tickSize(0);
 		const yAxisGroup = this.chartGroup.append("g")
 			.call(yAxis);
 		const yAxisTick = yAxisGroup.selectAll(".tick");
-		if (this.barHeight < 15) {
+		if (this.density == SubredditTypeChartDensity.tiny) {
 			yAxisTick.attr("visibility", "hidden");
 		}
-		if (this.barHeight >= 40) {
+		if (this.density == SubredditTypeChartDensity.medium) {
 			yAxisTick.select("text")
 				.classed("name", true)
 				.attr("x", -9)
@@ -140,6 +150,11 @@ export class SubredditTypeActivityChart {
 		}
 
 		// Bars
+		const bandWidth = this.height / this.data.length;
+		const padding = this.density == SubredditTypeChartDensity.medium ? 2 : 0;
+		const nameToIndex = new Map<string, number>();
+		for (let i = 0; i < this.data.length; i++)
+			nameToIndex.set(this.data[i].name, i);
 		this.chartGroup.selectAll(".barGroup")
 			.data(this.data)
 			.enter()
@@ -151,9 +166,9 @@ export class SubredditTypeActivityChart {
 			.append("rect")
 			.attr("class", d => "bar " + d.type)
 			.attr("x", d => xAxisScale(d.startTime))
-			.attr("y", d => yAxisScale(d.name) as number)
+			.attr("y", d => nameToIndex.get(d.name) * bandWidth + padding)
 			.attr("width", d => xAxisScale(d.startTime + d.duration) - xAxisScale(d.startTime))
-			.attr("height", yAxisScale.bandwidth() + 1)
+			.attr("height", bandWidth + (this.density == SubredditTypeChartDensity.tiny ? 0.5 : 1) - padding*2)
 			.attr("fill", d => {
 				switch (d.type) {
 					case "public": return "#1f77b4";
@@ -259,6 +274,14 @@ export class SubredditTypeActivityChart {
 		this.createChart();
 	}
 
+	updateDensity(newDensity: SubredditTypeChartDensity) {
+		this.density = newDensity;
+		const barHeight = barHeightByDensity[this.density];
+		this.calculateFullHeight(barHeight);
+		this.clearChart();
+		this.createChart();
+	}
+
 	resize() {
 		this.fullWidth = this.element.getBoundingClientRect().width;
 		this.clearChart();
@@ -277,7 +300,16 @@ export class SubredditTypeActivityChart {
 				"translate(" + this.margin.left + "," + this.margin.top + ")");
 	}
 
+	private calculateFullHeight(barHeight: number) {
+		this.fullHeight = this.margin.top + this.margin.bottom + barHeight * this.data.length;
+	}
+
 	get width(): number {
 		return this.fullWidth - this.margin.left - this.margin.right;
+	}
+
+	get height(): number {
+		const height = this.fullHeight - this.margin.top - this.margin.bottom;
+		return Math.max(height, 50);
 	}
 }
