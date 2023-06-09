@@ -15,5 +15,5 @@
     "types": [
     ]
   },
-  "include": ["./src", "./cypress"],
+  "include": ["./src", "./cypress", "./misc"],
 }

@@ -1,7 +1,7 @@
 import esbuild from "esbuild";
-import { sassPlugin } from "esbuild-sass-plugin";
-import { nodeExternalsPlugin } from "esbuild-node-externals";
-import { spawn } from "child_process";
+import {sassPlugin} from "esbuild-sass-plugin";
+import {nodeExternalsPlugin} from "esbuild-node-externals";
+import {spawn} from "child_process";
 
 const isWatchMode = process.argv.includes("watch") || process.argv.includes("-w") || process.argv.includes("--watch");
 
@@ -57,7 +57,8 @@ function makeGeneralConfig(label, shouldBundle, platform = null) {
 esbuild.build({
 	entryPoints: [
 		"src/app.ts",
-		"src/topSubredditsLoader.ts"
+		"src/topSubredditsLoader.ts",
+		"misc/subTypesMerger.ts",
 	],
 	plugins: [
 		nodeExternalsPlugin()
