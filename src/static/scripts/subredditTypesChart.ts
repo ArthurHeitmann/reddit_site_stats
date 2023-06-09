@@ -41,8 +41,8 @@ export class SubredditTypeActivityChart {
 
 	private svg: Selection<SVGSVGElement, unknown, HTMLElement, any>;
 	private chartGroup: Selection<SVGGElement, unknown, HTMLElement, any>;
-	private margin = { top: 50, right: 30, bottom: 30, left: 30 };
-	private width: number;
+	private margin = { top: 50, right: 30, bottom: 40, left: 30 };
+	private fullWidth: number;
 	private height: number;
 
 	constructor(options: SubredditTypeChartOptions) {
@@ -55,11 +55,14 @@ export class SubredditTypeActivityChart {
 			const estimatedAdditionalLeftPadding = Math.max(...this.data.map(d => d.name.length)) * 5;
 			this.margin.left += estimatedAdditionalLeftPadding;
 		}
-		this.width = this.element.getBoundingClientRect().width - this.margin.left - this.margin.right;
+		this.fullWidth = this.element.getBoundingClientRect().width;
 		this.height = this.barHeight * this.data.length - this.margin.top - this.margin.bottom;
+		this.height = Math.max(this.height, 100);
 
 		this.svg = d3.select(this.element)
 			.append("svg")
+			.classed("chart", true)
+			.classed("subreddit-type-chart", true)
 			.attr("width", "100%")
 			.attr("height", this.height + this.margin.top + this.margin.bottom);
 
@@ -72,7 +75,7 @@ export class SubredditTypeActivityChart {
 		// Title
 		if (this.title) {
 			this.svg.append("text")
-				.attr("x", this.width / 2)
+				.attr("x", this.fullWidth / 2)
 				.attr("y", this.margin.top / 3)
 				.attr("text-anchor", "middle")
 				.classed("title", true)
@@ -81,7 +84,7 @@ export class SubredditTypeActivityChart {
 		// X axis label
 		if (this.xLabel) {
 			this.svg.append("text")
-				.attr("x", this.width / 2)
+				.attr("x", this.width / 2 + this.margin.left)
 				.attr("y", this.height + this.margin.top + this.margin.bottom)
 				.attr("text-anchor", "middle")
 				.classed("label", true)
@@ -257,7 +260,7 @@ export class SubredditTypeActivityChart {
 	}
 
 	resize() {
-		this.width = this.element.getBoundingClientRect().width - this.margin.left - this.margin.right;
+		this.fullWidth = this.element.getBoundingClientRect().width;
 		this.clearChart();
 		this.createChart();
 	}
@@ -272,5 +275,9 @@ export class SubredditTypeActivityChart {
 			.append("g")
 			.attr("transform",
 				"translate(" + this.margin.left + "," + this.margin.top + ")");
+	}
+
+	get width(): number {
+		return this.fullWidth - this.margin.left - this.margin.right;
 	}
 }

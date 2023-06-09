@@ -28,7 +28,7 @@ export class LineChart {
 	private svg: Selection<SVGSVGElement, unknown, HTMLElement, any>;
 	private chartGroup: Selection<SVGGElement, unknown, HTMLElement, any>;
 	private margin = { top: 50, right: 30, bottom: 40, left: 30 };
-	private width: number;
+	private fullWidth: number;
 	private height: number;
 
 	constructor(options: LineChartOptions) {
@@ -37,11 +37,12 @@ export class LineChart {
 		this.title = options.title;
 		this.xLabel = options.xLabel;
 		this.yLabel = options.yLabel;
-		this.width = this.element.getBoundingClientRect().width - this.margin.left - this.margin.right;
+		this.fullWidth = this.element.getBoundingClientRect().width;
 		this.height = 600 - this.margin.top - this.margin.bottom;
 
 		this.svg = d3.select(this.element)
 			.append("svg")
+			.classed("chart", true)
 			.attr("width", "100%")
 			.attr("height", this.height + this.margin.top + this.margin.bottom);
 
@@ -54,7 +55,7 @@ export class LineChart {
 		// Title
 		if (this.title) {
 			this.svg.append("text")
-				.attr("x", this.width / 2)
+				.attr("x", this.fullWidth / 2)
 				.attr("y", this.margin.top / 3)
 				.attr("text-anchor", "middle")
 				.classed("title", true)
@@ -63,7 +64,7 @@ export class LineChart {
 		// X axis label
 		if (this.xLabel) {
 			this.svg.append("text")
-				.attr("x", this.width / 2)
+				.attr("x", this.width / 2 + this.margin.left)
 				.attr("y", this.height + this.margin.top + this.margin.bottom)
 				.attr("text-anchor", "middle")
 				.classed("label", true)
@@ -82,7 +83,11 @@ export class LineChart {
 		}
 
 		// X axis
-		const datasetXMinMax: number[] = this.data.flatMap(d => [d.points[0].x, d.points[d.points.length - 1].x]);
+		const datasetXMinMax: number[] = this.data.flatMap(d => {
+			if (d.points.length === 0)
+				return [0, 1];
+			return [d.points[0].x, d.points[d.points.length - 1].x];
+		});
 		const xExtent = d3.extent(datasetXMinMax) as [number, number];
 		const xAxisScale: d3.ScaleTime<number, number> = d3.scaleTime()
 			.domain(xExtent)
@@ -128,7 +133,7 @@ export class LineChart {
 	}
 
 	resize() {
-		this.width = this.element.getBoundingClientRect().width - this.margin.left - this.margin.right;
+		this.fullWidth = this.element.getBoundingClientRect().width;
 		this.clearChart();
 		this.createChart();
 	}
@@ -143,5 +148,9 @@ export class LineChart {
 			.append("g")
 			.attr("transform",
 				"translate(" + this.margin.left + "," + this.margin.top + ")");
+	}
+
+	get width(): number {
+		return this.fullWidth - this.margin.left - this.margin.right;
 	}
 }
