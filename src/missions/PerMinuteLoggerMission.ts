@@ -56,6 +56,10 @@ export abstract class PerMinuteLoggerMission extends IntervalMission {
 	}
 
 	private async saveToFile() {
+		if (fs.existsSync(this.logFile)) {
+			const backupFile = this.logFile + ".bak";
+			await fsp.copyFile(this.logFile, backupFile);
+		}
 		const jsonStr = JSON.stringify(this.logged, null, "\t");
 		await fsp.writeFile(this.logFile, jsonStr);
 	}

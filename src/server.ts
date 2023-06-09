@@ -1,18 +1,13 @@
 import express, {Express} from "express";
 import {LoggingMissions} from "./missions/LoggingMissions";
 import {PerMinuteLoggerMission} from "./missions/PerMinuteLoggerMission";
-import {topSubredditsByName} from "./missions/topSubreddits";
 import {LoggedSubredditType} from "./missions/SubredditTypesLoggerMission";
-
-interface Point {
-	x: number;
-	y: number;
-}
 
 export class Server {
 	app: Express;
 	port: number;
 	missions: LoggingMissions;
+	commonStartTime: number;
 
 	constructor(port: number, loggingMissions: LoggingMissions) {
 		this.port = port;
@@ -31,6 +26,15 @@ export class Server {
 		this.app.listen(this.port, () => {
 			console.log(`Started app on port ${this.port}`)
 		});
+
+		const allStartTimes = [
+			this.missions.ppm.logged[0].created,
+			this.missions.cpm.logged[0].created,
+			/*Object.values(this.missions.subTypes.subreddits)
+				.map(sub => sub.typeHistory[0].time)
+				.reduce((a, b) => Math.max(a, b))*/
+		];
+		this.commonStartTime = Math.max(...allStartTimes);
 	}
 
 	private pointsFromPerMinuteData(mission: PerMinuteLoggerMission): { x: number; y: number }[] {
@@ -39,7 +43,8 @@ export class Server {
 				x: thing.created * 1000,
 				y: thing.perMinute,
 			}))
-			.filter(point => typeof point.y === "number");
+			.filter(point => typeof point.y === "number")
+			.filter(point => point.x >= this.commonStartTime);
 	}
 
 	private perMinuteRoute(req: express.Request, res: express.Response, mission: PerMinuteLoggerMission) {
@@ -51,7 +56,7 @@ export class Server {
 		this.perMinuteRoute(req, res, this.missions.ppm);
 	}
 
-	private commentsPerMinuteRoute(req: express.Request, res: express.Response, mission: PerMinuteLoggerMission) {
+	private commentsPerMinuteRoute(req: express.Request, res: express.Response) {
 		this.perMinuteRoute(req, res, this.missions.cpm);
 	}
 
@@ -62,7 +67,14 @@ export class Server {
 				(includeNsfw && sub.isNsfw)
 			))
 			.sort((a, b) => b.subscribers - a.subscribers)
-			.slice(0, limit);
+			.slice(0, limit)
+			/*.map(sub => (<LoggedSubredditType>{
+				name: sub.name,
+				isNsfw: sub.isNsfw,
+				subscribers: sub.subscribers,
+				typeHistory: sub.typeHistory
+					.filter(type => type.time >= this.commonStartTime)
+			}))*/;
 	}
 
 	private subredditTypesRoute(req: express.Request, res: express.Response) {

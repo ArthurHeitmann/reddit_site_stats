@@ -1,5 +1,5 @@
-import {Selection} from "d3";
 import * as d3 from "d3";
+import {Selection} from "d3";
 import {formatTime, numberToShort} from "./utils";
 
 type SubredditType = "public" | "private" | "restricted" | "gold_only" | string;
@@ -50,7 +50,7 @@ export class SubredditTypeActivityChart {
 		this.data = options.data;
 		this.title = options.title;
 		this.xLabel = options.xLabel;
-		this.barHeight = options.barHeight || 15;
+		this.barHeight = options.barHeight || 35;
 		if (this.barHeight >= 15) {
 			const estimatedAdditionalLeftPadding = Math.max(...this.data.map(d => d.name.length)) * 5;
 			this.margin.left += estimatedAdditionalLeftPadding;
@@ -136,40 +136,6 @@ export class SubredditTypeActivityChart {
 				.text(d => numberToShort(d.subscribers))
 		}
 
-		// tooltip
-		// const tooltip = d3.select(this.element)
-		// 	.append("div")
-		// 	.classed("tooltip", true)
-		// 	.classed("hidden", true);
-		// const tooltipTitle = tooltip.append("div")
-		// 	.classed("title", true);
-		// const tooltipBody = tooltip.append("div")
-		// 	.classed("body", true);
-		// const tooltipTime = tooltipBody.append("div")
-		// 	.classed("time", true);
-		// const tooltipSubscribers = tooltipBody.append("div")
-		// 	.classed("subscribers", true);
-		// const tooltipType = tooltipBody.append("div")
-		// 	.classed("type", true);
-		// const tooltipDuration = tooltipBody.append("div")
-		// 	.classed("duration", true);
-
-		// function onMouseover(d: TypeSection) {
-		// 	tooltipTitle.text(d.name);
-		// 	tooltipTime.text(formatTime(d.startTime));
-		// 	// tooltipSubscribers.text(numberToShort(d.subscribers));
-		// 	tooltipType.text(d.type);
-		// 	tooltipDuration.text(d.duration.toString());
-		// 	tooltip.classed("hidden", false);
-		// }
-		// function onMousemove() {
-		// 	tooltip.style("left", (d3.mouse(this)[0] + 10) + "px")
-		// 		.style("top", (d3.mouse(this)[1] - 10) + "px");
-		// }
-		// function onMouseout() {
-		// 	tooltip.classed("hidden", true);
-		// }
-
 		// Bars
 		this.chartGroup.selectAll(".barGroup")
 			.data(this.data)
@@ -194,10 +160,94 @@ export class SubredditTypeActivityChart {
 					default: return "#000000";
 				}
 			})
-			// .on("mouseover", onMouseover)
-			// .on("mousemove", onMousemove)
-			// .on("mouseout", onMouseout);
 
+		// tooltip
+		const tooltip = this.chartGroup
+			.append("g")
+			.classed("tooltip", true)
+			.classed("hidden", true);
+		const tooltipRect = tooltip.append("rect")
+			.attr("width", 100)
+			.attr("height", 50)
+			.attr("rx", 5)
+			.attr("ry", 5);
+		const tooltipSubreddit = tooltip.append("text")
+			.classed("subreddit", true)
+			.attr("x", 5)
+			.attr("y", 15);
+		const tooltipSubscribers = tooltip.append("text")
+			.classed("subscribers", true)
+			.attr("x", 5)
+			.attr("y", 30);
+		const tooltipStatusFrom = tooltip.append("text")
+			.classed("statusFrom", true)
+			.attr("x", 5)
+			.attr("y", 45);
+		const tooltipUntil = tooltip.append("text")
+			.classed("until", true)
+			.attr("x", 5)
+			.attr("y", 60);
+
+
+		const onMouseover = (event: MouseEvent) => {
+			const target = event.target as SVGRectElement;
+			if (!target.classList.contains("bar"))
+				return;
+			const bar = d3.select(target);
+			const barGroup = d3.select(target.parentNode as SVGGElement);
+			const barGroupData = barGroup.data()[0] as LoggedSubredditType_sections;
+			const barData = bar.data()[0] as TypeSection;
+			const timeFormat = d3.timeFormat("%b %d, %H:%M");
+			const startTimeStr = timeFormat(new Date(barData.startTime));
+			let endTimeStr: string;
+			if (barGroupData.typeSections[barGroupData.typeSections.length - 1] === barData)
+				endTimeStr = "now";
+			else
+				endTimeStr = timeFormat(new Date(barData.startTime + barData.duration));
+
+			tooltip.classed("hidden", false);
+			tooltipSubreddit.text(barData.name);
+			tooltipSubscribers.text(numberToShort(barGroupData.subscribers) + " subscribers");
+			tooltipStatusFrom.text(`${barData.type} from ${startTimeStr}`);
+			tooltipUntil.text(`until ${endTimeStr}`);
+
+			const allTextBBoxes = [
+				tooltipSubreddit,
+				tooltipSubscribers,
+				tooltipStatusFrom,
+				tooltipUntil
+			].map(e => e.node().getBBox());
+			const minLeft = Math.min(...allTextBBoxes.map(b => b.x));
+			const maxRight = Math.max(...allTextBBoxes.map(b => b.x + b.width));
+			const minTop = Math.min(...allTextBBoxes.map(b => b.y));
+			const maxBottom = Math.max(...allTextBBoxes.map(b => b.y + b.height));
+			const tooltipWidth = maxRight - minLeft;
+			const tooltipHeight = maxBottom - minTop;
+			tooltipRect
+				.attr("width", tooltipWidth + 10)
+				.attr("height", tooltipHeight + 10);
+
+		};
+		const onMousemove = (event: MouseEvent) => {
+			let [xm, ym] = d3.pointer(event);
+			xm += 12;
+			const tooltipWidth = parseInt(tooltipRect.attr("width"));
+			const tooltipHeight = parseInt(tooltipRect.attr("height"));
+			const { width: svgWidth, height: svgHeight } = this.svg.node().getBoundingClientRect();
+			if (xm + tooltipWidth > svgWidth - this.margin.left)
+				xm -= tooltipWidth + 24;
+			if (ym + tooltipHeight > svgHeight - this.margin.top)
+				ym -= tooltipHeight + 24;
+			tooltip.attr("transform", `translate(${xm}, ${ym})`);
+		};
+		function onMouseout() {
+			tooltip.classed("hidden", true);
+		}
+
+		this.chartGroup
+			.on("mouseover", onMouseover)
+			.on("mousemove", onMousemove)
+			.on("mouseout", onMouseout);
 	}
 
 	updateData(newData: LoggedSubredditType_sections[]) {

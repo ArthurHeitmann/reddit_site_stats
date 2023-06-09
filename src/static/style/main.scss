@@ -42,4 +42,25 @@ svg {
         font-size: 0.8rem;
     }
   }
+
+  .tooltip {
+    rect {
+      fill: #fff;
+      stroke: #d0d0d0;
+      stroke-width: 1px;
+      border-radius: 5px;
+    }
+  }
+
+  .bar {
+    transition: filter 0.2s ease-in-out;
+
+    &:hover {
+      filter: brightness(1.2);
+    }
+  }
+}
+
+.hidden {
+  display: none;
 }

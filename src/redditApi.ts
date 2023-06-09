@@ -1,6 +1,7 @@
 import fetch, {Headers, RequestInit} from "node-fetch";
 import {RedditListingObj, RedditPostData, RedditPostObj, RedditSubredditObj, SubredditDetails} from "./redditTypes";
 import fs, {promises as fsp} from "fs";
+import {sleep} from "./utils";
 
 const userAgent = "script:redditStats:v0.0.1 (by /u/RaiderBDev)";
 const saveFilePath = "redditAuth.json";
@@ -67,7 +68,7 @@ export class RedditAuth {
 	private rateLimitCheck(headers: Headers) {
 		const rlReqRemaining = parseInt(headers.get("x-ratelimit-remaining"));
 		const rlTimeRemaining = parseInt(headers.get("x-ratelimit-reset"));
-		if (rlReqRemaining < 50)
+		if (rlReqRemaining < 30)
 			console.log(`Rate limit: ${rlReqRemaining} requests remaining, ${rlTimeRemaining} seconds until reset`);
 	}
 
@@ -92,17 +93,43 @@ export class RedditAuth {
 
 export async function getMostRecentPost(auth: RedditAuth): Promise<RedditPostData> {
 	let response: RedditListingObj<RedditPostObj>;
+	let attempt = 0;
 	do {
-		response = await auth.oauthRequest<RedditListingObj<RedditPostObj>>("/r/all/new", {limit: "5"});
-	} while (response.data.children.length === 0);
+		response = await auth.oauthRequest<RedditListingObj<RedditPostObj>>(
+			"/r/all/new",
+			{ limit: ((attempt+1)*5).toString() },
+		);
+		if (!response?.data) {
+			console.log("No response data");
+			console.log({ response });
+			console.log("Sleeping for 10 seconds")
+			await sleep(1000 * 10)
+		}
+		if (attempt > 3)
+			throw new Error("Failed to get most recent post");
+		attempt++;
+	} while (!response.data || response.data.children.length === 0);
 	return response.data.children[0].data;
 }
 
 export async function getMostRecentComment(auth: RedditAuth): Promise<RedditPostData> {
 	let response: RedditListingObj<RedditPostObj>;
+	let attempt = 0;
 	do {
-		response = await auth.oauthRequest<RedditListingObj<RedditPostObj>>("/comments", {limit: "5"});
-	} while (response.data.children.length === 0);
+		response = await auth.oauthRequest<RedditListingObj<RedditPostObj>>(
+			"/comments",
+			{ limit: ((attempt+1)*5).toString() },
+		);
+		if (!response?.data) {
+			console.log("No response data");
+			console.log({ response });
+			console.log("Sleeping for 10 seconds")
+			await sleep(1000 * 10)
+		}
+		if (attempt > 3)
+			throw new Error("Failed to get most recent post");
+		attempt++;
+	} while (!response?.data || response.data.children.length === 0);
 	return response.data.children[0].data;
 }
 

@@ -1,5 +1,3 @@
-import * as d3 from "d3";
-import {CurveFactory, CurveFactoryLineOnly, ScaleLinear, ScaleTime, Selection} from "d3";
 import {LineChart, LineDataset, Point} from "./LineChart";
 import {
 	LoggedSubredditType_sections,

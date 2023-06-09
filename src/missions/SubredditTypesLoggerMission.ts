@@ -82,6 +82,10 @@ export class SubredditTypesLoggerMission extends IntervalMission {
 	}
 
 	private async saveToFile() {
+		if (fs.existsSync(SubredditTypesLoggerMission.saveFile)) {
+			const backupFile = SubredditTypesLoggerMission.saveFile + ".bak";
+			await fsp.copyFile(SubredditTypesLoggerMission.saveFile, backupFile);
+		}
 		const jsonStr = JSON.stringify(this.subreddits, null, "\t");
 		await fsp.writeFile(SubredditTypesLoggerMission.saveFile, jsonStr);
 	}
