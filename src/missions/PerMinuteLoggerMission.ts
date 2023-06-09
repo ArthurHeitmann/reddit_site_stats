@@ -14,7 +14,7 @@ export abstract class PerMinuteLoggerMission extends IntervalMission {
 	static readonly INTERVAL = 1000 * 60;
 	private readonly logFile;
 	protected readonly auth: RedditAuth;
-	private logged: LoggedThing[] = [];
+	logged: LoggedThing[] = [];
 
 	protected constructor(auth: RedditAuth, logFile: string) {
 		super(PerMinuteLoggerMission.INTERVAL);
@@ -23,6 +23,10 @@ export abstract class PerMinuteLoggerMission extends IntervalMission {
 	}
 
 	abstract getNewThing(): Promise<LoggedThing>;
+
+	async init(): Promise<void> {
+		this.logged = await this.loadFromFile();
+	}
 
 	async run() {
 		console.log("Logging");

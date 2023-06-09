@@ -4,6 +4,8 @@ node_modules
 
 *.js
 *.js.map
+*.css
+*.css.map
 
 commentsPerMinute.json
 postsPerMinute.json

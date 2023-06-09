@@ -12,9 +12,11 @@ async function main() {
 	}
 	const auth = new RedditAuth(clientId, secret);
 	await auth.loadFromFile();
-	const server = new Server();
 	const loggingMissions = new LoggingMissions(auth);
+	await loggingMissions.init();
+	const server = new Server(8080, loggingMissions)
 	loggingMissions.start();
+	server.start();
 }
 
 main().catch(console.error);

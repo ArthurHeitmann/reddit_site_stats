@@ -2,6 +2,8 @@ import {IntervalMission} from "./IntervalMission";
 import fs, {promises as fsp} from "fs";
 import {topSubreddits} from "./topSubreddits";
 import {getSubredditsAbout, RedditAuth} from "../redditApi";
+import {SubredditDetails} from "../redditTypes";
+import {sleep} from "../utils";
 
 interface LoggedSubredditType {
 	name: string;
@@ -23,6 +25,10 @@ export class SubredditTypesLoggerMission extends IntervalMission {
 		this.auth = auth;
 	}
 
+	init(): Promise<void> {
+		return this.loadFromFile();
+	}
+
 	async run() {
 		console.log("Logging subreddit types")
 		if (this.subreddits === undefined)
@@ -33,7 +39,19 @@ export class SubredditTypesLoggerMission extends IntervalMission {
 			const currentSubreddits = remainingSubreddits
 				.splice(0, 100)
 				.map(s => s.name);
-			const subsInfo = await getSubredditsAbout(this.auth, currentSubreddits);
+			let subsInfo: SubredditDetails[];
+			try {
+				subsInfo = await getSubredditsAbout(this.auth, currentSubreddits);
+			} catch (e) {
+				console.log("Error fetching subreddits, waiting 30 seconds and trying again", e);
+				await sleep(1000 * 30);
+				try {
+					subsInfo = await getSubredditsAbout(this.auth, currentSubreddits);
+				} catch (e) {
+					console.log("Failed again, skipping", e);
+					continue;
+				}
+			}
 			for (const subInfo of subsInfo) {
 				const subName = subInfo.url.split("/")[2];
 				let loggedSub: LoggedSubredditType;

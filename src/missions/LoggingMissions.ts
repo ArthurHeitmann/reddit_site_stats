@@ -20,6 +20,12 @@ export class LoggingMissions implements Mission {
 		this.missions.push(this.subTypes);
 	}
 
+	init(): Promise<any> {
+		return Promise.all(
+			this.missions.map(m => m.init())
+		);
+	}
+
 	start(): void {
 		for (const mission of this.missions) {
 			try {

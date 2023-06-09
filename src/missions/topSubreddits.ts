@@ -9008,3 +9008,7 @@ export const topSubreddits: SubredditEntry[] = [
 		"over18": true
 	}
 ];
+export const topSubredditsByName: { [name: string]: SubredditEntry } = {};
+for (const subreddit of topSubreddits) {
+	topSubredditsByName[subreddit.name] = subreddit;
+}

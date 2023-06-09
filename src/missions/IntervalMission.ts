@@ -8,6 +8,8 @@ export abstract class IntervalMission implements Mission {
 		this.intervalMs = intervalMs;
 	}
 
+	abstract init(): Promise<void>;
+
 	abstract run();
 
 	private runWrapper() {
