@@ -2,6 +2,7 @@ import express, {Express} from "express";
 import {LoggingMissions} from "./missions/LoggingMissions";
 import {PerMinuteLoggerMission} from "./missions/PerMinuteLoggerMission";
 import {topSubredditsByName} from "./missions/topSubreddits";
+import {LoggedSubredditType} from "./missions/SubredditTypesLoggerMission";
 
 interface Point {
 	x: number;
@@ -32,7 +33,7 @@ export class Server {
 		});
 	}
 
-	private pointsFromPerMinuteData(mission: PerMinuteLoggerMission) {
+	private pointsFromPerMinuteData(mission: PerMinuteLoggerMission): { x: number; y: number }[] {
 		return mission.logged
 			.map(thing => ({
 				x: thing.created * 1000,
@@ -54,13 +55,13 @@ export class Server {
 		this.perMinuteRoute(req, res, this.missions.cpm);
 	}
 
-	private filterAndSortSubs(includeSfw: boolean, includeNsfw: boolean, limit: number) {
+	private filterAndSortSubs(includeSfw: boolean, includeNsfw: boolean, limit: number): LoggedSubredditType[] {
 		return Object.values(this.missions.subTypes.subreddits)
 			.filter(sub => (
 				(includeSfw && !sub.isNsfw) ||
 				(includeNsfw && sub.isNsfw)
 			))
-			.sort((a, b) => topSubredditsByName[b.name].subscriberCount - topSubredditsByName[a.name].subscriberCount)
+			.sort((a, b) => b.subscribers - a.subscribers)
 			.slice(0, limit);
 	}
 

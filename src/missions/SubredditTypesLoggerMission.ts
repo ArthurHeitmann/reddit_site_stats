@@ -1,13 +1,14 @@
 import {IntervalMission} from "./IntervalMission";
 import fs, {promises as fsp} from "fs";
-import {topSubreddits} from "./topSubreddits";
+import {topSubreddits, topSubredditsByName} from "./topSubreddits";
 import {getSubredditsAbout, RedditAuth} from "../redditApi";
 import {SubredditDetails} from "../redditTypes";
 import {sleep} from "../utils";
 
-interface LoggedSubredditType {
+export interface LoggedSubredditType {
 	name: string;
 	isNsfw: boolean;
+	subscribers: number;
 	typeHistory: {
 		time: number;
 		type: "public" | "private" | "restricted" | "gold_only" | string;
@@ -15,7 +16,7 @@ interface LoggedSubredditType {
 }
 
 export class SubredditTypesLoggerMission extends IntervalMission {
-	static readonly INTERVAL = 1000 * 60 * 10;
+	static readonly INTERVAL = 1000 * 60 * 5;
 	static readonly saveFile = "subredditTypes.json";
 	private readonly auth: RedditAuth;
 	subreddits: {[subreddit: string]: LoggedSubredditType};
@@ -55,12 +56,18 @@ export class SubredditTypesLoggerMission extends IntervalMission {
 			for (const subInfo of subsInfo) {
 				const subName = subInfo.url.split("/")[2];
 				let loggedSub: LoggedSubredditType;
-				if (subName in this.subreddits)
+				if (subName in this.subreddits) {
 					loggedSub = this.subreddits[subName];
+					// fix for previously missing subscribers
+					if (loggedSub.subscribers === undefined) {
+						loggedSub.subscribers = topSubredditsByName[subName]?.subscriberCount ?? subInfo.subscribers ?? 0;
+					}
+				}
 				else {
 					loggedSub = {
 						name: subName,
 						isNsfw: subInfo.over18,
+						subscribers: topSubredditsByName[subName]?.subscriberCount ?? subInfo.subscribers ?? 0,
 						typeHistory: []
 					};
 					this.subreddits[subName] = loggedSub;

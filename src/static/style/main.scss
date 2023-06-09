@@ -1,3 +1,45 @@
-#chart1 {
+:root {
+  font-size: 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+}
+
+#chart1, #chart2 {
   width: 100%;
+}
+
+svg {
+  text {
+    font-weight: 600;
+
+    &.title {
+      font-size: 1.75rem;
+      transform: translateY(0.75rem);
+    }
+
+    &.label {
+      font-size: 1.2rem;
+    }
+  }
+
+  g.tick text {
+    font-size: 1rem;
+  }
+}
+
+#chart2 svg {
+  .tick {
+    .name {
+        font-size: 1.05rem;
+    }
+
+    .subscribers {
+        font-size: 0.8rem;
+    }
+  }
 }
