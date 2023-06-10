@@ -1,7 +1,8 @@
 import express, {Express} from "express";
 import compression from "compression";
 import helmet from "helmet";
-import apiCache from 'apicache';
+import apiCache from "apicache";
+import RateLimit from "express-rate-limit";
 import {LoggingMissions} from "./missions/LoggingMissions";
 import {PerMinuteLoggerMission} from "./missions/PerMinuteLoggerMission";
 import {LoggedSubredditType} from "./missions/SubredditTypesLoggerMission";
@@ -24,15 +25,24 @@ export class Server {
 			crossOriginEmbedderPolicy: false,
 		}));
 		const cache = apiCache.middleware;
+		const baseRateLimit = RateLimit({
+			message: "A little fast huh?",
+			windowMs: 60 * 1000,
+			max: 40,
+		});
 
-
-		this.app.use(express.static("src/static"));
-		this.app.get("", (req, res) => {
+		this.app.use(baseRateLimit, express.static("src/static"));
+		this.app.get("", baseRateLimit, (req, res) => {
 			res.sendFile("src/static/index.html");
 		});
 
 		const apiRoute = express.Router();
-		apiRoute.use(cache("30 seconds"));	// this order, so that the compression is cached
+		apiRoute.use(cache("60 seconds", (req, res) => res.statusCode === 200));
+		apiRoute.use(RateLimit({
+			message: "A little fast huh?",
+			windowMs: 30 * 1000,
+			max: 7,
+		}));
 		apiRoute.use(compression());
 		apiRoute.get("/postsPerMinute", this.postsPerMinuteRoute.bind(this));
 		apiRoute.get("/commentsPerMinute", this.commentsPerMinuteRoute.bind(this));

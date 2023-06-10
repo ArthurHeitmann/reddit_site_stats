@@ -24,7 +24,7 @@ try:
             traceback.print_exc()
             pb = Pushbullet(apiKey)
             push = pb.push_note("Script Crash Alert", "Your script has crashed.")
-            print("Waiting 30 seconds before restarting")
-            time.sleep(30)
+            print("Waiting 5 seconds before restarting")
+            time.sleep(5)
 except KeyboardInterrupt:
     print("Script stopped by user")
