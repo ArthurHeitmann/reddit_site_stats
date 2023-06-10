@@ -1,6 +1,7 @@
 import {State} from "./state";
 import {Panel_RedditPerMinuteActivity} from "./Panel_RedditPerMinuteActivity";
 import {Panel_SubredditStatusTimeline} from "./Panel_SubredditStatusTimeline";
+import {Panel_SubredditsBarChart} from "./Panel_SubredditsBarChart";
 
 
 async function main() {
@@ -8,6 +9,7 @@ async function main() {
 	await state.load();
 	state.setRefreshInterval();
 	const panels: HTMLElement[] = [
+		new Panel_SubredditsBarChart(state),
 		new Panel_RedditPerMinuteActivity(state),
 		new Panel_SubredditStatusTimeline(state),
 	];

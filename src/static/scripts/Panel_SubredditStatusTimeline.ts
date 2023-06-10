@@ -21,12 +21,12 @@ const densityConfig: {
 	},
 	{
 		density: SubredditTypeChartDensity.small,
-		label: "Medium",
+		label: "Compact",
 		border: ToggleButtonRoundCorners.none,
 	},
 	{
 		density: SubredditTypeChartDensity.medium,
-		label: "Large",
+		label: "Full",
 		border: ToggleButtonRoundCorners.right,
 	}
 ];

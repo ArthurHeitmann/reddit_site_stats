@@ -153,3 +153,7 @@ export function makeElement<K extends keyof HTMLElementTagNameMap>(
 		elem.innerHTML = inner;
 	return elem;
 }
+
+export function isJsonEqual(obj1: object, obj2: object) {
+	return JSON.stringify(obj1) === JSON.stringify(obj2);
+}
