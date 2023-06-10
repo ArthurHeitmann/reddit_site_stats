@@ -6,6 +6,11 @@ node_modules
 *.js.map
 *.css
 *.css.map
+*.zip
+*.bak
+
+backups/
+nohup.out
 
 commentsPerMinute.json
 postsPerMinute.json
