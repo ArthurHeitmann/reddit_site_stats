@@ -1,4 +1,7 @@
 import express, {Express} from "express";
+import compression from "compression";
+import helmet from "helmet";
+import apiCache from 'apicache';
 import {LoggingMissions} from "./missions/LoggingMissions";
 import {PerMinuteLoggerMission} from "./missions/PerMinuteLoggerMission";
 import {LoggedSubredditType} from "./missions/SubredditTypesLoggerMission";
@@ -16,12 +19,26 @@ export class Server {
 	}
 
 	start() {
-		this.app.use(express.static("src/static"));
+		this.app.use(helmet({
+			contentSecurityPolicy: false,
+			crossOriginEmbedderPolicy: false,
+		}));
+		const cache = apiCache.middleware;
 
-		this.app.get("/api/postsPerMinute", this.postsPerMinuteRoute.bind(this));
-		this.app.get("/api/commentsPerMinute", this.commentsPerMinuteRoute.bind(this));
-		this.app.get("/api/subredditTypes", this.subredditTypesRoute.bind(this));
-		this.app.get("/api/all", this.all.bind(this));
+
+		this.app.use(express.static("src/static"));
+		this.app.get("", (req, res) => {
+			res.sendFile("src/static/index.html");
+		});
+
+		const apiRoute = express.Router();
+		apiRoute.use(cache("30 seconds"));	// this order, so that the compression is cached
+		apiRoute.use(compression());
+		apiRoute.get("/postsPerMinute", this.postsPerMinuteRoute.bind(this));
+		apiRoute.get("/commentsPerMinute", this.commentsPerMinuteRoute.bind(this));
+		apiRoute.get("/subredditTypes", this.subredditTypesRoute.bind(this));
+		apiRoute.get("/all", this.all.bind(this));
+		this.app.use("/api", apiRoute);
 
 		this.app.listen(this.port, () => {
 			console.log(`Started app on port ${this.port}`)
@@ -30,9 +47,9 @@ export class Server {
 		const allStartTimes = [
 			this.missions.ppm.logged[0].created,
 			this.missions.cpm.logged[0].created,
-			/*Object.values(this.missions.subTypes.subreddits)
+			Object.values(this.missions.subTypes.subreddits)
 				.map(sub => sub.typeHistory[0].time)
-				.reduce((a, b) => Math.max(a, b))*/
+				.reduce((a, b) => Math.max(a, b))
 		];
 		this.commonStartTime = Math.max(...allStartTimes);
 	}
@@ -86,16 +103,25 @@ export class Server {
 	}
 
 	private all(req: express.Request, res: express.Response) {
+		console.time("all");
 		const includeSfw = req.query.sfw === "true";
 		const includeNsfw = req.query.nsfw === "true";
 		const limit = parseInt(req.query.limit as string) || 100;
-		const subs = this.filterAndSortSubs(includeSfw, includeNsfw, limit);
 		const ppm = this.pointsFromPerMinuteData(this.missions.ppm);
 		const cpm = this.pointsFromPerMinuteData(this.missions.cpm);
+		const subs = this.filterAndSortSubs(includeSfw, includeNsfw, limit);
 		res.json({
 			ppm,
 			cpm,
 			subs,
 		});
+		// const jsonStr = JSON.stringify({
+		// 	ppm,
+		// 	cpm,
+		// 	subs,
+		// });
+		// res.header("Content-Type", "application/json");
+		// res.send(jsonStr);
+		console.timeEnd("all");
 	}
 }
