@@ -1,6 +1,35 @@
 import {State} from "./state";
-import {SubredditTypeActivityChart} from "./subredditTypesChart";
+import {SubredditTypeActivityChart, SubredditTypeChartDensity} from "./subredditTypesChart";
 import {makeElement} from "./utils";
+import {ToggleButton, ToggleButtonRoundCorners} from "./ToggleButton";
+import {PropNumberField} from "./PropNumberField";
+
+const densityConfig: {
+		density: SubredditTypeChartDensity,
+		label: string
+		border: ToggleButtonRoundCorners;
+}[] = [
+	{
+		density: SubredditTypeChartDensity.micro,
+		label: "Tiny",
+		border: ToggleButtonRoundCorners.left,
+	},
+	{
+		density: SubredditTypeChartDensity.tiny,
+		label: "Small",
+		border: ToggleButtonRoundCorners.none,
+	},
+	{
+		density: SubredditTypeChartDensity.small,
+		label: "Medium",
+		border: ToggleButtonRoundCorners.none,
+	},
+	{
+		density: SubredditTypeChartDensity.medium,
+		label: "Large",
+		border: ToggleButtonRoundCorners.right,
+	}
+];
 
 export class Panel_SubredditStatusTimeline extends HTMLElement {
 	state: State;
@@ -10,13 +39,32 @@ export class Panel_SubredditStatusTimeline extends HTMLElement {
 		super();
 		this.state = state;
 		this.state.addListener(() => this.chart.updateData(this.state.subredditTypes));
+		this.state.settings.subredditTypeChartDensity.addListener(() => {
+			this.chart.updateDensity(this.state.settings.subredditTypeChartDensity.value);
+		});
 
 		this.classList.add("panel");
 		this.classList.add("subreddit-status-timeline");
 
+		let densityButtons: ToggleButton[];
 		this.append(makeElement("div", {class: "options"}, [
-
+			makeElement("div", {class: "group"}, [
+				new ToggleButton(state.settings.includeSfw.value, "SFW", this.toggleSfw.bind(this), ToggleButtonRoundCorners.left),
+				new ToggleButton(state.settings.includeNsfw.value, "NSFW", this.toggleNsfw.bind(this), ToggleButtonRoundCorners.right),
+			]),
+			new PropNumberField(state.settings.subredditsLimit, "Total subs", {min: 1, max: 1500}),
+			makeElement("div", {class: "group"}, (densityButtons = densityConfig.map((config) => {
+				return new ToggleButton(
+					this.state.settings.subredditTypeChartDensity.value === config.density,
+					config.label,
+					() => this.toggleDensity(config.density),
+					config.border,
+				);
+			}))),
 		]));
+		for (const button of densityButtons) {
+			button.setButtonsGroup(densityButtons);
+		}
 	}
 
 	connectedCallback() {
@@ -28,6 +76,18 @@ export class Panel_SubredditStatusTimeline extends HTMLElement {
 			density: this.state.settings.subredditTypeChartDensity.value,
 		});
 		this.chart.createChart();
+	}
+
+	private toggleSfw(isOn: boolean) {
+		this.state.settings.includeSfw.value = isOn;
+	}
+
+	private toggleNsfw(isOn: boolean) {
+		this.state.settings.includeNsfw.value = isOn;
+	}
+
+	private toggleDensity(density: SubredditTypeChartDensity) {
+		this.state.settings.subredditTypeChartDensity.value = density;
 	}
 }
 

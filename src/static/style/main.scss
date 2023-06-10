@@ -9,6 +9,29 @@
   font-family: 'Lato', sans-serif;
 }
 
+button {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+input {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid #617c98;
+}
+
 .chart {
   width: 100%;
 }
@@ -102,4 +125,109 @@ main {
           4.5px 4.5px 17.9px rgba(0, 0, 0, 0.072),
           8.4px 8.4px 33.4px rgba(0, 0, 0, 0.086),
           20px 20px 80px rgba(0, 0, 0, 0.12);
+}
+
+.toggle-button {
+  button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #f8f8f8;
+    --border-color: #d5d5d5;
+    --border-width: 1.5px;
+    --border-radius: 0.5rem;
+    border-top: var(--border-width) solid var(--border-color);
+    border-bottom: var(--border-width) solid var(--border-color);
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        background-color: #e1e1e1;
+    }
+
+    &.on {
+      background-color: #e0e0e0;
+      --border-color: #bdbdbd;
+    }
+
+    &.round-corners-left {
+      border-top-left-radius: var(--border-radius);
+      border-bottom-left-radius: var(--border-radius);
+      border-left: var(--border-width) solid var(--border-color);
+    }
+
+    &.round-corners-right {
+      border-top-right-radius: var(--border-radius);
+      border-bottom-right-radius: var(--border-radius);
+      border-right: var(--border-width) solid var(--border-color);
+      border-left: var(--border-width) solid var(--border-color);
+    }
+
+    &.round-corners-both {
+      border-radius: var(--border-radius);
+      border-left: var(--border-width) solid var(--border-color);
+      border-right: var(--border-width) solid var(--border-color);
+    }
+
+    &.round-corners-none {
+      border-radius: 0;
+      border-left: var(--border-width) solid var(--border-color);
+    }
+  }
+}
+
+.subreddit-status-timeline {
+  .options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-flow: wrap;
+    margin-bottom: 1rem;
+
+    .group {
+      display: flex;
+        align-items: center;
+    }
+  }
+}
+
+.prop-number-field {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+
+  label {
+    font-weight: 700;
+  }
+
+  input {
+    font-size: 1.1rem;
+    width: 4.5rem;
+    padding: 0.1rem;
+    margin-bottom: -1px;
+    border: none;
+    border-bottom: 2px solid #e1e1e1;
+    background-color: #fff;
+    transition: all 0.2s ease-in-out;
+
+    &:focus {
+      outline: none;
+      border-bottom: 2px solid #617c98;
+    }
+  }
+
+  .error {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #f44336;
+
+    &:not(.visible) {
+      display: none;
+    }
+  }
 }

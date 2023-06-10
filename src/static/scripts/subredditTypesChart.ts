@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 import {Selection} from "d3";
-import {formatTime, numberToShort} from "./utils";
+import {formatTime, numberToShort, throttle} from "./utils";
 
 type SubredditType = "public" | "private" | "restricted" | "gold_only" | string;
 export interface TypeTimestamp {
@@ -26,11 +26,13 @@ export interface LoggedSubredditType_sections {
 	typeSections: TypeSection[];
 }
 export enum SubredditTypeChartDensity {
+	micro = "micro",
 	tiny = "tiny",
 	small = "small",
 	medium = "medium",
 }
 const barHeightByDensity = {
+	[SubredditTypeChartDensity.micro]: 2,
 	[SubredditTypeChartDensity.tiny]: 5,
 	[SubredditTypeChartDensity.small]: 15,
 	[SubredditTypeChartDensity.medium]: 50,
@@ -51,7 +53,11 @@ export class SubredditTypeActivityChart {
 
 	private svg: Selection<SVGSVGElement, unknown, HTMLElement, any>;
 	private chartGroup: Selection<SVGGElement, unknown, HTMLElement, any>;
-	private margin = { top: 50, right: 30, bottom: 40, left: 30 };
+	private marginTop = 50;
+	private marginRight = 30;
+	private marginBottom = 40;
+	private marginLeftBase = 30;
+	private marginLeftAdditional = 0;
 	private fullWidth: number;
 	private fullHeight: number;
 
@@ -63,22 +69,17 @@ export class SubredditTypeActivityChart {
 		this.density = options.density || SubredditTypeChartDensity.medium;
 		this.fullWidth = this.element.getBoundingClientRect().width;
 		const barHeight = barHeightByDensity[this.density];
-		this.calculateFullHeight(barHeight);
-		if (barHeight >= 15) {
-			const estimatedAdditionalLeftPadding = Math.max(...this.data.map(d => d.name.length)) * 5;
-			this.margin.left += estimatedAdditionalLeftPadding;
-		}
+		this.calculateDimensions(barHeight);
 
 		this.svg = d3.select(this.element)
 			.append("svg")
 			.classed("chart", true)
 			.classed("subreddit-type-chart", true)
-			.attr("width", "100%")
-			.attr("height", this.fullHeight);
+			.attr("width", "100%");
 
-		this.setupChartGroup();
+		this.setupChartBase();
 
-		window.addEventListener("resize", () => this.resize());
+		window.addEventListener("resize", throttle(this.resize.bind(this), 100));
 	}
 
 	createChart() {
@@ -86,7 +87,7 @@ export class SubredditTypeActivityChart {
 		if (this.title) {
 			this.svg.append("text")
 				.attr("x", this.fullWidth / 2)
-				.attr("y", this.margin.top / 3)
+				.attr("y", this.marginTop / 3)
 				.attr("text-anchor", "middle")
 				.classed("title", true)
 				.text(this.title);
@@ -94,8 +95,8 @@ export class SubredditTypeActivityChart {
 		// X axis label
 		if (this.xLabel) {
 			this.svg.append("text")
-				.attr("x", this.width / 2 + this.margin.left)
-				.attr("y", this.height + this.margin.top + this.margin.bottom)
+				.attr("x", this.width / 2 + this.marginLeft)
+				.attr("y", this.height + this.marginTop + this.marginBottom)
 				.attr("text-anchor", "middle")
 				.classed("label", true)
 				.text(this.xLabel);
@@ -130,7 +131,8 @@ export class SubredditTypeActivityChart {
 		const yAxisGroup = this.chartGroup.append("g")
 			.call(yAxis);
 		const yAxisTick = yAxisGroup.selectAll(".tick");
-		if (this.density == SubredditTypeChartDensity.tiny) {
+		const isVeryCompact = [SubredditTypeChartDensity.tiny, SubredditTypeChartDensity.micro].includes(this.density);
+		if (isVeryCompact) {
 			yAxisTick.attr("visibility", "hidden");
 		}
 		if (this.density == SubredditTypeChartDensity.medium) {
@@ -168,7 +170,7 @@ export class SubredditTypeActivityChart {
 			.attr("x", d => xAxisScale(d.startTime))
 			.attr("y", d => nameToIndex.get(d.name) * bandWidth + padding)
 			.attr("width", d => xAxisScale(d.startTime + d.duration) - xAxisScale(d.startTime))
-			.attr("height", bandWidth + (this.density == SubredditTypeChartDensity.tiny ? 0.5 : 1) - padding*2)
+			.attr("height", bandWidth + (isVeryCompact ? 0.5 : 1) - padding*2)
 			.attr("fill", d => {
 				switch (d.type) {
 					case "public": return "#1f77b4";
@@ -252,9 +254,9 @@ export class SubredditTypeActivityChart {
 			const tooltipWidth = parseInt(tooltipRect.attr("width"));
 			const tooltipHeight = parseInt(tooltipRect.attr("height"));
 			const { width: svgWidth, height: svgHeight } = this.svg.node().getBoundingClientRect();
-			if (xm + tooltipWidth > svgWidth - this.margin.left)
+			if (xm + tooltipWidth > svgWidth - this.marginLeft)
 				xm -= tooltipWidth + 24;
-			if (ym + tooltipHeight > svgHeight - this.margin.top)
+			if (ym + tooltipHeight > svgHeight - this.marginTop)
 				ym -= tooltipHeight + 24;
 			tooltip.attr("transform", `translate(${xm}, ${ym})`);
 		};
@@ -270,6 +272,8 @@ export class SubredditTypeActivityChart {
 
 	updateData(newData: LoggedSubredditType_sections[]) {
 		this.data = newData;
+		const barHeight = barHeightByDensity[this.density];
+		this.calculateDimensions(barHeight);
 		this.clearChart();
 		this.createChart();
 	}
@@ -277,7 +281,7 @@ export class SubredditTypeActivityChart {
 	updateDensity(newDensity: SubredditTypeChartDensity) {
 		this.density = newDensity;
 		const barHeight = barHeightByDensity[this.density];
-		this.calculateFullHeight(barHeight);
+		this.calculateDimensions(barHeight);
 		this.clearChart();
 		this.createChart();
 	}
@@ -290,26 +294,36 @@ export class SubredditTypeActivityChart {
 
 	private clearChart() {
 		this.svg.selectAll("*").remove();
-		this.setupChartGroup();
+		this.setupChartBase();
 	}
 
-	private setupChartGroup() {
+	private setupChartBase() {
+		this.svg.attr("height", this.fullHeight);
 		this.chartGroup = this.svg
 			.append("g")
 			.attr("transform",
-				"translate(" + this.margin.left + "," + this.margin.top + ")");
+				"translate(" + this.marginLeft + "," + this.marginTop + ")");
 	}
 
-	private calculateFullHeight(barHeight: number) {
-		this.fullHeight = this.margin.top + this.margin.bottom + barHeight * this.data.length;
+	private calculateDimensions(barHeight: number) {
+		this.fullHeight = this.marginTop + this.marginBottom + barHeight * this.data.length;
+		const isVeryCompact = [SubredditTypeChartDensity.tiny, SubredditTypeChartDensity.micro].includes(this.density);
+		if (isVeryCompact)
+			this.marginLeftAdditional = 0;
+		else
+			this.marginLeftAdditional = Math.max(...this.data.map(d => d.name.length)) * 5;
 	}
 
 	get width(): number {
-		return this.fullWidth - this.margin.left - this.margin.right;
+		return this.fullWidth - this.marginLeft - this.marginRight;
 	}
 
 	get height(): number {
-		const height = this.fullHeight - this.margin.top - this.margin.bottom;
+		const height = this.fullHeight - this.marginTop - this.marginBottom;
 		return Math.max(height, 50);
+	}
+
+	get marginLeft(): number {
+		return this.marginLeftBase + this.marginLeftAdditional;
 	}
 }

@@ -31,9 +31,9 @@ export class Settings {
 	constructor() {
 		this.onRequiresRefresh = new ChangeNotifier();
 		this.includeSfw = new Prop(true);
-		this.includeNsfw = new Prop(true);
-		this.subredditsLimit = new Prop(1500);
-		this.subredditTypeChartDensity = new Prop(SubredditTypeChartDensity.tiny);
+		this.includeNsfw = new Prop(false);
+		this.subredditsLimit = new Prop(500);
+		this.subredditTypeChartDensity = new Prop(SubredditTypeChartDensity.small);
 		this.loadFromLocalStorage();
 
 		this.includeSfw.addListener(() => this.onPropChange(true));
@@ -157,9 +157,5 @@ export class State extends ChangeNotifier {
 		if (this.refreshInterval !== null)
 			clearInterval(this.refreshInterval);
 		this.refreshInterval = null;
-	}
-
-	private loadFromLocalStorage(): void {
-
 	}
 }

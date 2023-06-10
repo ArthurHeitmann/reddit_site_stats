@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 import {Selection} from "d3";
-import {formatTime} from "./utils";
+import {formatTime, throttle} from "./utils";
 
 export interface Point {
 	x: number;
@@ -48,7 +48,7 @@ export class LineChart {
 
 		this.setupChartGroup();
 
-		window.addEventListener("resize", () => this.resize());
+		window.addEventListener("resize", throttle(this.resize.bind(this), 100));
 	}
 
 	createChart() {
