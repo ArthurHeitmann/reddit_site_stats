@@ -59,6 +59,7 @@ esbuild.build({
 		"src/app.ts",
 		"src/topSubredditsLoader.ts",
 		"misc/subTypesMerger.ts",
+		"misc/allSubTypesSameStartTime.ts",
 	],
 	plugins: [
 		nodeExternalsPlugin()
