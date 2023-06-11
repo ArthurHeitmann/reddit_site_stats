@@ -1,5 +1,5 @@
 import {ToggleButton, ToggleButtonRoundCorners} from "./ToggleButton";
-import {makeElement} from "./utils";
+import {colorOfSubTypeMap, makeElement} from "./utils";
 import {State} from "./state";
 
 
@@ -52,10 +52,17 @@ export class Panel_SubOptions extends HTMLElement {
 			]),
 			// new PropNumberField(state.settings.subredditsLimit, "Total subs", {min: 1, max: 1500}),
 			makeElement("div", {class: "group"}, [
-				makeElement("div", { class: "label" }, "Total subs "),
+				makeElement("div", { class: "label" }, "Total subreddits"),
 				...limitButtons,
 			]),
 		]));
+		this.append(makeElement("h2", {}, "Legend"))
+		this.append(makeElement("div", {class: "legend"}, Object.entries(colorOfSubTypeMap).map(([type, color]) => {
+			return makeElement("div", {class: "item"}, [
+				makeElement("div", {class: "color-box", style: `--color: ${color}`}),
+				makeElement("div", {class: "label"}, type),
+			]);
+		})));
 		for (const button of limitButtons) {
 			button.setButtonsGroup(limitButtons);
 		}

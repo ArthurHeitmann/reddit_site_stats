@@ -70,11 +70,43 @@ export class LineChart {
 				.classed("label", true)
 				.text(this.xLabel);
 		}
+		// legend (in the top right)
+		if (this.data.length > 1) {
+			const maxNameLength = d3.max(this.data.map(d => d.name.length));
+			const legendWidth = maxNameLength * 8 + 20;
+			const legendHeight = this.data.length * 15 + 20;
+			const legend = this.svg.append("g")
+				.attr("transform", "translate(" + (this.fullWidth - legendWidth - this.margin.right) + "," + (this.margin.top - 10) + ")");
+			// legend.append("rect")
+			// 	.attr("width", legendWidth)
+			// 	.attr("height", legendHeight)
+			// 	.attr("fill", "white")
+			// 	.attr("stroke", "black");
+			const legendItem = legend.selectAll("g")
+				.data(this.data)
+				.enter()
+				.append("g")
+				.classed("legend-item", true)
+				.attr("transform", (d, i) => "translate(10," + (i * 15 + 10) + ")");
+			legendItem
+				.append("rect")
+				.attr("x", 0)
+				.attr("y", 0)
+				.attr("width", 10)
+				.attr("height", 10)
+				.attr("fill", (d, i) => d3.schemeCategory10[i]);
+			legendItem
+				.append("text")
+				.attr("x", 15)
+				.attr("y", 10)
+				.text(d => d.name);
+		}
+
 		// Y axis label
 		if (this.yLabel) {
 			this.svg.append("text")
 				.attr("transform", "rotate(-90)")
-				.attr("y", 0)
+				.attr("y", this.margin.left - 20)
 				.attr("x", 0 - (this.height / 2))
 				.attr("dy", "1em")
 				.style("text-anchor", "middle")
@@ -88,6 +120,8 @@ export class LineChart {
 				return [0, 1];
 			return [d.points[0].x, d.points[d.points.length - 1].x];
 		});
+		if (datasetXMinMax.length === 0)
+			datasetXMinMax.push(0, 1);
 		const xExtent = d3.extent(datasetXMinMax) as [number, number];
 		const xAxisScale: d3.ScaleTime<number, number> = d3.scaleTime()
 			.domain(xExtent)

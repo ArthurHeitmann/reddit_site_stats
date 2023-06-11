@@ -167,14 +167,14 @@ export function isJsonEqual(obj1: object, obj2: object) {
 	return JSON.stringify(obj1) === JSON.stringify(obj2);
 }
 
+export const colorOfSubTypeMap = {
+	"public": "#1f77b4",
+	"private": "#252525",
+	"restricted": "#c77d15",
+	// "gold_only": "#d62728",
+}
 export function colorOfSubType(type: string) {
-	switch (type) {
-		case "public": return "#1f77b4";
-		case "private": return "#252525";
-		case "restricted": return "#c77d15";
-		case "gold_only": return "#d62728";
-		default: return "#1e1e1e";
-	}
+	return colorOfSubTypeMap[type] || "#d62728";
 }
 
 class WindowWidthResizeEvents extends ChangeNotifier {

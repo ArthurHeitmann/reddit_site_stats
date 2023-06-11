@@ -300,7 +300,7 @@ export class SubredditTypeActivityChart {
 	private calculateDimensions(barHeight: number) {
 		this.fullHeight = this.marginTop + this.marginBottom + barHeight * this.data.length;
 		const isVeryCompact = [SubredditTypeChartDensity.tiny, SubredditTypeChartDensity.micro].includes(this.density);
-		if (isVeryCompact)
+		if (isVeryCompact || this.data.length == 0)
 			this.marginLeftAdditional = 0;
 		else
 			this.marginLeftAdditional = Math.max(...this.data.map(d => d.name.length)) * 5;
