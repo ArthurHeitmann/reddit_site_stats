@@ -5,7 +5,7 @@ import {getSubredditsAbout, RedditAuth} from "../redditApi";
 import {SubredditDetails} from "../redditTypes";
 import {sleep} from "../utils";
 
-export interface LoggedSubredditType {
+export interface LoggedSubredditType_timestamps {
 	name: string;
 	isNsfw: boolean;
 	subscribers: number;
@@ -19,7 +19,7 @@ export class SubredditTypesLoggerMission extends IntervalMission {
 	static readonly INTERVAL = 1000 * 60 * 5;
 	static readonly saveFile = "subredditTypes.json";
 	private readonly auth: RedditAuth;
-	subreddits: {[subreddit: string]: LoggedSubredditType};
+	subreddits: {[subreddit: string]: LoggedSubredditType_timestamps};
 
 	constructor(auth: RedditAuth) {
 		super(SubredditTypesLoggerMission.INTERVAL);
@@ -55,7 +55,7 @@ export class SubredditTypesLoggerMission extends IntervalMission {
 			}
 			for (const subInfo of subsInfo) {
 				const subName = subInfo.url.split("/")[2];
-				let loggedSub: LoggedSubredditType;
+				let loggedSub: LoggedSubredditType_timestamps;
 				if (subName in this.subreddits) {
 					loggedSub = this.subreddits[subName];
 					// fix for previously missing subscribers

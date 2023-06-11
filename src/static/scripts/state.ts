@@ -1,10 +1,5 @@
 import {LineDataset, Point} from "./LineChart";
-import {
-	LoggedSubredditType_sections,
-	LoggedSubredditType_timestamps,
-	SubredditTypeChartDensity,
-	TypeSection
-} from "./subredditTypesChart";
+import {LoggedSubredditType_sections, SubredditTypeChartDensity} from "./subredditTypesChart";
 import {ChangeNotifier} from "./ChangeNotifier";
 import {Prop} from "./Prop";
 import {colorOfSubType, debounce} from "./utils";
@@ -14,7 +9,7 @@ import {SubredditsBarChartCategory} from "./Panel_SubredditsBarChart";
 interface CombinedResponse {
 	ppm: Point[];
 	cpm: Point[];
-	subs: LoggedSubredditType_timestamps[];
+	subs: LoggedSubredditType_sections[];
 }
 interface StoredSettings {
 	includeSfw: boolean;
@@ -122,38 +117,7 @@ export class State extends ChangeNotifier {
 		this.ppm.points = all.ppm;
 		this.cpm.points = all.cpm;
 		// convert timestamps to sections
-		this.subredditTypes = all.subs.map(sub => {
-			const typeSections = sub.typeHistory
-				.slice(0, sub.typeHistory.length - 1)
-				.map((timestamp, i) => (<TypeSection>{
-					name: `r/${sub.name}`,
-					startTime: timestamp.time,
-					duration: sub.typeHistory[i + 1].time - timestamp.time,
-					type: timestamp.type,
-				}));
-			// join sections of the same type
-			const joinedTypeSections: TypeSection[] = [];
-			let currentSection: TypeSection | null = null;
-			for (const section of typeSections) {
-				if (currentSection === null) {
-					currentSection = section;
-				} else if (currentSection.type === section.type) {
-					currentSection.duration += section.duration;
-				} else {
-					joinedTypeSections.push(currentSection);
-					currentSection = section;
-				}
-			}
-			if (currentSection !== null) {
-				joinedTypeSections.push(currentSection);
-			}
-			return (<LoggedSubredditType_sections>{
-				name: `r/${sub.name}`,
-				isNsfw: sub.isNsfw,
-				subscribers: sub.subscribers,
-				typeSections: joinedTypeSections
-			});
-		});
+		this.subredditTypes = all.subs;
 		this.subredditsBarCharts = this.transformSubsData(this.subredditTypes);
 
 		this.notifyListeners();

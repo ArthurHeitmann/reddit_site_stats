@@ -5,7 +5,7 @@ import apiCache from "apicache";
 import RateLimit from "express-rate-limit";
 import {LoggingMissions} from "./missions/LoggingMissions";
 import {PerMinuteLoggerMission} from "./missions/PerMinuteLoggerMission";
-import {LoggedSubredditType} from "./missions/SubredditTypesLoggerMission";
+import {TypeSection} from "./static/scripts/subredditTypesChart";
 
 export class Server {
 	app: Express;
@@ -87,8 +87,8 @@ export class Server {
 		this.perMinuteRoute(req, res, this.missions.cpm);
 	}
 
-	private filterAndSortSubs(includeSfw: boolean, includeNsfw: boolean, limit: number): LoggedSubredditType[] {
-		return Object.values(this.missions.subTypes.subreddits)
+	private filterAndSortSubs(includeSfw: boolean, includeNsfw: boolean, limit: number): LoggedSubredditType_sections[] {
+		const subs = Object.values(this.missions.subTypes.subreddits)
 			.filter(sub => (
 				(includeSfw && !sub.isNsfw) ||
 				(includeNsfw && sub.isNsfw)
@@ -102,6 +102,38 @@ export class Server {
 				typeHistory: sub.typeHistory
 					.filter(type => type.time >= this.commonStartTime)
 			}))*/;
+		return subs.map(sub => {
+			const typeSections = sub.typeHistory
+				.slice(0, sub.typeHistory.length - 1)
+				.map((timestamp, i) => (<TypeSection>{
+					name: `r/${sub.name}`,
+					startTime: timestamp.time,
+					duration: sub.typeHistory[i + 1].time - timestamp.time,
+					type: timestamp.type,
+				}));
+			// join sections of the same type
+			const joinedTypeSections: TypeSection[] = [];
+			let currentSection: TypeSection | null = null;
+			for (const section of typeSections) {
+				if (currentSection === null) {
+					currentSection = section;
+				} else if (currentSection.type === section.type) {
+					currentSection.duration += section.duration;
+				} else {
+					joinedTypeSections.push(currentSection);
+					currentSection = section;
+				}
+			}
+			if (currentSection !== null) {
+				joinedTypeSections.push(currentSection);
+			}
+			return (<LoggedSubredditType_sections>{
+				name: `r/${sub.name}`,
+				isNsfw: sub.isNsfw,
+				subscribers: sub.subscribers,
+				typeSections: joinedTypeSections
+			});
+		});
 	}
 
 	private subredditTypesRoute(req: express.Request, res: express.Response) {
@@ -134,4 +166,11 @@ export class Server {
 		// res.send(jsonStr);
 		console.timeEnd("all");
 	}
+}
+
+export interface LoggedSubredditType_sections {
+	name: string;
+	isNsfw: boolean;
+	subscribers: number;
+	typeSections: TypeSection[];
 }
