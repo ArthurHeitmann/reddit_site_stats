@@ -6,6 +6,7 @@ import {Panel_SubOptions} from "./Panel_SubOptions";
 import {Panel_SubredditsList} from "./Panel_SubredditsList";
 import {LayoutSwitcher} from "./LayoutSwitcher";
 import {Panel_Welcome} from "./Panel_Welcome";
+import {GlobalLoadingIndicator} from "./GlobalLoadingIndicator";
 
 
 async function main() {
@@ -26,6 +27,7 @@ async function main() {
 	]);
 	const mainElement = document.querySelector("main");
 	mainElement.appendChild(layout);
+	document.body.append(GlobalLoadingIndicator.instance);
 	await state.load();
 	state.setRefreshInterval();
 }

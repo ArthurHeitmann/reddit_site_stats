@@ -385,3 +385,21 @@ table.subreddits-list {
 .table-wrapper {
   overflow-x: auto;
 }
+
+.global-loading-indicator {
+  position: fixed;
+  bottom: 0;
+  right: 1rem;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+  pointer-events: none;
+
+  &.visible {
+    opacity: 1;
+  }
+
+  svg {
+    width: 6rem;
+    height: auto;
+  }
+}

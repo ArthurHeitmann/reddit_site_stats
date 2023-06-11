@@ -5,6 +5,7 @@ import {Prop} from "./Prop";
 import {colorOfSubType, debounce, formatPercent, numberToShort} from "./utils";
 import {BarChartDataset, BarData, BarGroup, BarStack, BarYAxisFormat} from "./BarChart";
 import {SubredditsBarChartCategory} from "./Panel_SubredditsBarChart";
+import {GlobalLoadingIndicator} from "./GlobalLoadingIndicator";
 
 interface CombinedResponse {
 	ppm: Point[];
@@ -111,8 +112,14 @@ export class State extends ChangeNotifier {
 			nsfw: this.settings.includeNsfw.value.toString(),
 			sfw: this.settings.includeSfw.value.toString(),
 			limit: this.settings.subredditsLimit.value.toString(),
-		})
-		const allRes = await fetch("/api/all?" + params.toString());
+		});
+		let allRes: Response;
+		try {
+			GlobalLoadingIndicator.pushIsLoading();
+			allRes = await fetch("/api/all?" + params.toString());
+		} finally {
+			GlobalLoadingIndicator.popIsLoading();
+		}
 		const all = await allRes.json() as CombinedResponse;
 
 		this.ppm.points = all.ppm;
