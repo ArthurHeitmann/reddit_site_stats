@@ -61,6 +61,46 @@ export function numberToShort(num: number): string {
 	return Object.values(_numberToShort(num)).join("");
 }
 
+function _timePassedSince(time: number): { n: number, s: string } {
+	const s = Math.round(Date.now() / 1000 - time);
+	if (s < 60)
+		return { n: s, s: "seconds" };
+	else if (s < 3600)
+		return { n: Math.floor(s / 60), s: "minutes" };
+	else if (s < 86400)
+		return { n: Math.floor(s / 3600), s: "hours" };
+	else if (s < 2592000)
+		return { n: Math.floor(s / 86400), s: "days" };
+	else if (s < 31557600)
+		return { n: Math.floor(s / 2592000), s: "months" };
+	else
+		return { n: Math.floor(s / 31557600), s: "years" };
+}
+
+/**
+ * 	1 - 59		 	 1s
+ *	60 - 3599	 	 1 - 59m
+ *	3600 - 86399	 1 - 23h
+ *	86400 - 2591999	 1 - 29d
+ *	2592000-31557599 1 - 12mo
+ *	1 - ..y
+ * @param time in seconds
+ */
+export function timePassedSince(time: number): string {
+	const { n, s } = _timePassedSince(time);
+	return `${n.toString()} ${n !== 1 ? s : s.replace(/s$/, "")}`;		// 1 seconds --> 1 second
+}
+
+/** @param time in seconds */
+export function timePassedSinceStr(time: string): string {
+	return timePassedSince(parseInt(time));
+}
+
+/** @param time in seconds */
+export function timePeriodReadable(time: number) {
+	return timePassedSince(Date.now() / 1000 - time);
+}
+
 export function formatPercent(num: number): string {
 	const isInt = num % 1 === 0;
 	if (isInt)

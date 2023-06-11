@@ -66,7 +66,7 @@ export class SubredditTypesLoggerMission extends IntervalMission {
 				else {
 					loggedSub = {
 						name: subName,
-						isNsfw: subInfo.over18,
+						isNsfw: subInfo.over18 ?? topSubredditsByName[subName]?.over18,
 						subscribers: topSubredditsByName[subName]?.subscriberCount ?? subInfo.subscribers ?? 0,
 						typeHistory: []
 					};
@@ -98,5 +98,11 @@ export class SubredditTypesLoggerMission extends IntervalMission {
 		}
 		const jsonStr = await fsp.readFile(SubredditTypesLoggerMission.saveFile, "utf8");
 		this.subreddits = JSON.parse(jsonStr);
+		// fix for previously missing isNsfw in some subreddits
+		for (const subName in this.subreddits) {
+			if (typeof this.subreddits[subName].isNsfw === "boolean")
+				continue;
+			this.subreddits[subName].isNsfw = topSubredditsByName[subName]?.over18;
+		}
 	}
 }

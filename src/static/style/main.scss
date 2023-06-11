@@ -271,3 +271,70 @@ main {
     }
   }
 }
+
+table.subreddits-list {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #e1e1e1;
+
+    thead {
+        background-color: #f8f8f8;
+        border-bottom: 2px solid #e1e1e1;
+
+      th {
+        padding: 0.5rem 1rem;
+        font-weight: 700;
+        text-align: left;
+
+        &.sortable {
+          cursor: pointer;
+          user-select: none;
+
+          &:not(.active) {
+            span {
+              opacity: 0.25;
+              letter-spacing: -5px;
+              transition: all 0.2s ease-in-out;
+            }
+          }
+
+          &:hover {
+            &:not(.active) {
+              span {
+                opacity: 0.5;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        border-bottom: 2px solid #e1e1e1;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        td {
+            padding: 0.5rem 1rem;
+
+          &.type {
+            --color: #000;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+
+            &::before {
+              content: "";
+              width: 1rem;
+              height: 1rem;
+              border-radius: 0.25rem;
+              background-color: var(--color);
+            }
+          }
+        }
+      }
+    }
+}

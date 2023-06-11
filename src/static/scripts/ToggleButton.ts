@@ -43,11 +43,13 @@ export class ToggleButton extends HTMLElement {
 		this.isOn = !this.isOn;
 		this.onToggle(this.isOn);
 		this.button.classList.toggle("on", this.isOn);
-		for (const button of this.buttonsGroup) {
-			if (button === this)
-				continue;
-			button.isOn = false;
-			button.button.classList.remove("on");
+		if (this.buttonsGroup !== undefined) {
+			for (const button of this.buttonsGroup) {
+				if (button === this)
+					continue;
+				button.isOn = false;
+				button.button.classList.remove("on");
+			}
 		}
 	}
 

@@ -3,6 +3,7 @@ import {Panel_RedditPerMinuteActivity} from "./Panel_RedditPerMinuteActivity";
 import {Panel_SubredditStatusTimeline} from "./Panel_SubredditStatusTimeline";
 import {Panel_SubredditsBarChart} from "./Panel_SubredditsBarChart";
 import {Panel_SubOptions} from "./Panel_SubOptions";
+import {Panel_SubredditsList} from "./Panel_SubredditsList";
 
 
 async function main() {
@@ -10,6 +11,7 @@ async function main() {
 	const panels: HTMLElement[] = [
 		new Panel_RedditPerMinuteActivity(state),
 		new Panel_SubOptions(state),
+		new Panel_SubredditsList(state),
 		new Panel_SubredditsBarChart(state),
 		new Panel_SubredditStatusTimeline(state),
 	];
