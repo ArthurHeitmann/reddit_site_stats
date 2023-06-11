@@ -33,6 +33,7 @@ export class Server {
 
 		this.app.use(baseRateLimit, express.static("src/static"));
 		this.app.get("", baseRateLimit, (req, res) => {
+			console.log(`${logTimeStamp()} Sending index.html`);
 			res.sendFile("src/static/index.html");
 		});
 
@@ -149,6 +150,7 @@ export class Server {
 		const includeSfw = req.query.sfw === "true";
 		const includeNsfw = req.query.nsfw === "true";
 		const limit = parseInt(req.query.limit as string) || 100;
+		console.log(`${logTimeStamp()} /all includeSfw: ${includeSfw}, includeNsfw: ${includeNsfw}, limit: ${limit}`)
 		const ppm = this.pointsFromPerMinuteData(this.missions.ppm);
 		const cpm = this.pointsFromPerMinuteData(this.missions.cpm);
 		const subs = this.filterAndSortSubs(includeSfw, includeNsfw, limit);
@@ -173,4 +175,8 @@ export interface LoggedSubredditType_sections {
 	isNsfw: boolean;
 	subscribers: number;
 	typeSections: TypeSection[];
+}
+
+function logTimeStamp(): string {
+	return new Date().toISOString().replace(/T/, " ").replace(/\..+/, "");
 }
