@@ -2,12 +2,11 @@ import {State} from "./state";
 import {SubredditTypeActivityChart, SubredditTypeChartDensity} from "./subredditTypesChart";
 import {makeElement} from "./utils";
 import {ToggleButton, ToggleButtonRoundCorners} from "./ToggleButton";
-import {PropNumberField} from "./PropNumberField";
 
 const densityConfig: {
-		density: SubredditTypeChartDensity,
-		label: string
-		border: ToggleButtonRoundCorners;
+	density: SubredditTypeChartDensity,
+	label: string
+	border: ToggleButtonRoundCorners;
 }[] = [
 	{
 		density: SubredditTypeChartDensity.micro,
@@ -48,11 +47,7 @@ export class Panel_SubredditStatusTimeline extends HTMLElement {
 
 		let densityButtons: ToggleButton[];
 		this.append(makeElement("div", {class: "options"}, [
-			makeElement("div", {class: "group"}, [
-				new ToggleButton(state.settings.includeSfw.value, "SFW", this.toggleSfw.bind(this), ToggleButtonRoundCorners.left),
-				new ToggleButton(state.settings.includeNsfw.value, "NSFW", this.toggleNsfw.bind(this), ToggleButtonRoundCorners.right),
-			]),
-			new PropNumberField(state.settings.subredditsLimit, "Total subs", {min: 1, max: 1500}),
+			makeElement("div", {class: "expand"}),
 			makeElement("div", {class: "group"}, (densityButtons = densityConfig.map((config) => {
 				return new ToggleButton(
 					this.state.settings.subredditTypeChartDensity.value === config.density,
@@ -76,14 +71,6 @@ export class Panel_SubredditStatusTimeline extends HTMLElement {
 			density: this.state.settings.subredditTypeChartDensity.value,
 		});
 		this.chart.createChart();
-	}
-
-	private toggleSfw(isOn: boolean) {
-		this.state.settings.includeSfw.value = isOn;
-	}
-
-	private toggleNsfw(isOn: boolean) {
-		this.state.settings.includeNsfw.value = isOn;
 	}
 
 	private toggleDensity(density: SubredditTypeChartDensity) {

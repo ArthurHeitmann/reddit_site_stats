@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 import {Axis, Selection} from "d3";
-import {formatTime, isJsonEqual, numberToShort, throttle, windowWidthResizeEvents} from "./utils";
+import {formatTime, isJsonEqual, throttle, windowWidthResizeEvents} from "./utils";
 
 export interface BarData {
 	label: string;
@@ -14,55 +14,14 @@ export interface BarGroup {
 	time: number;
 	stacks: BarStack[];
 }
+export type BarYAxisFormat = (value: number) => string;
 export interface BarChartDataset {
 	label: string;
-	groups: BarGroup[];
 	padding?: number;
 	colorOf?: (label: string) => string;
+	yAxisFormat?: BarYAxisFormat[];
+	groups: BarGroup[];
 }
-export const testDataSet: BarChartDataset = {
-	label: "test",
-	groups: [
-		{
-			time: Date.now(),
-			stacks: [
-				{
-					label: "absolute",
-					data: [
-						{ label: "sub1", value: 10 },
-						{ label: "sub2", value: 30 },
-						{ label: "sub3", value: 60 },
-					],
-				},
-				{
-					label: "relative",
-					data: [
-						{ label: "sub1", value: 0.2 },
-						{ label: "sub2", value: 0.3 },
-						{ label: "sub3", value: 0.5 },
-					],
-				}
-			],
-		},
-		{
-			time: Date.now() + 1000 * 60 * 60 * 24,
-			stacks: [
-				{
-					label: "absolute",
-					data: [
-						{ label: "sub1", value: 20 },
-						{ label: "sub2", value: 40 },
-					],
-				},
-				{
-					label: "relative",
-					data: [
-					],
-				}
-			],
-		},
-	],
-};
 
 export class BarChart {
 	private element: HTMLElement;
@@ -70,7 +29,7 @@ export class BarChart {
 
 	private svg: Selection<SVGSVGElement, unknown, HTMLElement, any>;
 	private chartGroup: Selection<SVGGElement, unknown, HTMLElement, any>;
-	private margin = { top: 50, right: 40, bottom: 40, left: 30 };
+	private margin = { top: 50, right: 40, bottom: 40, left: 40 };
 	private fullWidth: number;
 	private height: number;
 
@@ -104,6 +63,22 @@ export class BarChart {
 				return;
 			}
 		}
+		if (this.data.yAxisFormat != undefined) {
+			if (this.data.yAxisFormat.length !== stackLabels.length) {
+				console.error("yAxisFormat must have the same length as the number of stacks");
+				return;
+			}
+		}
+
+		// Title
+		if (this.data.label) {
+			this.svg.append("text")
+				.attr("x", this.fullWidth / 2)
+				.attr("y", this.margin.top / 3)
+				.attr("text-anchor", "middle")
+				.classed("title", true)
+				.text(this.data.label);
+		}
 
 		// X axis
 		const xAxisScale = d3.scaleTime()
@@ -118,14 +93,18 @@ export class BarChart {
 		// Y axes (one for each stack)
 		const yAxes = stackLabels.map((stackLabel, i) => {
 			const allStackSums = this.data.groups.map(g => g.stacks[i].data.map(d => d.value).reduce((a, b) => a + b, 0));
+			if (allStackSums.length == 0)
+				allStackSums.push(1);
 			const yScale = d3.scaleLinear()
-				.domain([0, d3.max(allStackSums.concat(1))])
+				.domain([0, d3.max(allStackSums)])
 				.range([this.height, 0]);
 			let yAxis: Axis<number | { valueOf(): number }>;
 			if (stackLabels.length != 2 || i == 0)
-				yAxis = d3.axisLeft(yScale).tickFormat(numberToShort);
+				yAxis = d3.axisLeft(yScale);
 			else
-				yAxis = d3.axisRight(yScale).tickFormat(numberToShort);
+				yAxis = d3.axisRight(yScale);
+			if (this.data.yAxisFormat != undefined && this.data.yAxisFormat[i] != undefined)
+				yAxis.tickFormat(this.data.yAxisFormat[i]);
 			if (stackLabels.length > 2)
 				yAxis.ticks(0);
 			const yAxisGroup = this.chartGroup.append("g")

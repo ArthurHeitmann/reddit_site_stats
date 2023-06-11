@@ -61,6 +61,14 @@ export function numberToShort(num: number): string {
 	return Object.values(_numberToShort(num)).join("");
 }
 
+export function formatPercent(num: number): string {
+	const isInt = num % 1 === 0;
+	if (isInt)
+		return `${num}%`;
+	const percent = num * 100;
+	return `${percent.toFixed(1)}%`;
+}
+
 /**
  * Returns a function, that, when invoked, will only be triggered at most once
  * during a given window of time. Normally, the throttled function will run

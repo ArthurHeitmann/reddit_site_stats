@@ -2,8 +2,8 @@ import {LineDataset, Point} from "./LineChart";
 import {LoggedSubredditType_sections, SubredditTypeChartDensity} from "./subredditTypesChart";
 import {ChangeNotifier} from "./ChangeNotifier";
 import {Prop} from "./Prop";
-import {colorOfSubType, debounce} from "./utils";
-import {BarChartDataset, BarData, BarGroup, BarStack} from "./BarChart";
+import {colorOfSubType, debounce, formatPercent, numberToShort} from "./utils";
+import {BarChartDataset, BarData, BarGroup, BarStack, BarYAxisFormat} from "./BarChart";
 import {SubredditsBarChartCategory} from "./Panel_SubredditsBarChart";
 
 interface CombinedResponse {
@@ -40,6 +40,7 @@ export class Settings {
 		this.includeNsfw.addListener(() => this.onPropChange(true));
 		this.subredditsLimit.addListener(() => this.onPropChange(true));
 		this.subredditTypeChartDensity.addListener(() => this.onPropChange(false));
+		this.subredditsBarChartCategory.addListener(() => this.onPropChange(false));
 	}
 
 	private loadFromLocalStorage() {
@@ -130,7 +131,7 @@ export class State extends ChangeNotifier {
 		// each stack has the following bars: private, restricted
 		// public subs are not shown
 		// const hourResolution = 1;
-		const timeResolution = 1000 * 60 * 20;
+		const timeResolution = 1000 * 60 * 30;
 		let timeStart = Math.min(...subs.map(sub => sub.typeSections[0].startTime));
 		let timeEnd = Math.max(...subs.map(sub => {
 			const lastSection = sub.typeSections[sub.typeSections.length - 1];
@@ -161,10 +162,11 @@ export class State extends ChangeNotifier {
 		}
 		const timeBuckets = Math.ceil(timeFrame / timeResolution);
 		// create empty buckets
-		function createEmptyDataset(category: string): BarChartDataset {
+		function createEmptyDataset(datasetName: string, category: string, numberFormat?: BarYAxisFormat): BarChartDataset {
 			return {
-				label: "Subreddits",
+				label: datasetName,
 				colorOf: colorOfSubType,
+				yAxisFormat: numberFormat ? [numberFormat] : undefined,
 				groups: new Array(timeBuckets).fill(0).map((_, i) => (<BarGroup>{
 					time: (new Date(timeStart + i * timeResolution)).getTime(),
 					stacks: <BarStack[]>[
@@ -185,9 +187,9 @@ export class State extends ChangeNotifier {
 				}))
 			};
 		}
-		const totalDataset = createEmptyDataset("Total");
-		const relativeDataset = createEmptyDataset("Percentage");
-		const subscribersDataset = createEmptyDataset("Subscribers");
+		const totalDataset = createEmptyDataset("Total Subreddits", "Total", numberToShort);
+		const relativeDataset = createEmptyDataset("% of Total", "Relative", formatPercent);
+		const subscribersDataset = createEmptyDataset("Total Subreddit Subscribers", "Subscribers", numberToShort);
 		const datasets: GroupedSubredditBarChartDataSets = {
 			[SubredditsBarChartCategory.count]: totalDataset,
 			[SubredditsBarChartCategory.percent]: relativeDataset,

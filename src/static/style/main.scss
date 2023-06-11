@@ -176,18 +176,31 @@ main {
   }
 }
 
-.subreddit-status-timeline {
+.panel {
+  h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
   .options {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
     flex-flow: wrap;
-    margin-bottom: 1rem;
 
     .group {
       display: flex;
-        align-items: center;
+      align-items: center;
+
+      .label {
+        font-weight: 700;
+        margin-right: 0.5rem;
+      }
+    }
+
+    .expand {
+      flex-grow: 1;
     }
   }
 }
