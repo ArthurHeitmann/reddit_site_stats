@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 import {Selection} from "d3";
-import {formatTime, throttle} from "./utils";
+import {formatTime, throttle, windowWidthResizeEvents} from "./utils";
 
 export interface Point {
 	x: number;
@@ -37,7 +37,6 @@ export class LineChart {
 		this.title = options.title;
 		this.xLabel = options.xLabel;
 		this.yLabel = options.yLabel;
-		this.fullWidth = this.element.getBoundingClientRect().width;
 		this.height = 600 - this.margin.top - this.margin.bottom;
 
 		this.svg = d3.select(this.element)
@@ -46,9 +45,10 @@ export class LineChart {
 			.attr("width", "100%")
 			.attr("height", this.height + this.margin.top + this.margin.bottom);
 
+		this.fullWidth = this.svg.node().getBoundingClientRect().width;
 		this.setupChartGroup();
 
-		window.addEventListener("resize", throttle(this.resize.bind(this), 100));
+		windowWidthResizeEvents.addListener(throttle(this.resize.bind(this), 100));
 	}
 
 	createChart() {
@@ -133,7 +133,7 @@ export class LineChart {
 	}
 
 	resize() {
-		this.fullWidth = this.element.getBoundingClientRect().width;
+		this.fullWidth = this.svg.node().getBoundingClientRect().width;
 		this.clearChart();
 		this.createChart();
 	}

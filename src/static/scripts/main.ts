@@ -6,14 +6,14 @@ import {Panel_SubredditsBarChart} from "./Panel_SubredditsBarChart";
 
 async function main() {
 	const state = new State();
-	await state.load();
-	state.setRefreshInterval();
 	const panels: HTMLElement[] = [
-		new Panel_SubredditsBarChart(state),
 		new Panel_RedditPerMinuteActivity(state),
+		new Panel_SubredditsBarChart(state),
 		new Panel_SubredditStatusTimeline(state),
 	];
 	document.getElementById("panels")!.append(...panels);
+	await state.load();
+	state.setRefreshInterval();
 }
 
 window.addEventListener("load", async () => {

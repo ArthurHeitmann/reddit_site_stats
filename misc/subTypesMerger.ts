@@ -41,8 +41,11 @@ for (const key of allKeys) {
 		subscribers: subreddits[0].subscribers,
 		typeHistory: []
 	};
+	const pushedTimes = new Set<number>();
 	for (const sub of subreddits) {
-		mergedSubreddit.typeHistory.push(...sub.typeHistory);
+		mergedSubreddit.typeHistory.push(...sub.typeHistory.filter(type => !pushedTimes.has(type.time)));
+		for (const type of sub.typeHistory)
+			pushedTimes.add(type.time);
 	}
 	mergedSubreddit.typeHistory.sort((a, b) => a.time - b.time);
 	merged[key] = mergedSubreddit;

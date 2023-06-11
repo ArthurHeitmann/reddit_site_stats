@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 import {Selection} from "d3";
-import {formatTime, numberToShort, throttle} from "./utils";
+import {colorOfSubType, formatTime, numberToShort, throttle, windowWidthResizeEvents} from "./utils";
 
 type SubredditType = "public" | "private" | "restricted" | "gold_only" | string;
 export interface TypeTimestamp {
@@ -67,7 +67,6 @@ export class SubredditTypeActivityChart {
 		this.title = options.title;
 		this.xLabel = options.xLabel;
 		this.density = options.density || SubredditTypeChartDensity.medium;
-		this.fullWidth = this.element.getBoundingClientRect().width;
 		const barHeight = barHeightByDensity[this.density];
 		this.calculateDimensions(barHeight);
 
@@ -77,9 +76,10 @@ export class SubredditTypeActivityChart {
 			.classed("subreddit-type-chart", true)
 			.attr("width", "100%");
 
+		this.fullWidth = this.svg.node().getBoundingClientRect().width;
 		this.setupChartBase();
 
-		window.addEventListener("resize", throttle(this.resize.bind(this), 100));
+		windowWidthResizeEvents.addListener(throttle(this.resize.bind(this), 100));
 	}
 
 	createChart() {
@@ -171,15 +171,7 @@ export class SubredditTypeActivityChart {
 			.attr("y", d => nameToIndex.get(d.name) * bandWidth + padding)
 			.attr("width", d => xAxisScale(d.startTime + d.duration) - xAxisScale(d.startTime))
 			.attr("height", bandWidth + (isVeryCompact ? 0.5 : 1) - padding*2)
-			.attr("fill", d => {
-				switch (d.type) {
-					case "public": return "#1f77b4";
-					case "private": return "#252525";
-					case "restricted": return "#bd812a";
-					case "gold_only": return "#d62728";
-					default: return "#000000";
-				}
-			})
+			.attr("fill", d => colorOfSubType(d.type))
 
 		// tooltip
 		const tooltip = this.chartGroup
@@ -287,7 +279,7 @@ export class SubredditTypeActivityChart {
 	}
 
 	resize() {
-		this.fullWidth = this.element.getBoundingClientRect().width;
+		this.fullWidth = this.svg.node().getBoundingClientRect().width;
 		this.clearChart();
 		this.createChart();
 	}

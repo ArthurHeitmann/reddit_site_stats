@@ -1,4 +1,5 @@
 import * as d3 from "d3";
+import {ChangeNotifier} from "./ChangeNotifier";
 
 const formatMillisecond = d3.timeFormat(".%L");
 const formatSecond = d3.timeFormat(":%S");
@@ -157,3 +158,31 @@ export function makeElement<K extends keyof HTMLElementTagNameMap>(
 export function isJsonEqual(obj1: object, obj2: object) {
 	return JSON.stringify(obj1) === JSON.stringify(obj2);
 }
+
+export function colorOfSubType(type: string) {
+	switch (type) {
+		case "public": return "#1f77b4";
+		case "private": return "#252525";
+		case "restricted": return "#c77d15";
+		case "gold_only": return "#d62728";
+		default: return "#1e1e1e";
+	}
+}
+
+class WindowWidthResizeEvents extends ChangeNotifier {
+	private previouseWidth: number;
+
+	constructor() {
+		super();
+		this.previouseWidth = window.innerWidth;
+		window.addEventListener("resize", this.onResize.bind(this));
+	}
+
+	private onResize() {
+		if (this.previouseWidth !== window.innerWidth) {
+			this.previouseWidth = window.innerWidth;
+			this.notifyListeners();
+		}
+	}
+}
+export const windowWidthResizeEvents = new WindowWidthResizeEvents();

@@ -1,6 +1,6 @@
 import * as d3 from "d3";
-import {Selection} from "d3";
-import {formatTime, isJsonEqual, throttle} from "./utils";
+import {Axis, Selection} from "d3";
+import {formatTime, isJsonEqual, numberToShort, throttle, windowWidthResizeEvents} from "./utils";
 
 export interface BarData {
 	label: string;
@@ -17,6 +17,8 @@ export interface BarGroup {
 export interface BarChartDataset {
 	label: string;
 	groups: BarGroup[];
+	padding?: number;
+	colorOf?: (label: string) => string;
 }
 export const testDataSet: BarChartDataset = {
 	label: "test",
@@ -68,16 +70,14 @@ export class BarChart {
 
 	private svg: Selection<SVGSVGElement, unknown, HTMLElement, any>;
 	private chartGroup: Selection<SVGGElement, unknown, HTMLElement, any>;
-	private margin = { top: 50, right: 30, bottom: 40, left: 30 };
+	private margin = { top: 50, right: 40, bottom: 40, left: 30 };
 	private fullWidth: number;
 	private height: number;
 
 	constructor(data: BarChartDataset, element: HTMLElement) {
 		this.element = element;
 		this.data = data;
-		this.fullWidth = this.element.getBoundingClientRect().width;
 		this.height = 600 - this.margin.top - this.margin.bottom;
-		// this.height = 1000;
 
 		this.svg = d3.select(this.element)
 			.append("svg")
@@ -85,9 +85,10 @@ export class BarChart {
 			.attr("width", "100%")
 			.attr("height", this.height + this.margin.top + this.margin.bottom);
 
+		this.fullWidth = this.svg.node().getBoundingClientRect().width;
 		this.setupChartGroup();
 
-		window.addEventListener("resize", throttle(this.resize.bind(this), 100));
+		windowWidthResizeEvents.addListener(throttle(this.resize.bind(this), 100));
 	}
 
 	createChart() {
@@ -116,27 +117,35 @@ export class BarChart {
 
 		// Y axes (one for each stack)
 		const yAxes = stackLabels.map((stackLabel, i) => {
-			const allStackValues = this.data.groups.map(g => g.stacks[i].data.map(d => d.value));
+			const allStackSums = this.data.groups.map(g => g.stacks[i].data.map(d => d.value).reduce((a, b) => a + b, 0));
 			const yScale = d3.scaleLinear()
-				.domain([0, d3.max(allStackValues.flat().concat(1))])
+				.domain([0, d3.max(allStackSums.concat(1))])
 				.range([this.height, 0]);
-			const yAxis = d3.axisLeft(yScale);
-			if (stackLabels.length > 1)
+			let yAxis: Axis<number | { valueOf(): number }>;
+			if (stackLabels.length != 2 || i == 0)
+				yAxis = d3.axisLeft(yScale).tickFormat(numberToShort);
+			else
+				yAxis = d3.axisRight(yScale).tickFormat(numberToShort);
+			if (stackLabels.length > 2)
 				yAxis.ticks(0);
-			this.chartGroup.append("g")
+			const yAxisGroup = this.chartGroup.append("g")
 				.call(yAxis);
+			if (stackLabels.length == 2 && i == 1)
+				yAxisGroup.attr("transform", "translate(" + this.width + ",0)");
 			return yScale;
 		});
 
 		// Bars
-		const groupWidth = this.width / this.data.groups.length;
+		const padding = this.data.padding ?? 0;
+		const bandWidth = this.width / this.data.groups.length;
+		const groupWidth = bandWidth - padding * 2;
 		const stackWidth = groupWidth / stackLabels.length;
 		const barGroups = this.chartGroup.selectAll()
 			.data(this.data.groups)
 			.enter()
 			.append("g")
 			.classed("bar-group", true)
-			.attr("transform", g => "translate(" + xAxisScale(g.time) + ",0)");
+			.attr("transform", (g, i) => "translate(" + (i * bandWidth + padding) + ",0)")
 		const bars = barGroups.selectAll()
 			.data(g => g.stacks)
 			.enter()
@@ -161,14 +170,19 @@ export class BarChart {
 				const yEnd = y + d.value;
 				return yAxes[stackIndex](yEnd);
 			})
-			.attr("width", stackWidth)
+			.attr("width", stackWidth + 1)
 			.attr("height", function (this: SVGRectElement, d) {
 				const stackData = d3.select(this.parentElement).datum() as BarStack;
 				const stackIndex = stackLabels.indexOf(stackData.label);
 				return chartHeight - yAxes[stackIndex](d.value);
 			})
 			// .attr("fill", (d, i) => d3.schemeCategory10[Math.floor(Math.random() * 10)]);
-			.attr("fill", (d, i) => d3.schemeCategory10[i]);
+			.attr("fill", (d, i) => {
+				if (this.data.colorOf === undefined)
+					return d3.schemeCategory10[i];
+				else
+					return this.data.colorOf(d.label);
+			});
 
 
 	}
@@ -180,7 +194,7 @@ export class BarChart {
 	}
 
 	resize() {
-		this.fullWidth = this.element.getBoundingClientRect().width;
+		this.fullWidth = this.svg.node().getBoundingClientRect().width;
 		this.clearChart();
 		this.createChart();
 	}
