@@ -24,6 +24,10 @@ input {
   color: inherit;
 }
 
+ol, ul {
+  list-style-position: inside;
+}
+
 :focus {
   outline: none;
 }
