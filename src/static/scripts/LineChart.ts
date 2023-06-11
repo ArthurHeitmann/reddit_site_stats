@@ -37,7 +37,7 @@ export class LineChart {
 		this.title = options.title;
 		this.xLabel = options.xLabel;
 		this.yLabel = options.yLabel;
-		this.height = 600 - this.margin.top - this.margin.bottom;
+		this.height = Math.min(400, window.innerHeight) - this.margin.top - this.margin.bottom;
 
 		this.svg = d3.select(this.element)
 			.append("svg")
@@ -69,6 +69,18 @@ export class LineChart {
 				.attr("text-anchor", "middle")
 				.classed("label", true)
 				.text(this.xLabel);
+		}
+
+		// Y axis label
+		if (this.yLabel && this.data.length === 1) {
+			this.svg.append("text")
+				.attr("transform", "rotate(-90)")
+				.attr("y", this.margin.left - 20)
+				.attr("x", 0 - (this.height / 2))
+				.attr("dy", "1em")
+				.style("text-anchor", "middle")
+				.classed("label", true)
+				.text(this.yLabel);
 		}
 		// legend (in the top right)
 		if (this.data.length > 1) {
@@ -102,18 +114,6 @@ export class LineChart {
 				.text(d => d.name);
 		}
 
-		// Y axis label
-		if (this.yLabel) {
-			this.svg.append("text")
-				.attr("transform", "rotate(-90)")
-				.attr("y", this.margin.left - 20)
-				.attr("x", 0 - (this.height / 2))
-				.attr("dy", "1em")
-				.style("text-anchor", "middle")
-				.classed("label", true)
-				.text(this.yLabel);
-		}
-
 		// X axis
 		const datasetXMinMax: number[] = this.data.flatMap(d => {
 			if (d.points.length === 0)
@@ -130,6 +130,7 @@ export class LineChart {
 			.tickFormat(formatTime);
 		this.chartGroup.append("g")
 			.attr("transform", "translate(0," + this.height + ")")
+			.classed("x-axis", true)
 			.call(xAxis);
 
 		// Datasets
@@ -144,6 +145,7 @@ export class LineChart {
 			const yAxis = d3.axisLeft(yAxisScale)
 				.ticks(0);
 			this.chartGroup.append("g")
+				.classed("y-axis", true)
 				.call(yAxis);
 
 			// Y axis label

@@ -1,7 +1,8 @@
 import {State} from "./state";
 import {LineChart} from "./LineChart";
+import {CustomHtmlElement} from "./CustomHtmlElement";
 
-export class Panel_RedditPerMinuteActivity extends HTMLElement {
+export class Panel_RedditPerMinuteActivity extends CustomHtmlElement {
 	state: State;
 	chart: LineChart;
 
@@ -11,17 +12,17 @@ export class Panel_RedditPerMinuteActivity extends HTMLElement {
 		this.state.addListener(() => this.chart.updateData([this.state.ppm, this.state.cpm]));
 
 		this.classList.add("panel");
-	}
 
-	connectedCallback() {
-		this.chart = new LineChart({
-			data: [this.state.ppm, this.state.cpm],
-			element: this,
-			title: "Posts and comments per minute",
-			xLabel: "Time",
-			yLabel: "Count",
+		this.onFirstConnected.addListener(() => {
+			this.chart = new LineChart({
+				data: [this.state.ppm, this.state.cpm],
+				element: this,
+				title: "Posts and comments per minute",
+				// xLabel: "Time",
+				yLabel: "Count",
+			});
+			this.chart.createChart();
 		});
-		this.chart.createChart();
 	}
 }
 

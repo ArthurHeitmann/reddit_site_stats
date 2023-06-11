@@ -2,6 +2,7 @@ import {State} from "./state";
 import {BarChart, BarChartDataset} from "./BarChart";
 import {ToggleButton, ToggleButtonRoundCorners} from "./ToggleButton";
 import {makeElement} from "./utils";
+import {CustomHtmlElement} from "./CustomHtmlElement";
 
 export enum SubredditsBarChartCategory {
 	count,
@@ -25,7 +26,7 @@ const categoriesConfig = [
 		border: ToggleButtonRoundCorners.right,
 	}
 ]
-export class Panel_SubredditsBarChart extends HTMLElement {
+export class Panel_SubredditsBarChart extends CustomHtmlElement {
 	state: State;
 	chart: BarChart;
 	data: BarChartDataset;
@@ -58,11 +59,11 @@ export class Panel_SubredditsBarChart extends HTMLElement {
 		for (const button of categoryButtons) {
 			button.setButtonsGroup(categoryButtons);
 		}
-	}
 
-	connectedCallback() {
-		this.chart = new BarChart(this.data, this);
-		this.chart.createChart();
+		this.onFirstConnected.addListener(() => {
+			this.chart = new BarChart(this.data, this);
+			this.chart.createChart();
+		});
 	}
 
 	private setCategory(category: SubredditsBarChartCategory) {

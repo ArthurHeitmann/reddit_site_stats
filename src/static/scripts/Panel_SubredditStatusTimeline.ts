@@ -2,6 +2,7 @@ import {State} from "./state";
 import {SubredditTypeActivityChart, SubredditTypeChartDensity} from "./subredditTypesChart";
 import {makeElement} from "./utils";
 import {ToggleButton, ToggleButtonRoundCorners} from "./ToggleButton";
+import {CustomHtmlElement} from "./CustomHtmlElement";
 
 const densityConfig: {
 	density: SubredditTypeChartDensity,
@@ -30,7 +31,7 @@ const densityConfig: {
 	}
 ];
 
-export class Panel_SubredditStatusTimeline extends HTMLElement {
+export class Panel_SubredditStatusTimeline extends CustomHtmlElement {
 	state: State;
 	chart: SubredditTypeActivityChart;
 
@@ -60,17 +61,17 @@ export class Panel_SubredditStatusTimeline extends HTMLElement {
 		for (const button of densityButtons) {
 			button.setButtonsGroup(densityButtons);
 		}
-	}
 
-	connectedCallback() {
-		this.chart = new SubredditTypeActivityChart({
-			data: this.state.subredditTypes,
-			element: this,
-			title: "Subreddit status",
-			xLabel: "Time",
-			density: this.state.settings.subredditTypeChartDensity.value,
+		this.onFirstConnected.addListener(() => {
+			this.chart = new SubredditTypeActivityChart({
+				data: this.state.subredditTypes,
+				element: this,
+				title: "Subreddit status",
+				// xLabel: "Time",
+				density: this.state.settings.subredditTypeChartDensity.value,
+			});
+			this.chart.createChart();
 		});
-		this.chart.createChart();
 	}
 
 	private toggleDensity(density: SubredditTypeChartDensity) {

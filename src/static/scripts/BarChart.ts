@@ -29,14 +29,18 @@ export class BarChart {
 
 	private svg: Selection<SVGSVGElement, unknown, HTMLElement, any>;
 	private chartGroup: Selection<SVGGElement, unknown, HTMLElement, any>;
-	private margin = { top: 50, right: 40, bottom: 40, left: 40 };
+	private margin = { top: 50, right: 10, bottom: 40, left: 20 };
 	private fullWidth: number;
 	private height: number;
 
 	constructor(data: BarChartDataset, element: HTMLElement) {
 		this.element = element;
 		this.data = data;
-		this.height = 600 - this.margin.top - this.margin.bottom;
+		if (this.data.groups.length <= 2)
+			this.margin.left += 20;
+		if (this.data.groups.length == 2)
+			this.margin.right += 20;
+		this.height = Math.min(500, window.innerHeight) - this.margin.top - this.margin.bottom;
 
 		this.svg = d3.select(this.element)
 			.append("svg")
@@ -87,6 +91,7 @@ export class BarChart {
 		const xAxis = d3.axisBottom(xAxisScale)
 			.tickFormat(formatTime);
 		this.chartGroup.append("g")
+			.classed("x-axis", true)
 			.attr("transform", "translate(0," + this.height + ")")
 			.call(xAxis);
 
@@ -108,6 +113,7 @@ export class BarChart {
 			if (stackLabels.length > 2)
 				yAxis.ticks(0);
 			const yAxisGroup = this.chartGroup.append("g")
+				.classed("y-axis", true)
 				.call(yAxis);
 			if (stackLabels.length == 2 && i == 1)
 				yAxisGroup.attr("transform", "translate(" + this.width + ",0)");

@@ -53,9 +53,9 @@ export class SubredditTypeActivityChart {
 
 	private svg: Selection<SVGSVGElement, unknown, HTMLElement, any>;
 	private chartGroup: Selection<SVGGElement, unknown, HTMLElement, any>;
-	private marginTop = 50;
+	private marginTop = 80;
 	private marginRight = 30;
-	private marginBottom = 40;
+	private marginBottom = 20;
 	private marginLeftBase = 30;
 	private marginLeftAdditional = 0;
 	private fullWidth: number;
@@ -96,7 +96,7 @@ export class SubredditTypeActivityChart {
 		if (this.xLabel) {
 			this.svg.append("text")
 				.attr("x", this.width / 2 + this.marginLeft)
-				.attr("y", this.height + this.marginTop + this.marginBottom)
+				.attr("y", this.marginTop - 25)
 				.attr("text-anchor", "middle")
 				.classed("label", true)
 				.text(this.xLabel);
@@ -115,10 +115,11 @@ export class SubredditTypeActivityChart {
 		const xAxisScale: d3.ScaleTime<number, number> = d3.scaleTime()
 			.domain(xExtent)
 			.range([0, this.width]);
-		const xAxis = d3.axisBottom(xAxisScale)
+		const xAxis = d3.axisTop(xAxisScale)
 			.tickFormat(formatTime);
 		this.chartGroup.append("g")
-			.attr("transform", "translate(0," + this.height + ")")
+			.classed("x-axis", true)
+			.classed("top", true)
 			.call(xAxis);
 
 		// Y axis
@@ -129,6 +130,7 @@ export class SubredditTypeActivityChart {
 		const yAxis = d3.axisLeft(yAxisScale)
 			.tickSize(0);
 		const yAxisGroup = this.chartGroup.append("g")
+			.classed("y-axis", true)
 			.call(yAxis);
 		const yAxisTick = yAxisGroup.selectAll(".tick");
 		const isVeryCompact = [SubredditTypeChartDensity.tiny, SubredditTypeChartDensity.micro].includes(this.density);

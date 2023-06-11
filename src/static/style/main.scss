@@ -55,6 +55,27 @@ svg {
   }
 }
 
+@media (max-width: 768px) {
+  svg {
+    g.tick text {
+      font-size: 0.8rem;
+    }
+
+    .x-axis {
+      g.tick text {
+        text-anchor: end;
+        transform: rotate(-45deg);
+      }
+
+      &.top {
+        g.tick text {
+          transform: translate(0, -1.5rem) rotate(-45deg);
+        }
+      }
+    }
+  }
+}
+
 svg.subreddit-type-chart {
   .tick {
     .name {
@@ -95,25 +116,43 @@ svg.subreddit-type-chart {
 }
 
 main {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-  min-height: 100vh;
-  width: min(70rem, 100%);
-  margin: 0 auto;
+  // for 1 or 2 equal-width columns
+  padding: 2rem 1rem;
+
+  .layout-switcher {
+    display: flex;
+    margin: 0 auto;
+
+    &.one-column {
+      width: min(70rem, 100%);
+      flex-flow: column;
+      align-items: stretch;
+      gap: 3rem;
+    }
+
+    &.two-column {
+      width: min(150rem, 100%);
+      flex-flow: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 3rem;
+
+      > .column {
+        flex: 1;
+        display: flex;
+        flex-flow: column;
+        align-items: stretch;
+        gap: 3rem;
+      }
+    }
+  }
 }
 
-#panels {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 3rem;
-  margin: 2rem 0;
-}
 
 .panel {
   width: 100%;
+  display: flex;
+  flex-flow: column;
   padding: 1rem;
   border-radius: 1rem;
   border: 2px solid #e1e1e1;
@@ -337,4 +376,8 @@ table.subreddits-list {
         }
       }
     }
+}
+
+.table-wrapper {
+  overflow-x: auto;
 }

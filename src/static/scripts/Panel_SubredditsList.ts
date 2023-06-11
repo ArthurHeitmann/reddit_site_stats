@@ -34,7 +34,7 @@ export class Panel_SubredditsList extends HTMLElement {
 
 		this.classList.add("panel");
 		this.append(makeElement("h2", {}, "Private Subreddits"));
-		this.content = makeElement("div", {class: "content"});
+		this.content = makeElement("div", {class: "content table-wrapper"});
 		this.append(this.content);
 
 		this.display();
