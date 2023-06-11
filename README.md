@@ -1,5 +1,7 @@
 # Tracking the great reddit blackout
 
+[blackout.photon-reddit.com](https://blackout.photon-reddit.com)
+
 ## What is this?
 
 The goal of this project is to keep track of and visualize the great reddit blackout.
