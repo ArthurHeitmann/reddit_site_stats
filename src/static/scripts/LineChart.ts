@@ -1,6 +1,6 @@
 import * as d3 from "d3";
-import {Selection} from "d3";
-import {formatTime, throttle, windowWidthResizeEvents} from "./utils";
+import {Axis, Selection} from "d3";
+import {formatTime, numberToShort, throttle, windowWidthResizeEvents} from "./utils";
 
 export interface Point {
 	x: number;
@@ -9,6 +9,7 @@ export interface Point {
 
 export interface LineDataset {
 	name: string;
+	yLabel?: string;
 	points: Point[];
 }
 export interface LineChartOptions {
@@ -16,18 +17,16 @@ export interface LineChartOptions {
 	element: HTMLElement;
 	title?: string;
 	xLabel?: string;
-	yLabel?: string;
 }
 export class LineChart {
 	private element: HTMLElement;
 	private data: LineDataset[];
 	private title: string|undefined;
 	private xLabel: string|undefined;
-	private yLabel: string|undefined;
 
 	private svg: Selection<SVGSVGElement, unknown, HTMLElement, any>;
 	private chartGroup: Selection<SVGGElement, unknown, HTMLElement, any>;
-	private margin = { top: 50, right: 15, bottom: 30, left: 15 };
+	private margin = { top: 50, right: 45, bottom: 30, left: 50 };
 	private fullWidth: number;
 	private height: number;
 
@@ -36,7 +35,6 @@ export class LineChart {
 		this.data = options.data;
 		this.title = options.title;
 		this.xLabel = options.xLabel;
-		this.yLabel = options.yLabel;
 		this.height = Math.min(400, window.innerHeight) - this.margin.top - this.margin.bottom;
 
 		this.svg = d3.select(this.element)
@@ -71,24 +69,13 @@ export class LineChart {
 				.text(this.xLabel);
 		}
 
-		// Y axis label
-		if (this.yLabel && this.data.length === 1) {
-			this.svg.append("text")
-				.attr("transform", "rotate(-90)")
-				.attr("y", this.margin.left - 20)
-				.attr("x", 0 - (this.height / 2))
-				.attr("dy", "1em")
-				.style("text-anchor", "middle")
-				.classed("label", true)
-				.text(this.yLabel);
-		}
 		// legend (in the top right)
 		if (this.data.length > 1) {
 			const maxNameLength = d3.max(this.data.map(d => d.name.length));
 			const legendWidth = maxNameLength * 8 + 20;
 			const legendHeight = this.data.length * 15 + 20;
 			const legend = this.svg.append("g")
-				.attr("transform", "translate(" + (this.fullWidth - legendWidth - this.margin.right) + "," + (this.margin.top - 10) + ")");
+				.attr("transform", "translate(" + (this.fullWidth - legendWidth - this.margin.right) + "," + (this.margin.top - 5) + ")");
 			// legend.append("rect")
 			// 	.attr("width", legendWidth)
 			// 	.attr("height", legendHeight)
@@ -109,6 +96,7 @@ export class LineChart {
 				.attr("fill", (d, i) => d3.schemeCategory10[i]);
 			legendItem
 				.append("text")
+				.classed("label-small", true)
 				.attr("x", 15)
 				.attr("y", 10)
 				.text(d => d.name);
@@ -142,11 +130,34 @@ export class LineChart {
 			const yAxisScale = d3.scaleLinear()
 				.domain([0, yMax])
 				.range([this.height, 0]);
-			const yAxis = d3.axisLeft(yAxisScale)
-				.ticks(0);
-			this.chartGroup.append("g")
+			const isLeft = i === 0;
+			let yAxis: Axis<number | { valueOf(): number }>;
+			if (isLeft)
+				yAxis = d3.axisLeft(yAxisScale);
+			else
+				yAxis = d3.axisRight(yAxisScale);
+			yAxis.tickFormat(numberToShort);
+			if (i >= 2)
+				yAxis.ticks(0);
+			const yAxisGroup = this.chartGroup.append("g")
 				.classed("y-axis", true)
+				.classed("ticks-small", true)
 				.call(yAxis);
+			if (i === 1) {
+				yAxisGroup.attr("transform", "translate(" + this.width + ",0)");
+			}
+
+			// Y axis label
+			if (dataset.yLabel && i < 2) {
+				this.svg.append("text")
+					.attr("transform", "rotate(-90)")
+					.attr("y", isLeft ? this.margin.left / 3 : this.fullWidth - this.margin.right / 2)
+					.attr("x", -(this.height / 2 + this.margin.top))
+					.attr("dy", isLeft ? "" : "1em")
+					.attr("text-anchor", "middle")
+					.classed("label-small", true)
+					.text(dataset.yLabel);
+			}
 
 			// Y axis label
 			this.chartGroup.append("path")

@@ -96,11 +96,13 @@ export class State extends ChangeNotifier {
 		this.settings.onRequiresRefresh.addListener(debounce(this.load.bind(this), 500));
 
 		this.ppm = {
-			name: "Posts per minute",
+			name: "Posts",
+			yLabel: "Posts per minute",
 			points: [],
 		};
 		this.cpm = {
-			name: "Comments per minute",
+			name: "Comments",
+			yLabel: "Comments per minute",
 			points: [],
 		};
 		this.subredditTypes = [];

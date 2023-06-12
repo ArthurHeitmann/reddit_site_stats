@@ -104,6 +104,16 @@ svg {
               drop-shadow(0 0 80px rgba(0, 0, 0, 0.12));
     }
   }
+
+  .label-small {
+    font-size: 0.9rem;
+  }
+
+  .ticks-small {
+    g.tick text {
+      font-size: 0.9rem;
+    }
+  }
 }
 
 svg.subreddit-type-chart {

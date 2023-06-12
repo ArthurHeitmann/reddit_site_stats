@@ -19,7 +19,6 @@ export class Panel_RedditPerMinuteActivity extends CustomHtmlElement {
 				element: this,
 				title: "Posts and comments per minute",
 				// xLabel: "Time",
-				yLabel: "Count",
 			});
 			this.chart.createChart();
 		});
