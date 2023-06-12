@@ -318,14 +318,21 @@ main {
   }
 }
 
-table.subreddits-list {
+.table-wrapper {
+  overflow: auto;
+  max-height: min(60vh,55rem);
+  border: 2px solid #e1e1e1;
+
+  table.subreddits-list {
     width: 100%;
     border-collapse: collapse;
-    border: 2px solid #e1e1e1;
+    position: relative;
 
     thead {
-        background-color: #f8f8f8;
-        border-bottom: 2px solid #e1e1e1;
+      position: sticky;
+      top: 0;
+      background-color: #f8f8f8;
+      border-bottom: 2px solid #e1e1e1;
 
       th {
         padding: 0.5rem 1rem;
@@ -360,11 +367,11 @@ table.subreddits-list {
         border-bottom: 2px solid #e1e1e1;
 
         &:last-child {
-            border-bottom: none;
+          border-bottom: none;
         }
 
         td {
-            padding: 0.5rem 1rem;
+          padding: 0.5rem 1rem;
 
           &.type {
             --color: #000;
@@ -383,10 +390,7 @@ table.subreddits-list {
         }
       }
     }
-}
-
-.table-wrapper {
-  overflow-x: auto;
+  }
 }
 
 .global-loading-indicator {

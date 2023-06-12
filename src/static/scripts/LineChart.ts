@@ -27,7 +27,7 @@ export class LineChart {
 
 	private svg: Selection<SVGSVGElement, unknown, HTMLElement, any>;
 	private chartGroup: Selection<SVGGElement, unknown, HTMLElement, any>;
-	private margin = { top: 50, right: 30, bottom: 40, left: 30 };
+	private margin = { top: 50, right: 15, bottom: 30, left: 15 };
 	private fullWidth: number;
 	private height: number;
 
