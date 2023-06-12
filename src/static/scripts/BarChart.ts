@@ -29,7 +29,7 @@ export class BarChart {
 
 	private svg: Selection<SVGSVGElement, unknown, HTMLElement, any>;
 	private chartGroup: Selection<SVGGElement, unknown, HTMLElement, any>;
-	private margin = { top: 50, right: 10, bottom: 40, left: 20 };
+	private margin = { top: 50, right: 10, bottom: 40, left: 30 };
 	private fullWidth: number;
 	private height: number;
 
@@ -169,7 +169,87 @@ export class BarChart {
 					return this.data.colorOf(d.label);
 			});
 
+		// tooltip
+		const tooltip = this.chartGroup
+			.append("g")
+			.classed("tooltip", true)
+			.classed("hidden", true);
+		const tooltipRect = tooltip.append("rect")
+			.attr("width", 100)
+			.attr("height", 50)
+			.attr("rx", 5)
+			.attr("ry", 5);
+		const tooltipTime = tooltip.append("text")
+			.attr("x", 5)
+			.attr("y", 15);
+		const tooltipTotal = tooltip.append("text")
+			.classed("subscribers", true)
+			.attr("x", 5)
+			.attr("y", 30);
+		const tooltipBars = tooltip.append("text")
+			.classed("statusFrom", true)
+			.attr("x", 5)
+			.attr("y", 45);
 
+
+		const onMouseover = (event: MouseEvent) => {
+			const target = event.target as SVGRectElement;
+			if (!target.classList.contains("bar"))
+				return;
+			const barStack = d3.select(target.parentNode as SVGGElement);
+			const barGroup = d3.select(target.parentNode.parentNode as SVGGElement);
+			const barStackData = barStack.data()[0] as BarStack;
+			const barGroupData = barGroup.data()[0] as BarGroup;
+			const stackIndex = stackLabels.indexOf(barStackData.label);
+			const timeFormat = d3.timeFormat("%b %d, %H:%M");
+			const timeStr = timeFormat(new Date(barGroupData.time));
+			const numberFormat = this.data.yAxisFormat != undefined && this.data.yAxisFormat[stackIndex] != undefined
+				? this.data.yAxisFormat[stackIndex]
+				: (d: number) => d.toString();
+			const stackSum = barStackData.data.reduce((a, b) => a + b.value, 0);
+
+			tooltip.classed("hidden", false);
+			tooltipTime.text(timeStr);
+			tooltipTotal.text(`${numberFormat(stackSum)} ${barStackData.label}`);
+			tooltipBars.text(barStackData.data.map(d => `${d.label}: ${numberFormat(d.value)}`).join(", "));
+
+			const allTextBBoxes = [
+				tooltipTime,
+				tooltipTotal,
+				tooltipBars,
+			].map(e => e.node().getBBox());
+			const minLeft = Math.min(...allTextBBoxes.map(b => b.x));
+			const maxRight = Math.max(...allTextBBoxes.map(b => b.x + b.width));
+			const minTop = Math.min(...allTextBBoxes.map(b => b.y));
+			const maxBottom = Math.max(...allTextBBoxes.map(b => b.y + b.height));
+			const tooltipWidth = maxRight - minLeft;
+			const tooltipHeight = maxBottom - minTop;
+			tooltipRect
+				.attr("width", tooltipWidth + 10)
+				.attr("height", tooltipHeight + 10);
+
+			onMousemove(event);
+		};
+		const onMousemove = (event: MouseEvent) => {
+			let [xm, ym] = d3.pointer(event);
+			xm += 12;
+			const tooltipWidth = parseInt(tooltipRect.attr("width"));
+			const tooltipHeight = parseInt(tooltipRect.attr("height"));
+			const { width: svgWidth, height: svgHeight } = this.svg.node().getBoundingClientRect();
+			if (xm + tooltipWidth > svgWidth - this.margin.left)
+				xm -= tooltipWidth + 24;
+			if (ym + tooltipHeight > svgHeight - this.margin.top)
+				ym -= tooltipHeight + 24;
+			tooltip.attr("transform", `translate(${xm}, ${ym})`);
+		};
+		function onMouseout() {
+			tooltip.classed("hidden", true);
+		}
+
+		this.chartGroup
+			.on("mouseover", onMouseover)
+			.on("mousemove", onMousemove)
+			.on("mouseout", onMouseout);
 	}
 
 	updateData(newData: BarChartDataset) {

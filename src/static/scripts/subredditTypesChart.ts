@@ -241,6 +241,7 @@ export class SubredditTypeActivityChart {
 				.attr("width", tooltipWidth + 10)
 				.attr("height", tooltipHeight + 10);
 
+			onMousemove(event);
 		};
 		const onMousemove = (event: MouseEvent) => {
 			let [xm, ym] = d3.pointer(event);

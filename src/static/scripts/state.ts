@@ -195,7 +195,7 @@ export class State extends ChangeNotifier {
 			};
 		}
 		const totalDataset = createEmptyDataset("Total Subreddits", "Total", numberToShort);
-		const relativeDataset = createEmptyDataset("% of Total", "Relative", formatPercent);
+		const relativeDataset = createEmptyDataset("% of Total", "", formatPercent);
 		const subscribersDataset = createEmptyDataset("Total Subreddit Subscribers", "Subscribers", numberToShort);
 		const datasets: GroupedSubredditBarChartDataSets = {
 			[SubredditsBarChartCategory.count]: totalDataset,
