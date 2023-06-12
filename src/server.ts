@@ -27,8 +27,8 @@ export class Server {
 		const cache = apiCache.middleware;
 		const baseRateLimit = RateLimit({
 			message: "A little fast huh?",
-			windowMs: 60 * 1000,
-			max: 40,
+			windowMs: 5 * 1000,
+			max: 60,
 		});
 
 		this.app.use(baseRateLimit, express.static("src/static"));
@@ -41,8 +41,8 @@ export class Server {
 		apiRoute.use(cache("60 seconds", (req, res) => res.statusCode === 200));
 		apiRoute.use(RateLimit({
 			message: "A little fast huh?",
-			windowMs: 30 * 1000,
-			max: 7,
+			windowMs: 10 * 1000,
+			max: 12,
 		}));
 		apiRoute.use(compression());
 		apiRoute.get("/postsPerMinute", this.postsPerMinuteRoute.bind(this));

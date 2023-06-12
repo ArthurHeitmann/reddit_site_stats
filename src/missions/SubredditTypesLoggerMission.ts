@@ -36,7 +36,7 @@ export class SubredditTypesLoggerMission extends IntervalMission {
 			await this.loadFromFile();
 		let remainingSubreddits = Array.from(topSubreddits);
 		while (remainingSubreddits.length > 0) {
-			console.log(`Fetching... ${remainingSubreddits.length} remaining remaining`);
+			console.log(`Fetching... ${remainingSubreddits.length} subreddits remaining`);
 			const currentSubreddits = remainingSubreddits
 				.splice(0, 100)
 				.map(s => s.name);
