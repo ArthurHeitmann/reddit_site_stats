@@ -164,7 +164,7 @@ export class State extends ChangeNotifier {
 		let timeFrame = timeEnd - timeStart;
 		if (isNaN(timeFrame)) {
 			timeStart = 0;
-			timeEnd = 0;
+			// timeEnd = 0;
 			timeFrame = 0;
 		}
 		const timeBuckets = Math.ceil(timeFrame / timeResolution);

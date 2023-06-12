@@ -31,6 +31,7 @@ export class Panel_SubredditsList extends HTMLElement {
 			this.display();
 		});
 		this.data = this.transformData(state.subredditTypes);
+		this.sortColumnIndex = 3;
 
 		this.classList.add("panel");
 		this.append(makeElement("h2", {}, "Private Subreddits"));
