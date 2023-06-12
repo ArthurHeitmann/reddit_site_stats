@@ -6,6 +6,7 @@ import RateLimit from "express-rate-limit";
 import {LoggingMissions} from "./missions/LoggingMissions";
 import {PerMinuteLoggerMission} from "./missions/PerMinuteLoggerMission";
 import {TypeSection} from "./static/scripts/subredditTypesChart";
+import {logMiddleWare} from "./serverLog";
 
 export class Server {
 	app: Express;
@@ -31,9 +32,10 @@ export class Server {
 			max: 60,
 		});
 
+		this.app.use(logMiddleWare);
 		this.app.use(baseRateLimit, express.static("src/static"));
+
 		this.app.get("", baseRateLimit, (req, res) => {
-			console.log(`${logTimeStamp()} Sending index.html`);
 			res.sendFile("src/static/index.html");
 		});
 
@@ -146,11 +148,11 @@ export class Server {
 	}
 
 	private all(req: express.Request, res: express.Response) {
-		console.time("all");
+		// console.time("all");
 		const includeSfw = req.query.sfw === "true";
 		const includeNsfw = req.query.nsfw === "true";
 		const limit = parseInt(req.query.limit as string) || 100;
-		console.log(`${logTimeStamp()} /all includeSfw: ${includeSfw}, includeNsfw: ${includeNsfw}, limit: ${limit}`)
+		console.log(`/all includeSfw: ${includeSfw}, includeNsfw: ${includeNsfw}, limit: ${limit}`)
 		const ppm = this.pointsFromPerMinuteData(this.missions.ppm);
 		const cpm = this.pointsFromPerMinuteData(this.missions.cpm);
 		const subs = this.filterAndSortSubs(includeSfw, includeNsfw, limit);
@@ -166,7 +168,7 @@ export class Server {
 		// });
 		// res.header("Content-Type", "application/json");
 		// res.send(jsonStr);
-		console.timeEnd("all");
+		// console.timeEnd("all");
 	}
 }
 
@@ -175,8 +177,4 @@ export interface LoggedSubredditType_sections {
 	isNsfw: boolean;
 	subscribers: number;
 	typeSections: TypeSection[];
-}
-
-function logTimeStamp(): string {
-	return new Date().toISOString().replace(/T/, " ").replace(/\..+/, "");
 }

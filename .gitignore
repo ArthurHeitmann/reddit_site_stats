@@ -16,6 +16,7 @@ commentsPerMinute.json
 postsPerMinute.json
 subredditTypes.json
 topSubreddits.json
+requestLog.txt
 redditAuth.json
 
 .env
