@@ -1,7 +1,7 @@
 import {IntervalMission} from "./IntervalMission";
 import {RedditAuth} from "../redditApi";
 import fs, {promises as fsp} from "fs";
-import {base36Decode} from "../utils";
+import {base36Decode, saveJsonSafely} from "../utils";
 
 export interface LoggedThing {
 	id: string;
@@ -56,11 +56,6 @@ export abstract class PerMinuteLoggerMission extends IntervalMission {
 	}
 
 	private async saveToFile() {
-		if (fs.existsSync(this.logFile)) {
-			const backupFile = this.logFile + ".bak";
-			await fsp.copyFile(this.logFile, backupFile);
-		}
-		const jsonStr = JSON.stringify(this.logged, null, "\t");
-		await fsp.writeFile(this.logFile, jsonStr);
+		await saveJsonSafely(this.logged, this.logFile);
 	}
 }

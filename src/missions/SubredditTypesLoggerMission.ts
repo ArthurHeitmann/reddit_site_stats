@@ -3,7 +3,7 @@ import fs, {promises as fsp} from "fs";
 import {topSubreddits, topSubredditsByName} from "./topSubreddits";
 import {getSubredditsAbout, RedditAuth} from "../redditApi";
 import {SubredditDetails} from "../redditTypes";
-import {sleep} from "../utils";
+import {saveJsonSafely, sleep} from "../utils";
 
 export interface LoggedSubredditType_timestamps {
 	name: string;
@@ -16,7 +16,7 @@ export interface LoggedSubredditType_timestamps {
 }
 
 export class SubredditTypesLoggerMission extends IntervalMission {
-	static readonly INTERVAL = 1000 * 60 * 5;
+	static readonly INTERVAL = 1000 * 60 * 2.5;
 	static readonly saveFile = "subredditTypes.json";
 	private readonly auth: RedditAuth;
 	subreddits: {[subreddit: string]: LoggedSubredditType_timestamps};
@@ -35,59 +35,56 @@ export class SubredditTypesLoggerMission extends IntervalMission {
 		if (this.subreddits === undefined)
 			await this.loadFromFile();
 		let remainingSubreddits = Array.from(topSubreddits);
+		const loadedSubInfos: SubredditDetails[] = [];
 		while (remainingSubreddits.length > 0) {
 			console.log(`Fetching... ${remainingSubreddits.length} subreddits remaining`);
 			const currentSubreddits = remainingSubreddits
 				.splice(0, 100)
 				.map(s => s.name);
-			let subsInfo: SubredditDetails[];
+			let newSubsInfo: SubredditDetails[];
 			try {
-				subsInfo = await getSubredditsAbout(this.auth, currentSubreddits);
+				newSubsInfo = await getSubredditsAbout(this.auth, currentSubreddits);
 			} catch (e) {
-				console.log("Error fetching subreddits, waiting 30 seconds and trying again", e);
-				await sleep(1000 * 30);
+				console.log("Error fetching subreddits, waiting 10 seconds and trying again", e);
+				await sleep(1000 * 10);
 				try {
-					subsInfo = await getSubredditsAbout(this.auth, currentSubreddits);
+					newSubsInfo = await getSubredditsAbout(this.auth, currentSubreddits);
 				} catch (e) {
 					console.log("Failed again, skipping", e);
 					continue;
 				}
 			}
-			for (const subInfo of subsInfo) {
-				const subName = subInfo.url.split("/")[2];
-				let loggedSub: LoggedSubredditType_timestamps;
-				if (subName in this.subreddits) {
-					loggedSub = this.subreddits[subName];
-					// fix for previously missing subscribers
-					if (loggedSub.subscribers === undefined) {
-						loggedSub.subscribers = topSubredditsByName[subName]?.subscriberCount ?? subInfo.subscribers ?? 0;
-					}
+			loadedSubInfos.push(...newSubsInfo);
+		}
+		for (const subInfo of loadedSubInfos) {
+			const subName = subInfo.url.split("/")[2];
+			let loggedSub: LoggedSubredditType_timestamps;
+			if (subName in this.subreddits) {
+				loggedSub = this.subreddits[subName];
+				// fix for previously missing subscribers
+				if (loggedSub.subscribers === undefined) {
+					loggedSub.subscribers = topSubredditsByName[subName]?.subscriberCount ?? subInfo.subscribers ?? 0;
 				}
-				else {
-					loggedSub = {
-						name: subName,
-						isNsfw: subInfo.over18 ?? topSubredditsByName[subName]?.over18,
-						subscribers: topSubredditsByName[subName]?.subscriberCount ?? subInfo.subscribers ?? 0,
-						typeHistory: []
-					};
-					this.subreddits[subName] = loggedSub;
-				}
-				loggedSub.typeHistory.push({
-					time: Date.now(),
-					type: subInfo.subreddit_type
-				});
 			}
+			else {
+				loggedSub = {
+					name: subName,
+					isNsfw: subInfo.over18 ?? topSubredditsByName[subName]?.over18,
+					subscribers: topSubredditsByName[subName]?.subscriberCount ?? subInfo.subscribers ?? 0,
+					typeHistory: []
+				};
+				this.subreddits[subName] = loggedSub;
+			}
+			loggedSub.typeHistory.push({
+				time: Date.now(),
+				type: subInfo.subreddit_type
+			});
 		}
 		await this.saveToFile();
 	}
 
 	private async saveToFile() {
-		if (fs.existsSync(SubredditTypesLoggerMission.saveFile)) {
-			const backupFile = SubredditTypesLoggerMission.saveFile + ".bak";
-			await fsp.copyFile(SubredditTypesLoggerMission.saveFile, backupFile);
-		}
-		const jsonStr = JSON.stringify(this.subreddits, null, "\t");
-		await fsp.writeFile(SubredditTypesLoggerMission.saveFile, jsonStr);
+		await saveJsonSafely(this.subreddits, SubredditTypesLoggerMission.saveFile);
 	}
 
 	private async loadFromFile() {

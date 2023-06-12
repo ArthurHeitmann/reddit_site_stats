@@ -26,25 +26,25 @@ export class Server {
 			crossOriginEmbedderPolicy: false,
 		}));
 		const cache = apiCache.middleware;
-		const baseRateLimit = RateLimit({
-			message: "A little fast huh?",
-			windowMs: 5 * 1000,
-			max: 60,
-		});
+		// const baseRateLimit = RateLimit({
+		// 	message: "A little fast huh?",
+		// 	windowMs: 5 * 1000,
+		// 	max: 60,
+		// });
 
 		this.app.use(logMiddleWare);
-		this.app.use(baseRateLimit, express.static("src/static"));
+		this.app.use(express.static("src/static"));
 
-		this.app.get("", baseRateLimit, (req, res) => {
+		this.app.get("", (req, res) => {
 			res.sendFile("src/static/index.html");
 		});
 
 		const apiRoute = express.Router();
-		apiRoute.use(cache("60 seconds", (req, res) => res.statusCode === 200));
+		apiRoute.use(cache("15 seconds", (req, res) => res.statusCode === 200));
 		apiRoute.use(RateLimit({
 			message: "A little fast huh?",
 			windowMs: 10 * 1000,
-			max: 12,
+			max: 30,
 		}));
 		apiRoute.use(compression());
 		apiRoute.get("/postsPerMinute", this.postsPerMinuteRoute.bind(this));
