@@ -20,6 +20,7 @@ interface StoredSettings {
 	subredditsBarChartCategory: SubredditsBarChartCategory;
 	startDate: number|null;
 	endDate: number|null;
+	smoothPerMinuteData: boolean;
 }
 export class Settings {
 	includeSfw: Prop<boolean>;
@@ -29,6 +30,7 @@ export class Settings {
 	subredditsBarChartCategory: Prop<SubredditsBarChartCategory>;
 	startDate: Prop<number|null>;
 	endDate: Prop<number|null>;
+	smoothPerMinuteData: Prop<boolean>;
 	onRequiresRefresh: ChangeNotifier;
 	private static LOCAL_STORAGE_KEY = "reddit_stats_settings";
 
@@ -41,6 +43,7 @@ export class Settings {
 		this.subredditsBarChartCategory = new Prop(SubredditsBarChartCategory.count);
 		this.startDate = new Prop(null);
 		this.endDate = new Prop(null);
+		this.smoothPerMinuteData = new Prop(false);
 		this.loadFromLocalStorage();
 
 		this.includeSfw.addListener(() => this.onPropChange(true));
@@ -50,6 +53,7 @@ export class Settings {
 		this.subredditsBarChartCategory.addListener(() => this.onPropChange(false));
 		this.startDate.addListener(() => this.onPropChange(false));
 		this.endDate.addListener(() => this.onPropChange(false));
+		this.smoothPerMinuteData.addListener(() => this.onPropChange(false));
 	}
 
 	private loadFromLocalStorage() {
@@ -64,6 +68,7 @@ export class Settings {
 				this.subredditsBarChartCategory.value = parsed.subredditsBarChartCategory ?? this.subredditsBarChartCategory.value;
 				this.startDate.value = parsed.startDate ?? this.startDate.value;
 				this.endDate.value = parsed.endDate ?? this.endDate.value;
+				this.smoothPerMinuteData.value = parsed.smoothPerMinuteData ?? this.smoothPerMinuteData.value;
 			}
 		} catch (e) {
 			console.error(e);
@@ -79,6 +84,7 @@ export class Settings {
 			subredditsBarChartCategory: this.subredditsBarChartCategory.value,
 			startDate: this.startDate.value,
 			endDate: this.endDate.value,
+			smoothPerMinuteData: this.smoothPerMinuteData.value,
 		}
 		localStorage.setItem(Settings.LOCAL_STORAGE_KEY, JSON.stringify(settings));
 	}
