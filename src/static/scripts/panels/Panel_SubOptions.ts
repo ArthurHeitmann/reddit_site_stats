@@ -1,6 +1,6 @@
-import {ToggleButton, ToggleButtonRoundCorners} from "./ToggleButton";
-import {colorOfSubTypeMap, makeElement} from "./utils";
-import {State} from "./state";
+import {ToggleButton, ToggleButtonRoundCorners} from "../ToggleButton";
+import {colorOfSubTypeMap, makeElement} from "../utils";
+import {State} from "../state";
 
 
 const limitsConfig = [

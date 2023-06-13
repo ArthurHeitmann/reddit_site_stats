@@ -1,10 +1,10 @@
-import {LineDataset, Point} from "./LineChart";
-import {LoggedSubredditType_sections, SubredditTypeChartDensity} from "./subredditTypesChart";
+import {LineDataset, Point} from "./charts/LineChart";
+import {LoggedSubredditType_sections, SubredditTypeChartDensity} from "./charts/subredditTypesChart";
 import {ChangeNotifier} from "./ChangeNotifier";
 import {Prop} from "./Prop";
 import {colorOfSubType, debounce, formatPercent, numberToShort} from "./utils";
-import {BarChartDataset, BarData, BarGroup, BarStack, BarYAxisFormat} from "./BarChart";
-import {SubredditsBarChartCategory} from "./Panel_SubredditsBarChart";
+import {BarChartDataset, BarData, BarGroup, BarStack, BarYAxisFormat} from "./charts/BarChart";
+import {SubredditsBarChartCategory} from "./panels/Panel_SubredditsBarChart";
 import {GlobalLoadingIndicator} from "./GlobalLoadingIndicator";
 
 interface CombinedResponse {

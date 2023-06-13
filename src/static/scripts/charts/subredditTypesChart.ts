@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 import {Selection} from "d3";
-import {colorOfSubType, formatTime, numberToShort, throttle, windowWidthResizeEvents} from "./utils";
+import {colorOfSubType, formatTime, numberToShort, throttle, windowWidthResizeEvents} from "../utils";
 
 type SubredditType = "public" | "private" | "restricted" | "gold_only" | string;
 export interface TypeTimestamp {

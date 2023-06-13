@@ -1,6 +1,6 @@
-import {State} from "./state";
-import {LineChart} from "./LineChart";
-import {CustomHtmlElement} from "./CustomHtmlElement";
+import {State} from "../state";
+import {LineChart} from "../charts/LineChart";
+import {CustomHtmlElement} from "../CustomHtmlElement";
 
 export class Panel_RedditPerMinuteActivity extends CustomHtmlElement {
 	state: State;

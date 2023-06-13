@@ -1,8 +1,8 @@
-import {State} from "./state";
-import {BarChart, BarChartDataset} from "./BarChart";
-import {ToggleButton, ToggleButtonRoundCorners} from "./ToggleButton";
-import {makeElement} from "./utils";
-import {CustomHtmlElement} from "./CustomHtmlElement";
+import {State} from "../state";
+import {BarChart, BarChartDataset} from "../charts/BarChart";
+import {ToggleButton, ToggleButtonRoundCorners} from "../ToggleButton";
+import {makeElement} from "../utils";
+import {CustomHtmlElement} from "../CustomHtmlElement";
 
 export enum SubredditsBarChartCategory {
 	count,

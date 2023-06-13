@@ -1,8 +1,8 @@
-import {State} from "./state";
-import {SubredditTypeActivityChart, SubredditTypeChartDensity} from "./subredditTypesChart";
-import {makeElement} from "./utils";
-import {ToggleButton, ToggleButtonRoundCorners} from "./ToggleButton";
-import {CustomHtmlElement} from "./CustomHtmlElement";
+import {State} from "../state";
+import {SubredditTypeActivityChart, SubredditTypeChartDensity} from "../charts/subredditTypesChart";
+import {makeElement} from "../utils";
+import {ToggleButton, ToggleButtonRoundCorners} from "../ToggleButton";
+import {CustomHtmlElement} from "../CustomHtmlElement";
 
 const densityConfig: {
 	density: SubredditTypeChartDensity,

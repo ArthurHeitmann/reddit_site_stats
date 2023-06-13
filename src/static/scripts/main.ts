@@ -1,12 +1,13 @@
 import {State} from "./state";
-import {Panel_RedditPerMinuteActivity} from "./Panel_RedditPerMinuteActivity";
-import {Panel_SubredditStatusTimeline} from "./Panel_SubredditStatusTimeline";
-import {Panel_SubredditsBarChart} from "./Panel_SubredditsBarChart";
-import {Panel_SubOptions} from "./Panel_SubOptions";
-import {Panel_SubredditsList} from "./Panel_SubredditsList";
+import {Panel_RedditPerMinuteActivity} from "./panels/Panel_RedditPerMinuteActivity";
+import {Panel_SubredditStatusTimeline} from "./panels/Panel_SubredditStatusTimeline";
+import {Panel_SubredditsBarChart} from "./panels/Panel_SubredditsBarChart";
+import {Panel_SubOptions} from "./panels/Panel_SubOptions";
+import {Panel_PrivateSubredditsList} from "./panels/Panel_PrivateSubredditsList";
 import {LayoutSwitcher} from "./LayoutSwitcher";
-import {Panel_Welcome} from "./Panel_Welcome";
+import {Panel_Welcome} from "./panels/Panel_Welcome";
 import {GlobalLoadingIndicator} from "./GlobalLoadingIndicator";
+import {Panel_NoLongerPrivateSubredditsList} from "./panels/Panel_NoLongerPrivateSubredditsList";
 
 
 async function main() {
@@ -15,14 +16,16 @@ async function main() {
 	const subOptions = new Panel_SubOptions(state);
 	const subredditsBarChart = new Panel_SubredditsBarChart(state);
 	const redditPerMinuteActivity = new Panel_RedditPerMinuteActivity(state);
-	const subredditsList = new Panel_SubredditsList(state);
+	const privateSubredditsList = new Panel_PrivateSubredditsList(state);
+	const noLongerPrivateSubredditsList = new Panel_NoLongerPrivateSubredditsList(state);
 	const subredditStatusTimeline = new Panel_SubredditStatusTimeline(state);
 	const layout = new LayoutSwitcher([
 		{ element: welcome, column: 0, row: 0 },
 		{ element: subOptions, column: 0, row: 1 },
 		{ element: subredditsBarChart, column: 0, row: 2 },
 		{ element: redditPerMinuteActivity, column: 1, row: 0 },
-		{ element: subredditsList, column: 0, row: 3 },
+		{ element: privateSubredditsList, column: 0, row: 3 },
+		{ element: noLongerPrivateSubredditsList, column: 0, row: 4 },
 		{ element: subredditStatusTimeline, column: 1, row: 1 },
 	]);
 	const mainElement = document.querySelector("main");

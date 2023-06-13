@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 import {Axis, Selection} from "d3";
-import {formatTime, isJsonEqual, throttle, windowWidthResizeEvents} from "./utils";
+import {formatTime, isJsonEqual, throttle, windowWidthResizeEvents} from "../utils";
 
 export interface BarData {
 	label: string;
