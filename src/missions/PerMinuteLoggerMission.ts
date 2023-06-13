@@ -1,7 +1,7 @@
 import {IntervalMission} from "./IntervalMission";
 import {RedditAuth} from "../redditApi";
 import fs, {promises as fsp} from "fs";
-import {base36Decode, saveJsonSafely} from "../utils";
+import {base36Decode, saveJsonSafely, sleep} from "../utils";
 
 export interface LoggedThing {
 	id: string;
@@ -30,7 +30,24 @@ export abstract class PerMinuteLoggerMission extends IntervalMission {
 
 	async run() {
 		console.log("Logging");
-		const newThing = await this.getNewThing();
+		let newThing: LoggedThing;
+		try {
+			newThing = await this.getNewThing();
+		} catch (e) {
+			console.log("Failed to get new thing");
+			console.log(e);
+			console.log("Trying again in 2 seconds");
+			await sleep(1000 * 2);
+			try {
+				newThing = await this.getNewThing();
+			}
+			catch (e) {
+				console.log("Failed to get new thing again");
+				console.log(e);
+				console.log("Skipping");
+				return;
+			}
+		}
 		if (this.logged.length === 0)
 			this.logged = await this.loadFromFile();
 		let postsPerMinute: number|null = null;

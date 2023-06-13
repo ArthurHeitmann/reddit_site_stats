@@ -1,7 +1,7 @@
 import {LoggedThing, PerMinuteLoggerMission} from "./PerMinuteLoggerMission";
 import {getMostRecentPost, RedditAuth} from "../redditApi";
 
-export class PostsPerMinuteLoggerMission extends  PerMinuteLoggerMission{
+export class PostsPerMinuteLoggerMission extends  PerMinuteLoggerMission {
 	constructor(auth: RedditAuth) {
 		super(auth, "postsPerMinute.json");
 	}
