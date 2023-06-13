@@ -2,7 +2,7 @@ import {LineDataset, Point} from "./charts/LineChart";
 import {LoggedSubredditType_sections, SubredditTypeChartDensity} from "./charts/subredditTypesChart";
 import {ChangeNotifier} from "./ChangeNotifier";
 import {Prop} from "./Prop";
-import {colorOfSubType, debounce, formatPercent, numberToShort} from "./utils";
+import {colorOfSubType, debounce, deepCopy, formatPercent, numberToShort} from "./utils";
 import {BarChartDataset, BarData, BarGroup, BarStack, BarYAxisFormat} from "./charts/BarChart";
 import {SubredditsBarChartCategory} from "./panels/Panel_SubredditsBarChart";
 import {GlobalLoadingIndicator} from "./GlobalLoadingIndicator";
@@ -18,6 +18,8 @@ interface StoredSettings {
 	subredditsLimit: number;
 	subredditTypeChartDensity: SubredditTypeChartDensity;
 	subredditsBarChartCategory: SubredditsBarChartCategory;
+	startDate: number|null;
+	endDate: number|null;
 }
 export class Settings {
 	includeSfw: Prop<boolean>;
@@ -25,6 +27,8 @@ export class Settings {
 	subredditsLimit: Prop<number>;
 	subredditTypeChartDensity: Prop<SubredditTypeChartDensity>;
 	subredditsBarChartCategory: Prop<SubredditsBarChartCategory>;
+	startDate: Prop<number|null>;
+	endDate: Prop<number|null>;
 	onRequiresRefresh: ChangeNotifier;
 	private static LOCAL_STORAGE_KEY = "reddit_stats_settings";
 
@@ -35,6 +39,8 @@ export class Settings {
 		this.subredditsLimit = new Prop(500);
 		this.subredditTypeChartDensity = new Prop(SubredditTypeChartDensity.small);
 		this.subredditsBarChartCategory = new Prop(SubredditsBarChartCategory.count);
+		this.startDate = new Prop(null);
+		this.endDate = new Prop(null);
 		this.loadFromLocalStorage();
 
 		this.includeSfw.addListener(() => this.onPropChange(true));
@@ -42,6 +48,8 @@ export class Settings {
 		this.subredditsLimit.addListener(() => this.onPropChange(true));
 		this.subredditTypeChartDensity.addListener(() => this.onPropChange(false));
 		this.subredditsBarChartCategory.addListener(() => this.onPropChange(false));
+		this.startDate.addListener(() => this.onPropChange(false));
+		this.endDate.addListener(() => this.onPropChange(false));
 	}
 
 	private loadFromLocalStorage() {
@@ -54,6 +62,8 @@ export class Settings {
 				this.subredditsLimit.value = parsed.subredditsLimit ?? this.subredditsLimit.value;
 				this.subredditTypeChartDensity.value = parsed.subredditTypeChartDensity ?? this.subredditTypeChartDensity.value;
 				this.subredditsBarChartCategory.value = parsed.subredditsBarChartCategory ?? this.subredditsBarChartCategory.value;
+				this.startDate.value = parsed.startDate ?? this.startDate.value;
+				this.endDate.value = parsed.endDate ?? this.endDate.value;
 			}
 		} catch (e) {
 			console.error(e);
@@ -67,6 +77,8 @@ export class Settings {
 			subredditsLimit: this.subredditsLimit.value,
 			subredditTypeChartDensity: this.subredditTypeChartDensity.value,
 			subredditsBarChartCategory: this.subredditsBarChartCategory.value,
+			startDate: this.startDate.value,
+			endDate: this.endDate.value,
 		}
 		localStorage.setItem(Settings.LOCAL_STORAGE_KEY, JSON.stringify(settings));
 	}
@@ -82,10 +94,14 @@ type GroupedSubredditBarChartDataSets = { [category in SubredditsBarChartCategor
 
 export class State extends ChangeNotifier {
 	settings: Settings;
-	ppm: LineDataset;
-	cpm: LineDataset;
-	subredditTypes: LoggedSubredditType_sections[];
-	subredditsBarCharts: GroupedSubredditBarChartDataSets
+	ppmFull: LineDataset;
+	cpmFull: LineDataset;
+	ppmFiltered: LineDataset;
+	cpmFiltered: LineDataset;
+	subredditTypesFull: LoggedSubredditType_sections[];
+	subredditsBarChartsFull: GroupedSubredditBarChartDataSets
+	subredditTypesFiltered: LoggedSubredditType_sections[];
+	subredditsBarChartsFiltered: GroupedSubredditBarChartDataSets
 
 	private refreshInterval: NodeJS.Timeout | null = null;
 
@@ -94,19 +110,26 @@ export class State extends ChangeNotifier {
 
 		this.settings = new Settings();
 		this.settings.onRequiresRefresh.addListener(debounce(this.load.bind(this), 500));
+		this.settings.startDate.addListener(debounce(this.onDateChange.bind(this), 500));
+		this.settings.endDate.addListener(debounce(this.onDateChange.bind(this), 500));
 
-		this.ppm = {
+		this.ppmFull = {
 			name: "Posts",
 			yLabel: "Posts per minute",
 			points: [],
 		};
-		this.cpm = {
+		this.cpmFull = {
 			name: "Comments",
 			yLabel: "Comments per minute",
 			points: [],
 		};
-		this.subredditTypes = [];
-		this.subredditsBarCharts = this.transformSubsData(this.subredditTypes);
+		this.ppmFiltered = deepCopy(this.ppmFull);
+		this.cpmFiltered = deepCopy(this.cpmFull);
+		this.subredditTypesFull = [];
+		this.subredditsBarChartsFull = this.transformSubsData(this.subredditTypesFull);
+		this.subredditTypesFiltered = [];
+		this.subredditsBarChartsFiltered = this.transformSubsData(this.subredditTypesFiltered);
+		this.filterData();
 	}
 
 	async load(): Promise<void> {
@@ -124,11 +147,12 @@ export class State extends ChangeNotifier {
 		}
 		const all = await allRes.json() as CombinedResponse;
 
-		this.ppm.points = all.ppm;
-		this.cpm.points = all.cpm;
+		this.ppmFull.points = all.ppm;
+		this.cpmFull.points = all.cpm;
 		// convert timestamps to sections
-		this.subredditTypes = all.subs;
-		this.subredditsBarCharts = this.transformSubsData(this.subredditTypes);
+		this.subredditTypesFull = all.subs;
+		this.subredditsBarChartsFull = this.transformSubsData(this.subredditTypesFull);
+		this.filterData();
 
 		this.notifyListeners();
 	}
@@ -245,6 +269,35 @@ export class State extends ChangeNotifier {
 		}
 
 		return datasets;
+	}
+
+	private filterData(): void {
+		if (this.settings.startDate.value == null && this.settings.endDate.value == null) {
+			this.ppmFiltered.points = this.ppmFull.points;
+			this.cpmFiltered.points = this.cpmFull.points;
+			this.subredditTypesFiltered = this.subredditTypesFull;
+			this.subredditsBarChartsFiltered = this.subredditsBarChartsFull;
+			return;
+		}
+
+		const startDate = this.settings.startDate.value || 0;
+		const endDate = this.settings.endDate.value || Number.MAX_SAFE_INTEGER;
+		this.ppmFiltered.points = this.ppmFull.points.filter(point => point.x >= startDate && point.x <= endDate);
+		this.cpmFiltered.points = this.cpmFull.points.filter(point => point.x >= startDate && point.x <= endDate);
+		this.subredditTypesFiltered = this.subredditTypesFull.filter(sub => {
+			const lastSection = sub.typeSections[sub.typeSections.length - 1];
+			return lastSection.startTime + lastSection.duration >= startDate && lastSection.startTime <= endDate;
+		});
+		for (const category in this.subredditsBarChartsFull) {
+			const fullDataset = this.subredditsBarChartsFull[category] as BarChartDataset;
+			const filteredDataset = this.subredditsBarChartsFiltered[category] as BarChartDataset;
+			filteredDataset.groups = fullDataset.groups.filter(group => group.time >= startDate && group.time <= endDate);
+		}
+	}
+
+	private onDateChange(): void {
+		this.filterData();
+		this.notifyListeners();
 	}
 
 	setRefreshInterval(interval: number = 1000 * 60): void {

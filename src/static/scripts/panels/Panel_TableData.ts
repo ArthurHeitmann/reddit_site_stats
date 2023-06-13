@@ -24,10 +24,10 @@ export abstract class Panel_TableData<T> extends HTMLElement {
 		this.columnHeaderNames = columnHeaderNames;
 		this.sortColumnIndex = sortColumnIndex;
 		this.state.addListener(() => {
-			this.data = this.transformData(state.subredditTypes);
+			this.data = this.transformData(state.subredditTypesFull);
 			this.display();
 		});
-		this.data = this.transformData(state.subredditTypes);
+		this.data = this.transformData(state.subredditTypesFull);
 
 		this.classList.add("panel");
 		this.append(makeElement("h2", {}, title));

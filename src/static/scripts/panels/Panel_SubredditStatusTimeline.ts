@@ -38,7 +38,7 @@ export class Panel_SubredditStatusTimeline extends CustomHtmlElement {
 	constructor(state: State) {
 		super();
 		this.state = state;
-		this.state.addListener(() => this.chart.updateData(this.state.subredditTypes));
+		this.state.addListener(() => this.chart.updateData(this.state.subredditTypesFull));
 		this.state.settings.subredditTypeChartDensity.addListener(() => {
 			this.chart.updateDensity(this.state.settings.subredditTypeChartDensity.value);
 		});
@@ -64,7 +64,7 @@ export class Panel_SubredditStatusTimeline extends CustomHtmlElement {
 
 		this.onFirstConnected.addListener(() => {
 			this.chart = new SubredditTypeActivityChart({
-				data: this.state.subredditTypes,
+				data: this.state.subredditTypesFull,
 				element: this,
 				title: "Subreddit status",
 				// xLabel: "Time",

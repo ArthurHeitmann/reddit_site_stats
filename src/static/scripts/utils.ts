@@ -234,3 +234,11 @@ class WindowWidthResizeEvents extends ChangeNotifier {
 	}
 }
 export const windowWidthResizeEvents = new WindowWidthResizeEvents();
+
+export function clamp(value: number, min: number, max: number): number {
+	return Math.min(Math.max(value, min), max);
+}
+
+export function deepCopy<T>(obj: T): T {
+	return JSON.parse(JSON.stringify(obj));
+}

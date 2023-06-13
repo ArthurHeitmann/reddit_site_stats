@@ -5,7 +5,7 @@ import apiCache from "apicache";
 import RateLimit from "express-rate-limit";
 import {LoggingMissions} from "./missions/LoggingMissions";
 import {PerMinuteLoggerMission} from "./missions/PerMinuteLoggerMission";
-import {TypeSection} from "./static/scripts/subredditTypesChart";
+import {TypeSection} from "./static/scripts/charts/subredditTypesChart";
 import {logMiddleWare} from "./serverLog";
 
 export class Server {
@@ -33,9 +33,9 @@ export class Server {
 		// });
 
 		this.app.use(logMiddleWare);
-		this.app.use(express.static("src/static"));
+		this.app.use(compression(), express.static("src/static"));
 
-		this.app.get("", (req, res) => {
+		this.app.get("", compression(), (req, res) => {
 			res.sendFile("src/static/index.html");
 		});
 

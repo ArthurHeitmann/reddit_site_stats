@@ -72,7 +72,7 @@ export class Panel_SubredditsBarChart extends CustomHtmlElement {
 
 	private get chartDataset(): BarChartDataset {
 		const selectedCategory = this.state.settings.subredditsBarChartCategory.value;
-		return this.state.subredditsBarCharts[selectedCategory];
+		return this.state.subredditsBarChartsFiltered[selectedCategory];
 	}
 }
 
