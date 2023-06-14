@@ -4,12 +4,15 @@ import {LoggedSubredditType_sections} from "../charts/subredditTypesChart";
 
 export abstract class Panel_TableData<T> extends HTMLElement {
 	private state: State;
+	private readonly titleName: string;
 	private readonly columnIndexToKey: string[];
 	private readonly columnHeaderNames: string[];
 	private readonly content: HTMLElement;
 	private data: T[] = [];
 	private sortColumnIndex: number|null = null;
 	private sortAscending: boolean = true;
+
+	private readonly titleElement: HTMLElement;
 
 	constructor(
 		state: State,
@@ -20,6 +23,7 @@ export abstract class Panel_TableData<T> extends HTMLElement {
 	) {
 		super();
 		this.state = state;
+		this.titleName = title;
 		this.columnIndexToKey = columnIndexToKey;
 		this.columnHeaderNames = columnHeaderNames;
 		this.sortColumnIndex = sortColumnIndex;
@@ -30,7 +34,7 @@ export abstract class Panel_TableData<T> extends HTMLElement {
 		this.data = this.transformData(state.subredditTypesFull);
 
 		this.classList.add("panel");
-		this.append(makeElement("h2", {}, title));
+		this.append(this.titleElement = makeElement("h2", {}, title));
 		this.content = makeElement("div", {class: "content table-wrapper"});
 		this.append(this.content);
 
@@ -38,6 +42,7 @@ export abstract class Panel_TableData<T> extends HTMLElement {
 	}
 
 	display() {
+		this.titleElement.innerText = `${this.titleName} (${this.data.length})`;
 		this.content.innerText = "";
 		const table = makeElement("table", {class: "subreddits-list"});
 		const thead = makeElement("thead");
