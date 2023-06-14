@@ -1,39 +1,38 @@
+@use "default";
+@use "vars";
+
 :root {
-  font-size: 12px;
+  background: vars.$background;
+  color: vars.$text-color;
+
+  &.dark-mode {
+    // change scrollbar color
+    scrollbar-color: #3a3a3a #121212;
+
+    ::-webkit-scrollbar {
+      width: 0.5rem;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #121212;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #3a3a3a;
+    }
+  }
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Lato', sans-serif;
+a {
+  color: vars.$link-color;
+
+  &:visited {
+    color: vars.$link-visited-color;
+  }
 }
 
-button {
-  cursor: pointer;
-  border: none;
-  background-color: transparent;
-  font-family: inherit;
-  font-size: inherit;
-  color: inherit;
-}
-
-input {
-  font-family: inherit;
-  font-size: inherit;
-  color: inherit;
-}
-
-ol, ul {
-  list-style-position: inside;
-}
-
-:focus {
-  outline: none;
-}
-
-:focus-visible {
-  outline: 2px solid #617c98;
+.hidden {
+  display: none;
 }
 
 .chart {
@@ -43,6 +42,7 @@ ol, ul {
 svg {
   text {
     font-weight: 700;
+    fill: vars.$text-color;
 
     &.title {
       font-size: 1.75rem;
@@ -91,8 +91,8 @@ svg {
 
   .tooltip {
     rect {
-      fill: #fff;
-      stroke: #e1e1e1;
+      fill: vars.$panel-bg-color;
+      stroke: vars.$border-color;
       stroke-width: 2px;
       border-radius: 5px;
       filter:
@@ -126,10 +126,6 @@ svg.subreddit-type-chart {
         font-size: 0.8rem;
     }
   }
-}
-
-.hidden {
-  display: none;
 }
 
 main {
@@ -172,8 +168,8 @@ main {
   flex-flow: column;
   padding: 1rem;
   border-radius: 1rem;
-  border: 2px solid #e1e1e1;
-  background-color: #fff;
+  background-color: vars.$panel-bg-color;
+  border: vars.$panel-border-width solid vars.$border-color;
   box-shadow:
           0.6px 0.6px 2.2px rgba(0, 0, 0, 0.034),
           1.3px 1.3px 5.3px rgba(0, 0, 0, 0.048),
@@ -189,45 +185,45 @@ main {
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background-color: #f8f8f8;
-    --border-color: #d5d5d5;
+    background-color: vars.$button-bg-color;
+    --button-border-color: var(--border-color);
     --border-width: 1.5px;
     --border-radius: 0.5rem;
-    border-top: var(--border-width) solid var(--border-color);
-    border-bottom: var(--border-width) solid var(--border-color);
+    border-top: var(--border-width) solid var(--button-border-color);
+    border-bottom: var(--border-width) solid var(--button-border-color);
     transition: all 0.2s ease-in-out;
 
     &:hover {
-        background-color: #e1e1e1;
+        background-color: vars.$button-bg-color-hover;
     }
 
     &.on {
-      background-color: #e0e0e0;
-      --border-color: #bdbdbd;
+      background-color: vars.$button-bg-color-on;
+      --button-border-color: var(--button-bg-color-on);
     }
 
     &.round-corners-left {
       border-top-left-radius: var(--border-radius);
       border-bottom-left-radius: var(--border-radius);
-      border-left: var(--border-width) solid var(--border-color);
+      border-left: var(--border-width) solid var(--button-border-color);
     }
 
     &.round-corners-right {
       border-top-right-radius: var(--border-radius);
       border-bottom-right-radius: var(--border-radius);
-      border-right: var(--border-width) solid var(--border-color);
-      border-left: var(--border-width) solid var(--border-color);
+      border-right: var(--border-width) solid var(--button-border-color);
+      border-left: var(--border-width) solid var(--button-border-color);
     }
 
     &.round-corners-both {
       border-radius: var(--border-radius);
-      border-left: var(--border-width) solid var(--border-color);
-      border-right: var(--border-width) solid var(--border-color);
+      border-left: var(--border-width) solid var(--button-border-color);
+      border-right: var(--border-width) solid var(--button-border-color);
     }
 
     &.round-corners-none {
       border-radius: 0;
-      border-left: var(--border-width) solid var(--border-color);
+      border-left: var(--border-width) solid var(--button-border-color);
     }
   }
 }
@@ -304,8 +300,7 @@ main {
     padding: 0.1rem;
     margin-bottom: -1px;
     border: none;
-    border-bottom: 2px solid #e1e1e1;
-    background-color: #fff;
+    border-bottom: 2px solid vars.$border-color;
     transition: all 0.2s ease-in-out;
 
     &:focus {
@@ -331,7 +326,7 @@ main {
 .table-wrapper {
   overflow: auto;
   max-height: min(60vh,55rem);
-  border: 2px solid #e1e1e1;
+  border: 2px solid vars.$border-color;
 
   table.subreddits-list {
     width: 100%;
@@ -341,8 +336,8 @@ main {
     thead {
       position: sticky;
       top: 0;
-      background-color: #f8f8f8;
-      border-bottom: 2px solid #e1e1e1;
+      background-color: vars.$table-header-bg-color;
+      border-bottom: 2px solid vars.$border-color;
 
       th {
         padding: 0.5rem 1rem;
@@ -374,7 +369,7 @@ main {
 
     tbody {
       tr {
-        border-bottom: 2px solid #e1e1e1;
+        border-bottom: 2px solid vars.$border-color;
 
         &:last-child {
           border-bottom: none;
@@ -459,7 +454,7 @@ main {
       left: 0;
       width: 100%;
       height: 4px;
-      background-color: #d6dade;
+      background-color: vars.$input-range-bg-color;
       transform: translateY(-50%);
     }
 
@@ -469,7 +464,7 @@ main {
       left: var(--left);
       width: calc(var(--right) - var(--left));
       height: 4px;
-      background-color: #1f77b4;
+      background-color: vars.$input-range-fill-color;
       transform: translateY(-50%);
     }
 
@@ -479,9 +474,9 @@ main {
       width: 1.25rem;
       height: 1.25rem;
       border-radius: 50%;
-      background-color: white;
+      background-color: vars.$input-range-handle-color;
       transform: translate(-50%, -50%);
-      border: 1px solid #cad0d9;
+      border: 1px solid vars.$input-range-handle-border-color;
       cursor: pointer;
       filter:
         drop-shadow(0px 0px 0.1px rgba(0, 0, 0, 0.167))
@@ -496,6 +491,28 @@ main {
 
     .handle-right {
       left: var(--right);
+    }
+  }
+}
+
+.welcome-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+
+  button {
+    font-size: 1.25rem;
+  }
+
+  h2 {
+    margin-bottom: 0;
+  }
+}
+
+.dark-mode {
+  .welcome-header {
+    button {
+      font-size: 1.5rem;
     }
   }
 }

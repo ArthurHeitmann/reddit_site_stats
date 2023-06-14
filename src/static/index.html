@@ -17,6 +17,26 @@
 	<meta property="og:image" content="/img/moon.png">
 	<meta property="og:url" content="https://blackout.photon-reddit.com/">
 	<meta property="og:description" content="Tracking the scale of the reddit blackout in real time, across the top 1500 most popular subreddits.">
+	<script>
+		// add dark mode class to html element if user has dark mode enabled
+		function prefersDarkMode() {
+			return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+		}
+		function getDarkModePreference() {
+			if (!localStorage.getItem("darkMode"))
+				return null;
+			return localStorage.getItem("darkMode") === "true";
+		}
+		function updateDarkMode() {
+			const darkMode = getDarkModePreference();
+			if (darkMode === null) {
+				document.documentElement.classList.toggle("dark-mode", prefersDarkMode());
+			} else {
+				document.documentElement.classList.toggle("dark-mode", darkMode);
+			}
+		}
+		updateDarkMode();
+	</script>
 </head>
 <body>
 <main>

@@ -207,16 +207,35 @@ export function isJsonEqual(obj1: object, obj2: object) {
 	return JSON.stringify(obj1) === JSON.stringify(obj2);
 }
 
-export const colorOfSubTypeMap = {
+export function preferDarkMode(): boolean {
+	return document.documentElement.classList.contains("dark-mode");
+}
+export function setPrefersDarkMode(preference: boolean) {
+	window.localStorage.setItem("darkMode", preference ? "true" : "false");
+	location.reload();
+}
+export function togglePrefersDarkMode() {
+	setPrefersDarkMode(!preferDarkMode());
+}
+const lightModeSubColors = {
 	"public": "#1f77b4",
 	"private": "#252525",
 	"restricted": "#c77d15",
 	// "gold_only": "#d62728",
+};
+const darkModeSubColors = {
+	"public": "#0e6094",
+	"private": "#b7b7b7",
+	"restricted": "#c77d15",
+	// "gold_only": "#d62728",
 }
+export const colorOfSubTypeMap = preferDarkMode()
+	? darkModeSubColors
+	: lightModeSubColors;
+
 export function colorOfSubType(type: string) {
 	return colorOfSubTypeMap[type] || "#d62728";
 }
-
 class WindowWidthResizeEvents extends ChangeNotifier {
 	private previouseWidth: number;
 
@@ -233,6 +252,7 @@ class WindowWidthResizeEvents extends ChangeNotifier {
 		}
 	}
 }
+
 export const windowWidthResizeEvents = new WindowWidthResizeEvents();
 
 export function clamp(value: number, min: number, max: number): number {
