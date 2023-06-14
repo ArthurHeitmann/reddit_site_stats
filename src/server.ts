@@ -38,6 +38,7 @@ export class Server {
 		// 	max: 60,
 		// });
 
+		this.app.use(logMiddleWare);
 		this.app.use(this.setCacheControl.bind(this));
 		this.app.use(compression(), express.static("src/static"));
 
