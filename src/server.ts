@@ -9,6 +9,7 @@ import {TypeSection} from "./static/scripts/charts/subredditTypesChart";
 import {logMiddleWare} from "./serverLog";
 
 export class Server {
+	private readonly cacheDuration = 30;
 	app: Express;
 	port: number;
 	missions: LoggingMissions;
@@ -25,6 +26,11 @@ export class Server {
 			contentSecurityPolicy: false,
 			crossOriginEmbedderPolicy: false,
 		}));
+		apiCache.options({
+			headers: {
+				"cache-control": `public, max-age=${this.cacheDuration}`,
+			}
+		})
 		const cache = apiCache.middleware;
 		// const baseRateLimit = RateLimit({
 		// 	message: "A little fast huh?",
@@ -32,7 +38,7 @@ export class Server {
 		// 	max: 60,
 		// });
 
-		this.app.use(logMiddleWare);
+		this.app.use(this.setCacheControl.bind(this));
 		this.app.use(compression(), express.static("src/static"));
 
 		this.app.get("", compression(), (req, res) => {
@@ -40,7 +46,10 @@ export class Server {
 		});
 
 		const apiRoute = express.Router();
-		apiRoute.use(cache("15 seconds", (req, res) => res.statusCode === 200));
+		apiRoute.use(cache(
+			"10 seconds",
+			(req, res) => res.statusCode === 200),
+		);
 		apiRoute.use(RateLimit({
 			message: "A little fast huh?",
 			windowMs: 10 * 1000,
@@ -65,6 +74,11 @@ export class Server {
 				.reduce((a, b) => Math.max(a, b))
 		];
 		this.commonStartTime = Math.max(...allStartTimes);
+	}
+
+	private setCacheControl(req: express.Request, res: express.Response, next: express.NextFunction) {
+		res.set("Cache-Control", `public, max-age=${this.cacheDuration}`);
+		next();
 	}
 
 	private pointsFromPerMinuteData(mission: PerMinuteLoggerMission): { x: number; y: number }[] {
