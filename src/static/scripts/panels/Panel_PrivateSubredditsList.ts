@@ -15,9 +15,9 @@ export class Panel_PrivateSubredditsList extends Panel_TableData<PrivateSubData>
 	constructor(state: State) {
 		super(
 			state,
-			"Private Subreddits",
+			"Subreddits in blackout",
 			["subreddit", "subscribers", "type", "privateFor"],
-			["Subreddit", "Subscribers", "Type", "Private For"],
+			["Subreddit", "Subscribers", "Type", "In blackout for"],
 			3
 		);
 	}

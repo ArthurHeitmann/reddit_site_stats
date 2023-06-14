@@ -66,7 +66,7 @@ export class Panel_SubredditStatusTimeline extends CustomHtmlElement {
 			this.chart = new SubredditTypeActivityChart({
 				data: this.state.subredditTypesFull,
 				element: this,
-				title: "Subreddit status",
+				title: "Subreddits timeline",
 				// xLabel: "Time",
 				density: this.state.settings.subredditTypeChartDensity.value,
 			});

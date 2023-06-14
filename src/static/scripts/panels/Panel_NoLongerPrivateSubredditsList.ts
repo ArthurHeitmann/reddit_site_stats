@@ -15,9 +15,9 @@ export class Panel_NoLongerPrivateSubredditsList extends Panel_TableData<NoLonge
 	constructor(state: State) {
 		super(
 			state,
-			"No longer private subreddits",
+			"Subreddits out of blackout",
 			["subreddit", "subscribers", "wasPrivateFor", "publicFor"],
-			["Subreddit", "Subscribers", "Was private for", "Public for"],
+			["Subreddit", "Subscribers", "Blackout duration", "Public for"],
 			3
 		);
 	}
