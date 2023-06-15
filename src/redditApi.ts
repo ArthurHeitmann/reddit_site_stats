@@ -1,7 +1,7 @@
 import fetch, {Headers, RequestInit} from "node-fetch";
 import {RedditListingObj, RedditPostData, RedditPostObj, RedditSubredditObj, SubredditDetails} from "./redditTypes";
 import fs, {promises as fsp} from "fs";
-import {sleep} from "./utils";
+import {sleep} from "./sharedUtils";
 
 const userAgent = "script:redditStats:v0.0.1 (by /u/RaiderBDev)";
 const saveFilePath = "redditAuth.json";

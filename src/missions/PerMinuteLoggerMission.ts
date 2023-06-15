@@ -1,7 +1,8 @@
 import {IntervalMission} from "./IntervalMission";
 import {RedditAuth} from "../redditApi";
 import fs, {promises as fsp} from "fs";
-import {base36Decode, saveJsonSafely, sleep} from "../utils";
+import {saveJsonSafely} from "../utils";
+import {base36Decode, sleep} from "../sharedUtils";
 
 export interface LoggedThing {
 	id: string;

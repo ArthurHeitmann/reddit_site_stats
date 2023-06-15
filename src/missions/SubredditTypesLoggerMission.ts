@@ -3,7 +3,8 @@ import fs, {promises as fsp} from "fs";
 import {topSubreddits, topSubredditsByName} from "./topSubreddits";
 import {getSubredditsAbout, RedditAuth} from "../redditApi";
 import {SubredditDetails} from "../redditTypes";
-import {saveJsonSafely, sleep} from "../utils";
+import {saveJsonSafely} from "../utils";
+import {sleep} from "../sharedUtils";
 
 export interface LoggedSubredditType_timestamps {
 	name: string;
