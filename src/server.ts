@@ -2,7 +2,6 @@ import express, {Express} from "express";
 import compression from "compression";
 import helmet from "helmet";
 import apiCache from "apicache";
-import RateLimit from "express-rate-limit";
 import {LoggingMissions} from "./missions/LoggingMissions";
 import {PerMinuteLoggerMission} from "./missions/PerMinuteLoggerMission";
 import {TypeSection} from "./static/scripts/charts/subredditTypesChart";
@@ -42,7 +41,7 @@ export class Server {
 		// });
 
 		this.app.use(this.logMiddleware.middleWare.bind(this.logMiddleware));
-		this.app.use(this.setCacheControl.bind(this));
+		// this.app.use(this.setCacheControl.bind(this));
 		this.app.use(compression(), express.static("src/static"));
 
 		this.app.get("", compression(), (req, res) => {
@@ -54,11 +53,11 @@ export class Server {
 			"10 seconds",
 			(req, res) => res.statusCode === 200),
 		);
-		apiRoute.use(RateLimit({
-			message: "A little fast huh?",
-			windowMs: 10 * 1000,
-			max: 30,
-		}));
+		// apiRoute.use(RateLimit({
+		// 	message: "A little fast huh?",
+		// 	windowMs: 10 * 1000,
+		// 	max: 30,
+		// }));
 		apiRoute.use(compression());
 		apiRoute.get("/postsPerMinute", this.postsPerMinuteRoute.bind(this));
 		apiRoute.get("/commentsPerMinute", this.commentsPerMinuteRoute.bind(this));

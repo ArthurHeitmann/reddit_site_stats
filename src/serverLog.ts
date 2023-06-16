@@ -1,6 +1,6 @@
 import {NextFunction, Request, Response} from "express";
-import {createWriteStream, promises as fsp} from "fs";
-import {groupLogs, LogGroup, LogRow, parseLogFile} from "./trackerTracking";
+import {createWriteStream} from "fs";
+import {groupLogs, LogGroup, LogRow} from "./trackerTracking";
 
 const logPath = "requestLog.txt";
 
@@ -11,9 +11,9 @@ export class LogMiddleWare {
 	groupTimeFrame = 1000 * 60 * 5;
 
 	async init(): Promise<void> {
-		const logPath = "requestLog.txt";
-		const log = await fsp.readFile(logPath, "utf8");
-		this.logs = parseLogFile(log);
+		// const logPath = "requestLog.txt";
+		// const log = await fsp.readFile(logPath, "utf8");
+		// this.logs = parseLogFile(log);
 	}
 
 	middleWare(req: Request, res: Response, next: NextFunction) {
@@ -30,9 +30,9 @@ export class LogMiddleWare {
 			const duration = Date.now() - start;
 			newRow.status = res.statusCode;
 			newRow.responseTime = duration;
-			if (this.logs != null) {
-				this.logs.push(newRow);
-			}
+			// if (this.logs != null) {
+			// 	this.logs.push(newRow);
+			// }
 			const log = `${logTimeStamp(startDate)} - ${req.method} ${req.originalUrl} - ${res.statusCode} - ${duration}ms`;
 			console.log(log);
 			logStream.write(log + "\n");

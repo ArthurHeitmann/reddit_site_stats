@@ -57,6 +57,7 @@ export class SubredditTypesLoggerMission extends IntervalMission {
 			}
 			loadedSubInfos.push(...newSubsInfo);
 		}
+		const now = Date.now();
 		for (const subInfo of loadedSubInfos) {
 			const subName = subInfo.url.split("/")[2];
 			let loggedSub: LoggedSubredditType_timestamps;
@@ -77,7 +78,7 @@ export class SubredditTypesLoggerMission extends IntervalMission {
 				this.subreddits[subName] = loggedSub;
 			}
 			loggedSub.typeHistory.push({
-				time: Date.now(),
+				time: now,
 				type: subInfo.subreddit_type
 			});
 		}
