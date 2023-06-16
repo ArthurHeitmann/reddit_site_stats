@@ -116,8 +116,8 @@ export class State extends ChangeNotifier {
 
 		this.settings = new Settings();
 		this.settings.onRequiresRefresh.addListener(debounce(this.load.bind(this), 500));
-		this.settings.startDate.addListener(debounce(this.onDateChange.bind(this), 500));
-		this.settings.endDate.addListener(debounce(this.onDateChange.bind(this), 500));
+		this.settings.startDate.addListener(this.onDateChange.bind(this));
+		this.settings.endDate.addListener(this.onDateChange.bind(this));
 
 		this.ppmFull = {
 			name: "Posts",

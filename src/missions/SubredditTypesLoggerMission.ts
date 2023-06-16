@@ -17,7 +17,7 @@ export interface LoggedSubredditType_timestamps {
 }
 
 export class SubredditTypesLoggerMission extends IntervalMission {
-	static readonly INTERVAL = 1000 * 60 * 2.5;
+	static readonly INTERVAL = 1000 * 60 * 10;
 	static readonly saveFile = "subredditTypes.json";
 	private readonly auth: RedditAuth;
 	subreddits: {[subreddit: string]: LoggedSubredditType_timestamps};
