@@ -6,7 +6,7 @@ import RateLimit from "express-rate-limit";
 import {LoggingMissions} from "./missions/LoggingMissions";
 import {PerMinuteLoggerMission} from "./missions/PerMinuteLoggerMission";
 import {TypeSection} from "./static/scripts/charts/subredditTypesChart";
-import {logMiddleWare} from "./serverLog";
+import {LogMiddleWare} from "./serverLog";
 
 export class Server {
 	private readonly cacheDuration = 30;
@@ -14,11 +14,14 @@ export class Server {
 	port: number;
 	missions: LoggingMissions;
 	commonStartTime: number;
+	logMiddleware: LogMiddleWare;
 
 	constructor(port: number, loggingMissions: LoggingMissions) {
 		this.port = port;
 		this.missions = loggingMissions;
 		this.app = express();
+		this.logMiddleware = new LogMiddleWare();
+		this.logMiddleware.init().then(() => console.log("Log middleware initialized"));
 	}
 
 	start() {
@@ -38,7 +41,7 @@ export class Server {
 		// 	max: 60,
 		// });
 
-		this.app.use(logMiddleWare);
+		this.app.use(this.logMiddleware.middleWare.bind(this.logMiddleware));
 		this.app.use(this.setCacheControl.bind(this));
 		this.app.use(compression(), express.static("src/static"));
 
