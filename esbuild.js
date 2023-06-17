@@ -60,6 +60,8 @@ esbuild.build({
 		"src/topSubredditsLoader.ts",
 		"misc/subTypesMerger.ts",
 		"misc/allSubTypesSameStartTime.ts",
+		"misc/closePerMinuteDataGap.ts",
+		"misc/perMinuteMerger.ts",
 	],
 	plugins: [
 		nodeExternalsPlugin()
