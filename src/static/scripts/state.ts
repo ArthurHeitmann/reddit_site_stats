@@ -282,7 +282,7 @@ export class State extends ChangeNotifier {
 			this.ppmFiltered.points = this.ppmFull.points;
 			this.cpmFiltered.points = this.cpmFull.points;
 			this.subredditTypesFiltered = this.subredditTypesFull;
-			this.subredditsBarChartsFiltered = this.subredditsBarChartsFull;
+			this.subredditsBarChartsFiltered = copyGroupedSubredditBarChartDataSets(this.subredditsBarChartsFull);
 			return;
 		}
 
@@ -290,13 +290,26 @@ export class State extends ChangeNotifier {
 		const endDate = this.settings.endDate.value || Number.MAX_SAFE_INTEGER;
 		this.ppmFiltered.points = this.ppmFull.points.filter(point => point.x >= startDate && point.x <= endDate);
 		this.cpmFiltered.points = this.cpmFull.points.filter(point => point.x >= startDate && point.x <= endDate);
-		this.subredditTypesFiltered = this.subredditTypesFull.filter(sub => {
-			const lastSection = sub.typeSections[sub.typeSections.length - 1];
-			return lastSection.startTime + lastSection.duration >= startDate && lastSection.startTime <= endDate;
+		this.subredditTypesFiltered = deepCopy(this.subredditTypesFull).map(sub => {
+			sub.typeSections = sub.typeSections.filter(section => section.startTime + section.duration >= startDate && section.startTime <= endDate);
+			for (const section of sub.typeSections) {
+				if (startDate != 0) {
+					if (section.startTime < startDate) {
+						section.duration -= startDate - section.startTime;
+						section.startTime = startDate;
+					}
+				}
+				if (endDate != Number.MAX_SAFE_INTEGER) {
+					if (section.startTime + section.duration > endDate) {
+						section.duration -= section.startTime + section.duration - endDate;
+					}
+				}
+			}
+			return sub;
 		});
 		for (const category in this.subredditsBarChartsFull) {
-			const fullDataset = this.subredditsBarChartsFull[category] as BarChartDataset;
-			const filteredDataset = this.subredditsBarChartsFiltered[category] as BarChartDataset;
+			const fullDataset = this.subredditsBarChartsFull[category];
+			const filteredDataset = this.subredditsBarChartsFiltered[category];
 			filteredDataset.groups = fullDataset.groups.filter(group => group.time >= startDate && group.time <= endDate);
 		}
 	}
@@ -316,5 +329,22 @@ export class State extends ChangeNotifier {
 		if (this.refreshInterval !== null)
 			clearInterval(this.refreshInterval);
 		this.refreshInterval = null;
+	}
+}
+
+function copyGroupedSubredditBarChartDataSets(data: GroupedSubredditBarChartDataSets): GroupedSubredditBarChartDataSets {
+	const result: GroupedSubredditBarChartDataSets = {};
+	for (const key in data)
+		result[key] = copyBarChartData(data[key]);
+	return result;
+}
+
+function copyBarChartData(data: BarChartDataset): BarChartDataset {
+	return {
+		label: data.label,
+		padding: data.padding,
+		yAxisFormat: data.yAxisFormat,
+		colorOf: data.colorOf,
+		groups: deepCopy(data.groups),
 	}
 }

@@ -6,6 +6,10 @@
 
 The goal of this project is to keep track of and visualize the great reddit blackout.
 
+## Raw data
+
+You can find the raw data in the [releases](https://github.com/ArthurHeitmann/reddit_site_stats/releases) page. The data is in json. The TS interface for per minute data is [here](/src/missions/PerMinuteLoggerMission.ts) and for subreddit data [here](/src/missions/SubredditTypesLoggerMission.ts). Per minute data timestamps are in seconds (because that's what the reddit api returns) and subreddit data timestamps are in milliseconds.
+
 ## Running this locally
 
 ### Requirements
@@ -31,7 +35,7 @@ secret = "your client secret"
 
 1. Clone this repo
 2. (Optionally) If you want to use my already tracked data, download and extract the loggedData.zip from the [releases](https://github.com/ArthurHeitmann/reddit_site_stats/releases) page.
-2. Run `npm install`
-3. Run `npm run build`
-4. Run `npm start`
-5. Open http://localhost:8080 in your browser
+3. Run `npm install`
+4. Run `npm run build`
+5. Run `npm start`
+6. Open http://localhost:8080 in your browser
