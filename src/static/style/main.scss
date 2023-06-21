@@ -516,6 +516,16 @@ main {
   }
 }
 
+.changelog {
+  h3 {
+    margin-bottom: 0.25rem;
+  }
+
+  ul + h3 {
+    margin-top: 0.75rem;
+  }
+}
+
 .collapsed-notes {
   .visible-row {
     display: flex;

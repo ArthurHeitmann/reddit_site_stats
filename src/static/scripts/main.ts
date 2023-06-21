@@ -9,11 +9,13 @@ import {Panel_Welcome} from "./panels/Panel_Welcome";
 import {GlobalLoadingIndicator} from "./GlobalLoadingIndicator";
 import {Panel_NoLongerPrivateSubredditsList} from "./panels/Panel_NoLongerPrivateSubredditsList";
 import {Panel_ArchivedSubredditsList} from "./panels/Panel_ArchivedSubreddits";
+import {Panel_Changelog} from "./panels/Panel_Changelog";
 
 
 async function main() {
 	const state = new State();
 	const welcome = new Panel_Welcome();
+	const changelog = new Panel_Changelog();
 	const subOptions = new Panel_SubOptions(state);
 	const subredditsBarChart = new Panel_SubredditsBarChart(state);
 	const redditPerMinuteActivity = new Panel_RedditPerMinuteActivity(state);
@@ -23,12 +25,13 @@ async function main() {
 	const subredditStatusTimeline = new Panel_SubredditStatusTimeline(state);
 	const layout = new LayoutSwitcher([
 		{ element: welcome, column: 0, row: 0 },
-		{ element: subOptions, column: 0, row: 1 },
-		{ element: subredditsBarChart, column: 0, row: 2 },
+		{ element: changelog, column: 0, row: 1 },
+		{ element: subOptions, column: 0, row: 2 },
+		{ element: subredditsBarChart, column: 0, row: 3 },
 		{ element: redditPerMinuteActivity, column: 1, row: 0 },
-		{ element: privateSubredditsList, column: 0, row: 3 },
-		{ element: noLongerPrivateSubredditsList, column: 0, row: 4 },
-		{ element: archivedSubredditsList, column: 0, row: 5 },
+		{ element: privateSubredditsList, column: 0, row: 4 },
+		{ element: noLongerPrivateSubredditsList, column: 0, row: 5 },
+		{ element: archivedSubredditsList, column: 0, row: 6 },
 		{ element: subredditStatusTimeline, column: 1, row: 1 },
 	]);
 	const mainElement = document.querySelector("main");
