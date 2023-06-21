@@ -262,22 +262,23 @@ main {
     flex-flow: wrap;
     margin: 1rem 0;
 
-    .item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+  }
 
-      .color-box {
-        --color: #000;
-        width: 1.5rem;
-        height: 1.5rem;
-        border-radius: 0.25rem;
-        background-color: var(--color);
-      }
+  .item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 
-      .label {
-        font-weight: 700;
-      }
+    .color-box {
+      --color: #000;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 0.25rem;
+      background-color: var(--color);
+    }
+
+    .label {
+      font-weight: 700;
     }
   }
 }

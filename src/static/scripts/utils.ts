@@ -221,12 +221,14 @@ const lightModeSubColors = {
 	"public": "#1f77b4",
 	"private": "#252525",
 	"restricted": "#c77d15",
+	"archived": "#b22828",
 	// "gold_only": "#d62728",
 };
 const darkModeSubColors = {
 	"public": "#0e6094",
 	"private": "#b7b7b7",
 	"restricted": "#c77d15",
+	"archived": "#b22828",
 	// "gold_only": "#d62728",
 }
 export const colorOfSubTypeMap = preferDarkMode()
@@ -234,7 +236,7 @@ export const colorOfSubTypeMap = preferDarkMode()
 	: lightModeSubColors;
 
 export function colorOfSubType(type: string) {
-	return colorOfSubTypeMap[type] || "#d62728";
+	return colorOfSubTypeMap[type] || "#ac0ce1";
 }
 class WindowWidthResizeEvents extends ChangeNotifier {
 	private previouseWidth: number;

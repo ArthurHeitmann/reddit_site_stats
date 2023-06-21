@@ -8,6 +8,7 @@ import {LayoutSwitcher} from "./LayoutSwitcher";
 import {Panel_Welcome} from "./panels/Panel_Welcome";
 import {GlobalLoadingIndicator} from "./GlobalLoadingIndicator";
 import {Panel_NoLongerPrivateSubredditsList} from "./panels/Panel_NoLongerPrivateSubredditsList";
+import {Panel_ArchivedSubredditsList} from "./panels/Panel_ArchivedSubreddits";
 
 
 async function main() {
@@ -18,6 +19,7 @@ async function main() {
 	const redditPerMinuteActivity = new Panel_RedditPerMinuteActivity(state);
 	const privateSubredditsList = new Panel_PrivateSubredditsList(state);
 	const noLongerPrivateSubredditsList = new Panel_NoLongerPrivateSubredditsList(state);
+	const archivedSubredditsList = new Panel_ArchivedSubredditsList(state);
 	const subredditStatusTimeline = new Panel_SubredditStatusTimeline(state);
 	const layout = new LayoutSwitcher([
 		{ element: welcome, column: 0, row: 0 },
@@ -26,6 +28,7 @@ async function main() {
 		{ element: redditPerMinuteActivity, column: 1, row: 0 },
 		{ element: privateSubredditsList, column: 0, row: 3 },
 		{ element: noLongerPrivateSubredditsList, column: 0, row: 4 },
+		{ element: archivedSubredditsList, column: 0, row: 5 },
 		{ element: subredditStatusTimeline, column: 1, row: 1 },
 	]);
 	const mainElement = document.querySelector("main");

@@ -819,3 +819,6 @@ export interface RedditPreferences {
 	"use_global_defaults"?: boolean,
 	"video_autoplay"?: boolean,
 }
+
+
+export type SubredditType = "public" | "private" | "restricted" | "gold_only" | "archived";
