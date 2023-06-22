@@ -38,7 +38,7 @@ export class Settings {
 		this.onRequiresRefresh = new ChangeNotifier();
 		this.includeSfw = new Prop(true);
 		this.includeNsfw = new Prop(false);
-		this.subredditsLimit = new Prop(500);
+		this.subredditsLimit = new Prop(1500);
 		this.subredditTypeChartDensity = new Prop(SubredditTypeChartDensity.small);
 		this.subredditsBarChartCategory = new Prop(SubredditsBarChartCategory.count);
 		this.startDate = new Prop(null);

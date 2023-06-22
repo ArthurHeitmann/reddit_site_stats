@@ -13,6 +13,7 @@ export interface LoggedSubredditType_timestamps {
 	typeHistory: {
 		time: number;
 		type: "public" | "private" | "restricted" | "gold_only" | string;
+		isNsfw?: boolean;
 	}[];
 }
 
@@ -79,7 +80,8 @@ export class SubredditTypesLoggerMission extends IntervalMission {
 			}
 			loggedSub.typeHistory.push({
 				time: now,
-				type: subInfo.subreddit_type
+				type: subInfo.subreddit_type,
+				isNsfw: subInfo.over18
 			});
 		}
 		await this.saveToFile();

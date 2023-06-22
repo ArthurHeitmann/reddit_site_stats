@@ -18,6 +18,7 @@ export interface TypeSection {
 	startTime: number;
 	duration: number;
 	type: SubredditType;
+	isNsfw: boolean|null;
 }
 export interface LoggedSubredditType_sections {
 	name: string;
