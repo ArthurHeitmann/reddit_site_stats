@@ -172,7 +172,7 @@ export class SubredditTypeActivityChart {
 			.attr("class", d => "bar " + d.type)
 			.attr("x", d => xAxisScale(d.startTime))
 			.attr("y", d => nameToIndex.get(d.name) * bandWidth + padding)
-			.attr("width", d => xAxisScale(d.startTime + d.duration) - xAxisScale(d.startTime))
+			.attr("width", d => xAxisScale(d.startTime + d.duration) - xAxisScale(d.startTime) + 0.5)
 			.attr("height", bandWidth + (isVeryCompact ? 0.5 : 1) - padding*2)
 			.attr("fill", d => colorOfSubType(d.type))
 

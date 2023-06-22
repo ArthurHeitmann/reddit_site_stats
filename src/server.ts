@@ -138,7 +138,7 @@ export class Server {
 			for (const section of typeSections) {
 				if (currentSection === null) {
 					currentSection = section;
-				} else if (currentSection.type === section.type && currentSection.isNsfw === section.isNsfw) {
+				} else if (currentSection.type === section.type && Boolean(currentSection.isNsfw) === Boolean(section.isNsfw)) {
 					currentSection.duration += section.duration;
 				} else {
 					joinedTypeSections.push(currentSection);
