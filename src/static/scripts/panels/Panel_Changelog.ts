@@ -1,6 +1,10 @@
 import {makeElement} from "../utils";
 
 const msg = `
+<h3>2023.06.22</h3>
+<ul>
+	<li>Added sankey diagram, because who doesn't like sankeys</li>
+</ul>
 <h3>2023.06.21</h3>
 <ul>
 	<li>Added changelog</li>

@@ -10,6 +10,7 @@ import {GlobalLoadingIndicator} from "./GlobalLoadingIndicator";
 import {Panel_NoLongerPrivateSubredditsList} from "./panels/Panel_NoLongerPrivateSubredditsList";
 import {Panel_ArchivedSubredditsList} from "./panels/Panel_ArchivedSubreddits";
 import {Panel_Changelog} from "./panels/Panel_Changelog";
+import {Panel_Sankey} from "./panels/Panel_Sankey";
 
 
 async function main() {
@@ -22,6 +23,7 @@ async function main() {
 	const privateSubredditsList = new Panel_PrivateSubredditsList(state);
 	const noLongerPrivateSubredditsList = new Panel_NoLongerPrivateSubredditsList(state);
 	const archivedSubredditsList = new Panel_ArchivedSubredditsList(state);
+	const sankey = new Panel_Sankey(state);
 	const subredditStatusTimeline = new Panel_SubredditStatusTimeline(state);
 	const layout = new LayoutSwitcher([
 		{ element: welcome, column: 0, row: 0 },
@@ -32,6 +34,7 @@ async function main() {
 		{ element: privateSubredditsList, column: 0, row: 4 },
 		{ element: noLongerPrivateSubredditsList, column: 0, row: 5 },
 		{ element: archivedSubredditsList, column: 0, row: 6 },
+		{ element: sankey, column: 0, row: 7 },
 		{ element: subredditStatusTimeline, column: 1, row: 1 },
 	]);
 	const mainElement = document.querySelector("main");
