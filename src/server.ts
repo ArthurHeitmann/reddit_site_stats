@@ -4,8 +4,8 @@ import helmet from "helmet";
 import apiCache from "apicache";
 import {LoggingMissions} from "./missions/LoggingMissions";
 import {PerMinuteLoggerMission} from "./missions/PerMinuteLoggerMission";
-import {TypeSection} from "./static/scripts/charts/subredditTypesChart";
 import {LogMiddleWare} from "./serverLog";
+import {LoggedSubredditType_sections} from "./missions/SubredditTypesLoggerMission";
 
 export class Server {
 	private readonly cacheDuration = 30;
@@ -41,7 +41,6 @@ export class Server {
 		// });
 
 		this.app.use(this.logMiddleware.middleWare.bind(this.logMiddleware));
-		// this.app.use(this.setCacheControl.bind(this));
 		this.app.use(compression(), express.static("src/static"));
 
 		this.app.get("", compression(), (req, res) => {
@@ -79,19 +78,14 @@ export class Server {
 		this.commonStartTime = Math.max(...allStartTimes);
 	}
 
-	private setCacheControl(req: express.Request, res: express.Response, next: express.NextFunction) {
-		res.set("Cache-Control", `public, max-age=${this.cacheDuration}`);
-		next();
-	}
-
 	private pointsFromPerMinuteData(mission: PerMinuteLoggerMission): { x: number; y: number }[] {
 		return mission.logged
+			.filter(thing => typeof thing.perMinute === "number")
 			.map(thing => ({
 				x: thing.created * 1000,
 				y: thing.perMinute,
-			}))
-			.filter(point => typeof point.y === "number")
-			.filter(point => point.x >= this.commonStartTime);
+			}));
+			// .filter(point => point.x >= this.commonStartTime);
 	}
 
 	private perMinuteRoute(req: express.Request, res: express.Response, mission: PerMinuteLoggerMission) {
@@ -108,7 +102,7 @@ export class Server {
 	}
 
 	private filterAndSortSubs(includeSfw: boolean, includeNsfw: boolean, limit: number): LoggedSubredditType_sections[] {
-		const subs = Object.values(this.missions.subTypes.subreddits)
+		return Object.values(this.missions.subTypes.subredditSections)
 			.filter(sub => (
 				(includeSfw && !sub.isNsfw) ||
 				(includeNsfw && sub.isNsfw)
@@ -122,39 +116,6 @@ export class Server {
 				typeHistory: sub.typeHistory
 					.filter(type => type.time >= this.commonStartTime)
 			}))*/;
-		return subs.map(sub => {
-			const typeSections = sub.typeHistory
-				.slice(0, sub.typeHistory.length - 1)
-				.map((timestamp, i) => (<TypeSection>{
-					name: `r/${sub.name}`,
-					startTime: timestamp.time,
-					duration: sub.typeHistory[i + 1].time - timestamp.time,
-					type: timestamp.type,
-					isNsfw: timestamp.isNsfw,
-				}));
-			// join sections of the same type
-			const joinedTypeSections: TypeSection[] = [];
-			let currentSection: TypeSection | null = null;
-			for (const section of typeSections) {
-				if (currentSection === null) {
-					currentSection = section;
-				} else if (currentSection.type === section.type && Boolean(currentSection.isNsfw) === Boolean(section.isNsfw)) {
-					currentSection.duration += section.duration;
-				} else {
-					joinedTypeSections.push(currentSection);
-					currentSection = section;
-				}
-			}
-			if (currentSection !== null) {
-				joinedTypeSections.push(currentSection);
-			}
-			return (<LoggedSubredditType_sections>{
-				name: `r/${sub.name}`,
-				isNsfw: sub.isNsfw,
-				subscribers: sub.subscribers,
-				typeSections: joinedTypeSections
-			});
-		});
 	}
 
 	private subredditTypesRoute(req: express.Request, res: express.Response) {
@@ -179,20 +140,6 @@ export class Server {
 			cpm,
 			subs,
 		});
-		// const jsonStr = JSON.stringify({
-		// 	ppm,
-		// 	cpm,
-		// 	subs,
-		// });
-		// res.header("Content-Type", "application/json");
-		// res.send(jsonStr);
 		// console.timeEnd("all");
 	}
-}
-
-export interface LoggedSubredditType_sections {
-	name: string;
-	isNsfw: boolean;
-	subscribers: number;
-	typeSections: TypeSection[];
 }

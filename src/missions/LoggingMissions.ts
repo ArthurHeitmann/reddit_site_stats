@@ -45,6 +45,4 @@ export class LoggingMissions implements Mission {
 			}
 		}
 	}
-
-
 }
