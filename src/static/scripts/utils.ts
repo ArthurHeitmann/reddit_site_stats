@@ -264,3 +264,14 @@ export function clamp(value: number, min: number, max: number): number {
 export function deepCopy<T>(obj: T): T {
 	return JSON.parse(JSON.stringify(obj));
 }
+
+function catchTouchEvents(e: TouchEvent) {
+	e.preventDefault();
+	e.stopPropagation();
+}
+export function disableTouchScroll() {
+	document.addEventListener("touchmove", catchTouchEvents, { passive: false });
+}
+export function enableTouchScroll() {
+	document.removeEventListener("touchmove", catchTouchEvents);
+}

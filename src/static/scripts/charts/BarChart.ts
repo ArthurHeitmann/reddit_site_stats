@@ -45,6 +45,7 @@ export class BarChart {
 		this.svg = d3.select(this.element)
 			.append("svg")
 			.classed("chart", true)
+			.classed("bar-chart", true)
 			.attr("width", "100%")
 			.attr("height", this.height + this.margin.top + this.margin.bottom);
 

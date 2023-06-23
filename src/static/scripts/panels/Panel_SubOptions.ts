@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 import {ToggleButton, ToggleButtonRoundCorners} from "../ToggleButton";
-import {clamp, colorOfSubTypeMap, makeElement} from "../utils";
+import {clamp, colorOfSubTypeMap, disableTouchScroll, enableTouchScroll, makeElement} from "../utils";
 import {State} from "../state";
 import {Prop} from "../Prop";
 
@@ -161,7 +161,7 @@ class DateInputRange extends HTMLElement {
 		}
 		this.classList.remove("hide");
 		// Update the slider positions, through css variables
-		const sliderWidth = this.sliderRange.clientWidth;
+		// const sliderWidth = this.sliderRange.clientWidth;
 		const left = startDate === null ? 0 : (startDate - this.minDate) / (this.maxDate - this.minDate);
 		const right = endDate === null ? 1 : (endDate - this.minDate) / (this.maxDate - this.minDate);
 		this.sliderRange.style.setProperty("--left", (left * 100) + "%");
@@ -195,6 +195,7 @@ class DateInputRange extends HTMLElement {
 		document.addEventListener("touchmove", this.onMouseMove_);
 		document.addEventListener("mouseup", this.onMouseUp_);
 		document.addEventListener("touchend", this.onMouseUp_);
+		disableTouchScroll();
 	}
 
 	private readonly minSeparation = 1000 * 60 * 60 * 4;
@@ -232,6 +233,7 @@ class DateInputRange extends HTMLElement {
 
 
 	private onMouseUp(e: MouseEvent | TouchEvent) {
+		enableTouchScroll();
 		const target = e.target as HTMLElement;
 		target.classList.remove("dragging");
 		document.removeEventListener("mousemove", this.onMouseMove_);

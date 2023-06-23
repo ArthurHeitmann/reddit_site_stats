@@ -81,14 +81,6 @@ svg {
 }
 
 .chart {
-  .bar {
-    transition: filter 0.2s ease-in-out;
-
-    &:hover {
-      filter: brightness(1.2);
-    }
-  }
-
   .tooltip {
     rect {
       fill: vars.$panel-bg-color;
@@ -117,6 +109,14 @@ svg {
 }
 
 svg.subreddit-type-chart {
+  .bar {
+    transition: filter 0.2s ease-in-out;
+
+    &:hover {
+      filter: brightness(1.2);
+    }
+  }
+
   .tick {
     .name {
         font-size: 1.05rem;
@@ -124,6 +124,16 @@ svg.subreddit-type-chart {
 
     .subscribers {
         font-size: 0.8rem;
+    }
+  }
+}
+
+svg.bar-chart {
+  .bar-group {
+    transition: filter 0.2s ease-in-out;
+
+    &:hover {
+      filter: brightness(1.2);
     }
   }
 }
