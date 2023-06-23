@@ -8,8 +8,8 @@ interface PrivateSubData {
 	subscribers: number;
 	isNsfw: boolean;
 	type: string;
-	privateFor: number;
 	totalBlackoutTime: number;
+	privateFor: number;
 }
 
 export class Panel_PrivateSubredditsList extends Panel_TableData<PrivateSubData> {
@@ -17,9 +17,9 @@ export class Panel_PrivateSubredditsList extends Panel_TableData<PrivateSubData>
 		super(
 			state,
 			"Subreddits in blackout",
-			["subreddit", "subscribers", "type", "privateFor", "totalBlackoutTime"],
-			["Subreddit", "Subscribers", "Type", "In blackout for", "Total blackout time"],
-			3
+			["subreddit", "subscribers", "type", "totalBlackoutTime", "privateFor"],
+			["Subreddit", "Subscribers", "Type", "Total blackout time", "Time since last change"],
+			4
 		);
 	}
 
@@ -28,9 +28,9 @@ export class Panel_PrivateSubredditsList extends Panel_TableData<PrivateSubData>
 		const tdSub = makeElement("td", {}, sub.subreddit);
 		const tdSubs = makeElement("td", {}, numberToShort(sub.subscribers));
 		const tdType = makeElement("td", {class: "type", style: `--color: ${colorOfSubType(sub.type)}`}, sub.type);
-		const tdPrivateFor = makeElement("td", {}, timePeriodReadable(sub.privateFor / 1000));
 		const tdTotalBlackoutTime = makeElement("td", {}, timePeriodReadable(sub.totalBlackoutTime / 1000));
-		tr.append(tdSub, tdSubs, tdType, tdPrivateFor, tdTotalBlackoutTime);
+		const tdPrivateFor = makeElement("td", {}, timePeriodReadable(sub.privateFor / 1000));
+		tr.append(tdSub, tdSubs, tdType, tdTotalBlackoutTime, tdPrivateFor);
 		return tr;
 	}
 
@@ -51,8 +51,8 @@ export class Panel_PrivateSubredditsList extends Panel_TableData<PrivateSubData>
 				subscribers: sub.subscribers,
 				isNsfw: sub.isNsfw,
 				type: lastSection.type,
+				totalBlackoutTime: totalBlackoutTime,
 				privateFor: privateFor,
-				totalBlackoutTime: totalBlackoutTime
 			});
 		}
 		return data;
