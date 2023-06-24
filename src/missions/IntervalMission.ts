@@ -3,6 +3,7 @@ import {Mission} from "./Mission";
 export abstract class IntervalMission implements Mission {
 	private readonly intervalMs: number;
 	private intervalId: NodeJS.Timeout | null = null;
+	protected shouldRunAtStart = true;
 
 	protected constructor(intervalMs: number) {
 		this.intervalMs = intervalMs;
@@ -24,7 +25,8 @@ export abstract class IntervalMission implements Mission {
 		if (this.intervalId !== null)
 			clearInterval(this.intervalId);
 		this.intervalId = setInterval(this.runWrapper.bind(this), this.intervalMs);
-		this.run();
+		if (this.shouldRunAtStart)
+			this.run();
 	}
 
 	stop(): void {
