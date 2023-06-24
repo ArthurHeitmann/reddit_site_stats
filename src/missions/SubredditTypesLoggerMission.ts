@@ -43,8 +43,18 @@ export class SubredditTypesLoggerMission extends IntervalMission {
 		this.auth = auth;
 	}
 
-	init(): Promise<void> {
-		return this.loadFromFile();
+	async init(): Promise<void> {
+		await this.loadFromFile();
+		// avoid repeated work when restarting the server
+		if (Object.values(this.subreddits).length > 0) {
+			const firstSub = Object.values(this.subreddits)[0];
+			if (firstSub.typeHistory.length > 0) {
+				const lastType = firstSub.typeHistory[firstSub.typeHistory.length - 1];
+				if (lastType.time > Date.now() - SubredditTypesLoggerMission.INTERVAL) {
+					this.shouldRunAtStart = false;
+				}
+			}
+		}
 	}
 
 	async run() {
