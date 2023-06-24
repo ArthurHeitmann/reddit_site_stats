@@ -134,7 +134,9 @@ export class SubredditTypesLoggerMission extends IntervalMission {
 				});
 			}
 		}
+		console.log("Saving to file...")
 		await this.saveToFile();
+		console.log("Subreddit types logged")
 	}
 
 	private async saveToFile() {
