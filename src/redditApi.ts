@@ -68,6 +68,8 @@ export class RedditAuth {
 	private rateLimitCheck(headers: Headers) {
 		const rlReqRemaining = parseInt(headers.get("x-ratelimit-remaining"));
 		const rlTimeRemaining = parseInt(headers.get("x-ratelimit-reset"));
+		if (isNaN(rlReqRemaining) || isNaN(rlTimeRemaining))
+			return;
 		if (rlReqRemaining < 30)
 			console.log(`Rate limit: ${rlReqRemaining} requests remaining, ${rlTimeRemaining} seconds until reset`);
 	}

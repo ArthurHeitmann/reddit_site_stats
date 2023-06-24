@@ -64,7 +64,9 @@ esbuild.build({
 		"misc/perMinuteMerger.ts",
 	],
 	plugins: [
-		nodeExternalsPlugin()
+		nodeExternalsPlugin({
+			packagePath: "package.json",
+		})
 	],
 	...makeGeneralConfig("Node TS", true, "node")
 })
