@@ -12,7 +12,7 @@ apiKey = os.getenv("pushbulletApiKey")
 if apiKey is None:
     print("pushbulletApiKey not set in .env file")
     exit()
-command = ["node", "src/app.js"]
+command = ["node", "--max-old-space-size=4096", "src/app.js"]
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
 try:

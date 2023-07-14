@@ -5,7 +5,7 @@
   "type": "module",
   "main": "main.js",
   "scripts": {
-    "start": "node src/app.js",
+    "start": "node --max-old-space-size=4096 src/app.js",
     "build": "node esbuild.js",
     "watch": "node esbuild.js watch"
   },
