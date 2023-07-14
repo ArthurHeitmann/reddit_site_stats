@@ -5,7 +5,7 @@ const msgHtml = `
 <ul>
 	<li>If you've found this website useful and would like help to cover some of the costs, please consider donating on <a href="https://www.paypal.com/donate/?hosted_button_id=ETRZR27L7GPPA" target="_blank">PayPal</a> or <a href="https://www.buymeacoffee.com/blackouttracker" target="_blank">☕ buy me a coffee</a>. Any amount is appreciated.</li>
 	<li>There are several customization options, try them out!</li>
-	<li>Subreddit related data is updated every 10 minutes.</li>
+	<li>Subreddit related data is updated every hour.</li>
 	<li>Posts and comments per minute are updated every minute.</li>
 	<li>This website reloads the data every minute, so you don't have to.</li>
 	<li>The list of subreddits is based on this <a href="https://subredditstats.com/" target="_blank">website</a>. This list includes the top 1000 SFW and 500 NSFW most popular subreddits.</li>
