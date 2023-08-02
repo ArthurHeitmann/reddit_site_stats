@@ -168,13 +168,16 @@ export class SubredditTypesLoggerMission extends IntervalMission {
 			]);
 		await saveJsonSafely(subsInfo, SubredditTypesLoggerMission.infoSaveFile);
 		const tempFilePath = SubredditTypesLoggerMission.historySaveFile + ".tmp";
-		const writeStream = fs.createWriteStream(tempFilePath, { flags: "w" });
-		for (const [subName, subData] of Object.entries(this.subreddits)) {
-			writeStream.write(`r/${subName}\n`);
-			writeStream.write(JSON.stringify(subData.typeHistory));
-			writeStream.write("\n");
+		const writeFile = await fsp.open(tempFilePath, "w");
+		try {
+			for (const [subName, subData] of Object.entries(this.subreddits)) {
+				await writeFile.write(`r/${subName}\n`);
+				await writeFile.write(JSON.stringify(subData.typeHistory) + "\n");
+			}
 		}
-		writeStream.end();
+		finally {
+			await writeFile.close();
+		}
 		await fsp.rename(tempFilePath, SubredditTypesLoggerMission.historySaveFile);
 		const t2 = Date.now();
 		console.log(`Saved subreddit types in ${Math.round((t2 - t1) / 100) / 10} seconds`);
