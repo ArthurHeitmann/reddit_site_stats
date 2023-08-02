@@ -1,20 +1,24 @@
 import {IntervalMission} from "./IntervalMission";
 import fs, {promises as fsp} from "fs";
+import readline from "readline";
 import {topSubreddits, topSubredditsByName} from "./topSubreddits";
 import {getSubredditsAbout, RedditAuth} from "../redditApi";
 import {SubredditDetails, SubredditType} from "../redditTypes";
 import {saveJsonSafely} from "../utils";
 import {sleep} from "../sharedUtils";
+import { stdout } from "process";
+
+interface SubredditTypeTimestamp {
+	time: number;
+	type: "public" | "private" | "restricted" | "gold_only" | string;
+	isNsfw?: boolean;
+}
 
 export interface LoggedSubredditType_timestamps {
 	name: string;
 	isNsfw: boolean;
 	subscribers: number;
-	typeHistory: {
-		time: number;
-		type: "public" | "private" | "restricted" | "gold_only" | string;
-		isNsfw?: boolean;
-	}[];
+	typeHistory: SubredditTypeTimestamp[];
 }
 
 export interface TypeSection {
@@ -33,7 +37,8 @@ export interface LoggedSubredditType_sections {
 
 export class SubredditTypesLoggerMission extends IntervalMission {
 	static readonly INTERVAL = 1000 * 60 * 60;
-	static readonly saveFile = "subredditTypes.json";
+	static readonly infoSaveFile = "subredditTypes_info.json";
+	static readonly historySaveFile = "subredditTypes_history.txt";
 	private readonly auth: RedditAuth;
 	subreddits: {[subreddit: string]: LoggedSubredditType_timestamps};
 	subredditSections: {[subreddit: string]: LoggedSubredditType_sections};
@@ -150,24 +155,74 @@ export class SubredditTypesLoggerMission extends IntervalMission {
 	}
 
 	private async saveToFile() {
-		await saveJsonSafely(this.subreddits, SubredditTypesLoggerMission.saveFile);
+		console.log("Saving subreddit types");
+		const t1 = Date.now();
+		const subsInfo = Object.entries(this.subreddits)
+			.map(([name, info]) => [
+				name,
+				{
+					name: info.name,
+					isNsfw: info.isNsfw,
+					subscribers: info.subscribers,
+				}
+			]);
+		await saveJsonSafely(subsInfo, SubredditTypesLoggerMission.infoSaveFile);
+		const tempFilePath = SubredditTypesLoggerMission.historySaveFile + ".tmp";
+		const writeStream = fs.createWriteStream(tempFilePath, { flags: "w" });
+		for (const [subName, subData] of Object.entries(this.subreddits)) {
+			writeStream.write(`r/${subName}\n`);
+			writeStream.write(JSON.stringify(subData.typeHistory));
+			writeStream.write("\n");
+		}
+		writeStream.end();
+		await fsp.rename(tempFilePath, SubredditTypesLoggerMission.historySaveFile);
+		const t2 = Date.now();
+		console.log(`Saved subreddit types in ${Math.round((t2 - t1) / 100) / 10} seconds`);
 	}
 
 	private async loadFromFile() {
-		const fileExists = fs.existsSync(SubredditTypesLoggerMission.saveFile);
-		if (!fileExists) {
+		const infoFileExists = fs.existsSync(SubredditTypesLoggerMission.infoSaveFile);
+		const historyFileExists = fs.existsSync(SubredditTypesLoggerMission.historySaveFile);
+		if (!infoFileExists || !historyFileExists) {
 			this.subreddits = {};
 			this.subredditSections = {};
 			return;
 		}
-		const jsonStr = await fsp.readFile(SubredditTypesLoggerMission.saveFile, "utf8");
-		this.subreddits = JSON.parse(jsonStr);
-		// fix for previously missing isNsfw in some subreddits
-		// for (const subName in this.subreddits) {
-		// 	if (typeof this.subreddits[subName].isNsfw === "boolean")
-		// 		continue;
-		// 	this.subreddits[subName].isNsfw = topSubredditsByName[subName]?.over18;
-		// }
+		// const jsonStr = await fsp.readFile(SubredditTypesLoggerMission.saveFile, "utf8");
+		// this.subreddits = JSON.parse(jsonStr);
+		// this.subredditSections = this.timestampsToSections(this.subreddits);
+
+		const t1 = Date.now();
+		console.log("Loading subreddit types");
+		const subsInfoStr = await fsp.readFile(SubredditTypesLoggerMission.infoSaveFile, "utf8");
+		const subsInfo = JSON.parse(subsInfoStr) as { [subName: string]: LoggedSubredditType_timestamps };
+		this.subreddits = {};
+		for (const [subName, subInfo] of Object.entries(subsInfo)) {
+			subInfo.typeHistory = [];
+			this.subreddits[subName] = subInfo;
+		}
+
+		const historyFile = fs.createReadStream(SubredditTypesLoggerMission.historySaveFile);
+		const rl = readline.createInterface({
+			input: historyFile,
+			crlfDelay: Infinity
+		});
+		let subName: string | undefined;
+		for await (const line of rl) {
+			if (subName === undefined) {
+				subName = line.slice(2);
+				stdout.write(`\rLoading r/${subName}`);
+			}
+			else {
+				const history = JSON.parse(line) as SubredditTypeTimestamp[];
+				this.subreddits[subName].typeHistory = history;
+				subName = undefined;
+			}
+		}
+		stdout.write("\n");
+		const t2 = Date.now();
+		console.log(`Loaded subreddit types in ${Math.round((t2 - t1) / 100) / 10} seconds`);
+
 		this.subredditSections = this.timestampsToSections(this.subreddits);
 	}
 
