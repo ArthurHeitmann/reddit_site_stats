@@ -157,7 +157,7 @@ export class SubredditTypesLoggerMission extends IntervalMission {
 	private async saveToFile() {
 		console.log("Saving subreddit types");
 		const t1 = Date.now();
-		const subsInfo = Object.entries(this.subreddits)
+		const subsInfoEntries = Object.entries(this.subreddits)
 			.map(([name, info]) => [
 				name,
 				{
@@ -166,6 +166,7 @@ export class SubredditTypesLoggerMission extends IntervalMission {
 					subscribers: info.subscribers,
 				}
 			]);
+		const subsInfo = Object.fromEntries(subsInfoEntries);
 		await saveJsonSafely(subsInfo, SubredditTypesLoggerMission.infoSaveFile);
 		const tempFilePath = SubredditTypesLoggerMission.historySaveFile + ".tmp";
 		const writeFile = await fsp.open(tempFilePath, "w");
