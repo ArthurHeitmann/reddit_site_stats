@@ -40,7 +40,7 @@ async function main() {
 	const mainElement = document.querySelector("main");
 	mainElement.appendChild(layout);
 	document.body.append(GlobalLoadingIndicator.instance);
-	await state.load();
+	await state.loadAll();
 	state.setRefreshInterval();
 }
 

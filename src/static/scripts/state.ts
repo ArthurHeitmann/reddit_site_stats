@@ -31,11 +31,14 @@ export class Settings {
 	startDate: Prop<number|null>;
 	endDate: Prop<number|null>;
 	smoothPerMinuteData: Prop<boolean>;
-	onRequiresRefresh: ChangeNotifier;
+	perMinuteResolution: Prop<number>;
+	onActivityRequiresRefresh: ChangeNotifier;
+	onSubsRequiresRefresh: ChangeNotifier;
 	private static LOCAL_STORAGE_KEY = "reddit_stats_settings";
 
 	constructor() {
-		this.onRequiresRefresh = new ChangeNotifier();
+		this.onActivityRequiresRefresh = new ChangeNotifier();
+		this.onSubsRequiresRefresh = new ChangeNotifier();
 		this.includeSfw = new Prop(true);
 		this.includeNsfw = new Prop(false);
 		this.subredditsLimit = new Prop(1500);
@@ -43,17 +46,17 @@ export class Settings {
 		this.subredditsBarChartCategory = new Prop(SubredditsBarChartCategory.count);
 		this.startDate = new Prop(null);
 		this.endDate = new Prop(null);
-		this.smoothPerMinuteData = new Prop(false);
+		this.smoothPerMinuteData = new Prop(true);
 		this.loadFromLocalStorage();
 
-		this.includeSfw.addListener(() => this.onPropChange(true));
-		this.includeNsfw.addListener(() => this.onPropChange(true));
-		this.subredditsLimit.addListener(() => this.onPropChange(true));
-		this.subredditTypeChartDensity.addListener(() => this.onPropChange(false));
-		this.subredditsBarChartCategory.addListener(() => this.onPropChange(false));
-		this.startDate.addListener(() => this.onPropChange(false));
-		this.endDate.addListener(() => this.onPropChange(false));
-		this.smoothPerMinuteData.addListener(() => this.onPropChange(false));
+		this.includeSfw.addListener(() => this.onSubredditPropChange(true));
+		this.includeNsfw.addListener(() => this.onSubredditPropChange(true));
+		this.subredditsLimit.addListener(() => this.onSubredditPropChange(true));
+		this.subredditTypeChartDensity.addListener(() => this.onSubredditPropChange(true));
+		this.subredditsBarChartCategory.addListener(() => this.onSubredditPropChange(false));
+		this.startDate.addListener(() => this.onDatePropChange());
+		this.endDate.addListener(() => this.onDatePropChange());
+		this.smoothPerMinuteData.addListener(() => this.onActivityPropChange());
 	}
 
 	private loadFromLocalStorage() {
@@ -89,10 +92,19 @@ export class Settings {
 		localStorage.setItem(Settings.LOCAL_STORAGE_KEY, JSON.stringify(settings));
 	}
 
-	private onPropChange(requireRefresh: boolean) {
+	private onSubredditPropChange(requireRefresh: boolean) {
 		this.saveToLocalStorage();
 		if (requireRefresh)
-			this.onRequiresRefresh.notifyListeners();
+			this.onSubsRequiresRefresh.notifyListeners();
+	}
+
+	private onDatePropChange() {
+		this.saveToLocalStorage();
+		this.onActivityRequiresRefresh.notifyListeners();
+	}
+
+	private onActivityPropChange() {
+		this.saveToLocalStorage();
 	}
 }
 
@@ -115,7 +127,8 @@ export class State extends ChangeNotifier {
 		super();
 
 		this.settings = new Settings();
-		this.settings.onRequiresRefresh.addListener(debounce(this.load.bind(this), 500));
+		this.settings.onSubsRequiresRefresh.addListener(debounce(this.loadSubs.bind(this), 500));
+		this.settings.onActivityRequiresRefresh.addListener(debounce(this.loadActivity.bind(this), 500));
 		this.settings.startDate.addListener(this.onDateChange.bind(this));
 		this.settings.endDate.addListener(this.onDateChange.bind(this));
 
@@ -135,30 +148,67 @@ export class State extends ChangeNotifier {
 		this.subredditsBarChartsFull = this.transformSubsData(this.subredditTypesFull);
 		this.subredditTypesFiltered = [];
 		this.subredditsBarChartsFiltered = this.transformSubsData(this.subredditTypesFiltered);
-		this.filterData();
+		this.filterSubsData();
+		this.filterActivityData();
 	}
 
-	async load(): Promise<void> {
+	async loadAll(): Promise<void> {
+		await Promise.all([
+			this.loadActivity(),
+			this.loadSubs(),
+		]);
+		this.notifyListeners();
+	}
+
+	private async loadSubs(): Promise<void> {
 		const params = new URLSearchParams({
 			nsfw: this.settings.includeNsfw.value.toString(),
 			sfw: this.settings.includeSfw.value.toString(),
 			limit: this.settings.subredditsLimit.value.toString(),
 		});
-		let allRes: Response;
+		let res: Response;
 		try {
 			GlobalLoadingIndicator.pushIsLoading();
-			allRes = await fetch("/api/all?" + params.toString());
+			res = await fetch("/api/subredditTypes?" + params.toString());
 		} finally {
 			GlobalLoadingIndicator.popIsLoading();
 		}
-		const all = await allRes.json() as CombinedResponse;
+		const subsData = await res.json() as LoggedSubredditType_sections[];
 
-		this.ppmFull.points = all.ppm;
-		this.cpmFull.points = all.cpm;
 		// convert timestamps to sections
-		this.subredditTypesFull = all.subs;
+		this.subredditTypesFull = subsData;
 		this.subredditsBarChartsFull = this.transformSubsData(this.subredditTypesFull);
-		this.filterData();
+		this.filterSubsData();
+
+		this.notifyListeners();
+	}
+
+	private async loadActivity(): Promise<void> {
+		const params = new URLSearchParams({
+			resolution: window.innerWidth.toString(),
+		});
+		if (this.settings.startDate.value != null)
+			params.set("minCreated", `${this.settings.startDate.value / 1000}`);
+		if (this.settings.endDate.value != null)
+			params.set("maxCreated", `${this.settings.endDate.value / 1000}`);
+		let allRes: Response[];
+		try {
+			GlobalLoadingIndicator.pushIsLoading();
+			allRes = await Promise.all([
+				fetch("/api/postsPerMinute?" + params.toString()),
+				fetch("/api/commentsPerMinute?" + params.toString()),
+			]);
+		} finally {
+			GlobalLoadingIndicator.popIsLoading();
+		}
+		const [ppm, cpm] = (await Promise.all([
+			allRes[0].json(),
+			allRes[1].json(),
+		])) as Point[][];
+
+		this.ppmFull.points = ppm;
+		this.cpmFull.points = cpm;
+		this.filterActivityData();
 
 		this.notifyListeners();
 	}
@@ -169,13 +219,12 @@ export class State extends ChangeNotifier {
 		// each group has the groups/stacks: total subs, sum of sub subscribers
 		// each stack has the following bars: private, restricted
 		// public subs are not shown
-		// const hourResolution = 1;
-		const timeResolution = 1000 * 60 * 30;
 		let timeStart = Math.min(...subs.map(sub => sub.typeSections[0].startTime));
 		let timeEnd = Math.max(...subs.map(sub => {
 			const lastSection = sub.typeSections[sub.typeSections.length - 1];
 			return lastSection.startTime + lastSection.duration;
 		}));
+		const timeResolution = 1000 * 60 * 60 * 4;
 		function roundDateToHour(timestamp: number, roundDown = true): Date {
 			const date = new Date(timestamp);
 			date.setMilliseconds(0);
@@ -277,10 +326,8 @@ export class State extends ChangeNotifier {
 		return datasets;
 	}
 
-	private filterData(): void {
+	private filterSubsData(): void {
 		if (this.settings.startDate.value == null && this.settings.endDate.value == null) {
-			this.ppmFiltered.points = this.ppmFull.points;
-			this.cpmFiltered.points = this.cpmFull.points;
 			this.subredditTypesFiltered = this.subredditTypesFull;
 			this.subredditsBarChartsFiltered = copyGroupedSubredditBarChartDataSets(this.subredditsBarChartsFull);
 			return;
@@ -288,8 +335,6 @@ export class State extends ChangeNotifier {
 
 		const startDate = this.settings.startDate.value || 0;
 		const endDate = this.settings.endDate.value || Number.MAX_SAFE_INTEGER;
-		this.ppmFiltered.points = this.ppmFull.points.filter(point => point.x >= startDate && point.x <= endDate);
-		this.cpmFiltered.points = this.cpmFull.points.filter(point => point.x >= startDate && point.x <= endDate);
 		this.subredditTypesFiltered = deepCopy(this.subredditTypesFull).map(sub => {
 			sub.typeSections = sub.typeSections.filter(section => section.startTime + section.duration >= startDate && section.startTime <= endDate);
 			for (const section of sub.typeSections) {
@@ -314,15 +359,30 @@ export class State extends ChangeNotifier {
 		}
 	}
 
+	private filterActivityData(): void {
+		if (this.settings.startDate.value == null && this.settings.endDate.value == null) {
+			this.ppmFiltered.points = this.ppmFull.points;
+			this.cpmFiltered.points = this.cpmFull.points;
+			return;
+		}
+
+		const startDate = this.settings.startDate.value || 0;
+		const endDate = this.settings.endDate.value || Number.MAX_SAFE_INTEGER;
+		this.ppmFiltered.points = this.ppmFull.points.filter(point => point.x >= startDate && point.x <= endDate);
+		this.cpmFiltered.points = this.cpmFull.points.filter(point => point.x >= startDate && point.x <= endDate);
+	}
+
 	private onDateChange(): void {
-		this.filterData();
+		this.filterSubsData();
+		this.filterActivityData();
+		this.loadActivity();
 		this.notifyListeners();
 	}
 
 	setRefreshInterval(interval: number = 1000 * 60): void {
 		if (this.refreshInterval !== null)
 			clearInterval(this.refreshInterval);
-		this.refreshInterval = setInterval(() => this.load(), interval);
+		this.refreshInterval = setInterval(() => this.loadAll(), interval);
 	}
 
 	clearRefreshInterval(): void {

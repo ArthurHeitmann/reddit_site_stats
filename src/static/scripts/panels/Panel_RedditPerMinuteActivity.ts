@@ -69,7 +69,7 @@ export class Panel_RedditPerMinuteActivity extends CustomHtmlElement {
 			deepCopy(this.state.ppmFiltered),
 			deepCopy(this.state.cpmFiltered),
 		];
-		const windowSize = 4;
+		const windowSize = 16;
 		for (const dataset of smoothDatasets) {
 			for (let i = 0; i < dataset.points.length; i++) {
 				const window = dataset.points.slice(Math.max(i - windowSize, 0), Math.min(i + windowSize, dataset.points.length));

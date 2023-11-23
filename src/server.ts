@@ -1,4 +1,4 @@
-import express, {Express} from "express";
+import express, {Express, Request} from "express";
 import compression from "compression";
 import helmet from "helmet";
 import apiCache from "apicache";
@@ -6,6 +6,7 @@ import {LoggingMissions} from "./missions/LoggingMissions";
 import {PerMinuteLoggerMission} from "./missions/PerMinuteLoggerMission";
 import {LogMiddleWare} from "./serverLog";
 import {LoggedSubredditType_sections} from "./missions/SubredditTypesLoggerMission";
+import {findClosestIndex} from "./utils";
 
 export class Server {
 	private readonly cacheDuration = 30;
@@ -78,8 +79,30 @@ export class Server {
 		this.commonStartTime = Math.max(...allStartTimes);
 	}
 
-	private pointsFromPerMinuteData(mission: PerMinuteLoggerMission): { x: number; y: number }[] {
-		return mission.logged
+	private pointsFromPerMinuteData(mission: PerMinuteLoggerMission, minCreated: number|null = null, maxCreated: number|null = null, resolution: number|null = null): { x: number; y: number }[] {
+		let startIndex = 1;
+		let endIndex = mission.logged.length;
+
+		let logged = mission.logged;
+		if (minCreated !== null)
+			startIndex = findClosestIndex(logged, minCreated, e => e.created);
+		if (maxCreated !== null)
+			endIndex = findClosestIndex(logged, maxCreated, e => e.created);
+		if (startIndex !== 0 || endIndex !== mission.logged.length)
+			logged = logged.slice(startIndex, endIndex);
+		if (resolution !== null) {
+			const stepSize = (endIndex - startIndex) / resolution;
+			logged = Array.from({length: resolution}, (_, i) => {
+				const index = Math.floor(i * stepSize);
+				return logged[index];
+			});
+		}
+		if (logged[0] !== mission.logged[1])
+			logged.splice(0, 0, mission.logged[1]);
+		if (logged[logged.length - 1] !== mission.logged[mission.logged.length - 1])
+			logged.push(mission.logged[mission.logged.length - 1]);
+
+		return logged
 			.filter(thing => typeof thing.perMinute === "number")
 			.map(thing => ({
 				x: thing.created * 1000,
@@ -89,7 +112,8 @@ export class Server {
 	}
 
 	private perMinuteRoute(req: express.Request, res: express.Response, mission: PerMinuteLoggerMission) {
-		const points = this.pointsFromPerMinuteData(mission);
+		const {minCreated, maxCreated, resolution} = this.extractPointsParams(req);
+		const points = this.pointsFromPerMinuteData(mission, minCreated, maxCreated, resolution);
 		res.json(points);
 	}
 
@@ -141,5 +165,20 @@ export class Server {
 			subs,
 		});
 		// console.timeEnd("all");
+	}
+
+	private extractPointsParams(req: Request): { minCreated: number|null, maxCreated: number|null, resolution: number|null } {
+		const nonNanOrNull = (val: string | string[] | undefined) => {
+			if (val === undefined)
+				return null;
+			const num = Number(val as string);
+			if (isNaN(num))
+				return null;
+			return num;
+		}
+		const minCreated = nonNanOrNull(req.query.minCreated as string);
+		const maxCreated = nonNanOrNull(req.query.maxCreated as string);
+		const resolution = nonNanOrNull(req.query.resolution as string);
+		return {minCreated, maxCreated, resolution};
 	}
 }

@@ -82,3 +82,41 @@ export async function saveJsonSafely(obj: Record<string, unknown> | unknown[], f
 		console.error(e);
 	}
 }
+
+/**
+ * Finds the index of the item in the array that is closest to the given value,
+ * using binary search.
+ */
+export function findClosestIndex<T>(items: T[], value: number, getValue: (e: T) => number): number {
+	let minIndex = 0;
+	let maxIndex = items.length - 1;
+	let currentIndex: number;
+	let currentElement: number;
+
+	while (minIndex <= maxIndex) {
+		currentIndex = Math.floor((minIndex + maxIndex) / 2);
+		currentElement = getValue(items[currentIndex]);
+
+		if (currentElement < value) {
+			minIndex = currentIndex + 1;
+		} else if (currentElement > value) {
+			maxIndex = currentIndex - 1;
+		} else {
+			return currentIndex;
+		}
+	}
+
+	if (currentIndex === 0) {
+		return currentIndex;
+	} else if (currentIndex === items.length - 1) {
+		return currentIndex;
+	} else {
+		const prevElement = getValue(items[currentIndex - 1]);
+		const nextElement = getValue(items[currentIndex + 1]);
+		if (Math.abs(prevElement - value) < Math.abs(nextElement - value)) {
+			return currentIndex - 1;
+		} else {
+			return currentIndex;
+		}
+	}
+}
