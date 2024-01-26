@@ -360,16 +360,19 @@ export class State extends ChangeNotifier {
 	}
 
 	private filterActivityData(): void {
+		const cutoffThreshold = 50_000;
+		const ppm = this.ppmFull.points.filter(point => point.y < cutoffThreshold);
+		const cpm = this.cpmFull.points.filter(point => point.y < cutoffThreshold);
 		if (this.settings.startDate.value == null && this.settings.endDate.value == null) {
-			this.ppmFiltered.points = this.ppmFull.points;
-			this.cpmFiltered.points = this.cpmFull.points;
+			this.ppmFiltered.points = ppm;
+			this.cpmFiltered.points = cpm;
 			return;
 		}
 
 		const startDate = this.settings.startDate.value || 0;
 		const endDate = this.settings.endDate.value || Number.MAX_SAFE_INTEGER;
-		this.ppmFiltered.points = this.ppmFull.points.filter(point => point.x >= startDate && point.x <= endDate);
-		this.cpmFiltered.points = this.cpmFull.points.filter(point => point.x >= startDate && point.x <= endDate);
+		this.ppmFiltered.points = ppm.filter(point => point.x >= startDate && point.x <= endDate);
+		this.cpmFiltered.points = cpm.filter(point => point.x >= startDate && point.x <= endDate);
 	}
 
 	private onDateChange(): void {
