@@ -234,6 +234,10 @@ main {
     border-radius: 0;
     border-left: var(--border-width) solid var(--button-border-color);
   }
+
+  .text {
+    white-space: nowrap;
+  }
 }
 
 .panel {
@@ -436,15 +440,22 @@ main {
     pointer-events: none;
   }
 
-  .top-row {
+  .range-text {
     display: flex;
-    align-items: center;
     gap: 0.2rem;
     margin-top: 1rem;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
 
     .date-label {
       font-weight: 700;
+    }
+  }
+
+  .buttons {
+    display: flex;
+
+    > :nth-child(2) {
+      margin-right: 0.5rem;
     }
   }
 

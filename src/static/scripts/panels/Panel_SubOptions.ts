@@ -26,7 +26,12 @@ const limitsConfig = [
 		limit: 1500,
 		border: ToggleButtonRoundCorners.right,
 	},
-]
+];
+
+enum FirstLast {
+	first,
+	last,
+}
 
 export class Panel_SubOptions extends HTMLElement {
 	state: State;
@@ -118,9 +123,9 @@ class DateInputRange extends HTMLElement {
 	private readonly onMouseMove_: (e: MouseEvent) => void;
 	private readonly onMouseUp_: (e: MouseEvent) => void;
 	private isDraggingLeft: boolean;
-	private dragStartX: number;
-	private dragStartY: number;
 	private sliderPercent: number;
+	private fixedIntervalReferencePoint: FirstLast|null = null;
+	private fixedIntervalTimeFrame: number|null = null;
 
 	constructor(getMinMaxDate: () => [number, number], startDate: Prop<number|null>, endDate: Prop<number|null>) {
 		super();
@@ -131,11 +136,29 @@ class DateInputRange extends HTMLElement {
 		this.classList.add("date-input-range");
 		let leftHandle: HTMLElement;
 		let rightHandle: HTMLElement;
+		const firstLastButtons = [
+			new ToggleButton(false, "first", isOn => this.toggleReferencePoint(isOn, FirstLast.first), ToggleButtonRoundCorners.left),
+			new ToggleButton(false, "last", isOn => this.toggleReferencePoint(isOn, FirstLast.last), ToggleButtonRoundCorners.right),
+		];
+		const intervalButtons = [
+			new ToggleButton(false, "6 hours", isOn => this.toggleIntervalTimeFrame(isOn, 1000 * 60 * 60 * 6), ToggleButtonRoundCorners.left),
+			new ToggleButton(false, "2 days", isOn => this.toggleIntervalTimeFrame(isOn, 1000 * 60 * 60 * 24 * 2), ToggleButtonRoundCorners.none),
+			new ToggleButton(false, "week", isOn => this.toggleIntervalTimeFrame(isOn, 1000 * 60 * 60 * 24 * 7), ToggleButtonRoundCorners.none),
+			new ToggleButton(false, "month", isOn => this.toggleIntervalTimeFrame(isOn, 1000 * 60 * 60 * 24 * 30), ToggleButtonRoundCorners.right),
+		];
+		for (const button of firstLastButtons)
+			button.setButtonsGroup(firstLastButtons);
+		for (const button of intervalButtons)
+			button.setButtonsGroup(intervalButtons);
 		this.append(...[
-			makeElement("div", {class: "top-row"}, [
+			makeElement("div", { class: "range-text" }, [
 				makeElement("div", {class: "date-label"}, "Time range:"),
 				this.startDateText = makeElement("div",{class: "date-text"}, ""),
 				this.endDateText = makeElement("div",{class: "date-text"}, ""),
+			]),
+			makeElement("div", { class: "buttons" }, [
+				...firstLastButtons,
+				...intervalButtons,
 			]),
 			this.sliderRange = makeElement("div", {class: "input-range"}, [
 				makeElement("div", {class: "bar-background"}),
@@ -182,13 +205,6 @@ class DateInputRange extends HTMLElement {
 		if (!target.classList.contains("handle-left") && !target.classList.contains("handle-right"))
 			return;
 		target.classList.add("dragging");
-		if (e instanceof MouseEvent) {
-			this.dragStartX = e.clientX;
-			this.dragStartY = e.clientY;
-		} else {
-			this.dragStartX = e.touches[0].clientX;
-			this.dragStartY = e.touches[0].clientY;
-		}
 		[this.minDate, this.maxDate] = this.getMinMaxDate();
 		this.isDraggingLeft = target.classList.contains("handle-left");
 		document.addEventListener("mousemove", this.onMouseMove_);
@@ -231,7 +247,6 @@ class DateInputRange extends HTMLElement {
 			this.update(this.startDate.value, date);
 	}
 
-
 	private onMouseUp(e: MouseEvent | TouchEvent) {
 		enableTouchScroll();
 		const target = e.target as HTMLElement;
@@ -253,6 +268,48 @@ class DateInputRange extends HTMLElement {
 				date = null;
 			this.endDate.value = date;
 		}
+	}
+
+	private toggleReferencePoint(isOn: boolean, type: FirstLast) {
+		if (isOn) {
+			this.fixedIntervalReferencePoint = type;
+		} else if (this.fixedIntervalReferencePoint === type) {
+			this.fixedIntervalReferencePoint = null;
+		}
+		this.updateFixedInterval();
+	}
+
+	private toggleIntervalTimeFrame(isOn: boolean, timeFrame: number) {
+		if (isOn) {
+			this.fixedIntervalTimeFrame = timeFrame;
+		} else if (this.fixedIntervalTimeFrame === timeFrame) {
+			this.fixedIntervalTimeFrame = null;
+		}
+		this.updateFixedInterval();
+	}
+
+	private updateFixedInterval() {
+		if (this.fixedIntervalReferencePoint === null || this.fixedIntervalTimeFrame === null) {
+			return;
+		}
+		let startDate: number;
+		let endDate: number;
+		if (this.fixedIntervalReferencePoint === FirstLast.first) {
+			startDate = this.minDate;
+			endDate = startDate + this.fixedIntervalTimeFrame;
+		} else {
+			endDate = this.maxDate;
+			startDate = endDate - this.fixedIntervalTimeFrame;
+		}
+		if (startDate > this.endDate.value) {
+			this.endDate.value = endDate;
+			this.startDate.value = startDate;
+		}
+		else {
+			this.startDate.value = startDate;
+			this.endDate.value = endDate;
+		}
+		this.update(startDate, endDate);
 	}
 }
 
