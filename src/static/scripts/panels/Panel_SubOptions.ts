@@ -295,13 +295,13 @@ class DateInputRange extends HTMLElement {
 		let startDate: number;
 		let endDate: number;
 		if (this.fixedIntervalReferencePoint === FirstLast.first) {
-			startDate = this.minDate;
-			endDate = startDate + this.fixedIntervalTimeFrame;
+			startDate = null;
+			endDate = this.minDate + this.fixedIntervalTimeFrame;
 		} else {
-			endDate = this.maxDate;
-			startDate = endDate - this.fixedIntervalTimeFrame;
+			endDate = null;
+			startDate = this.maxDate - this.fixedIntervalTimeFrame;
 		}
-		if (startDate > this.endDate.value) {
+		if ((startDate ?? this.minDate) > (this.endDate.value ?? this.maxDate)) {
 			this.endDate.value = endDate;
 			this.startDate.value = startDate;
 		}
